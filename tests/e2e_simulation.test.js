@@ -31,9 +31,10 @@ describe('plata.nam HTML/JS E2E Verification', () => {
     assert.ok(htmlContent.includes('id="checkoutPostcode"'), 'Postcode input must exist');
     assert.ok(htmlContent.includes('id="checkoutCardNumber"'), 'Card number input must exist');
 
-    // 5. 4-Stage Stepper Tracker in Client Cabinet
-    assert.ok(htmlContent.includes('pipeline-tracker'), 'Pipeline tracker must exist in client portal');
+    // 5. Client Cabinet & Modals
+    assert.ok(htmlContent.includes('id="clientOrdersList"'), 'Client orders container must exist in client portal');
     assert.ok(htmlContent.includes('id="customUrlInput"'), 'URL request input must exist');
+    assert.ok(htmlContent.includes('id="liveTrackingModal"'), 'Live tracking modal must exist');
 
     // 6. Admin cashflow dashboard
     assert.ok(htmlContent.includes('id="statRevenue"'), 'Revenue stat card must exist');
@@ -41,11 +42,26 @@ describe('plata.nam HTML/JS E2E Verification', () => {
     assert.ok(htmlContent.includes('id="statProfit"'), 'Gross profit stat card must exist');
     assert.ok(htmlContent.includes('id="adminOrdersTableBody"'), 'Admin orders table must exist');
     assert.ok(htmlContent.includes('admin2026'), 'Admin credentials must be configured');
+
+    // 7. Verification of separated file links
+    assert.ok(htmlContent.includes('<link rel="stylesheet" href="style.css">'), 'Must link external style.css');
+    assert.ok(htmlContent.includes('<script src="app.js"></script>'), 'Must link external app.js');
   });
 
-  test('embedded JavaScript executes without any syntax or runtime errors', () => {
-    const scriptMatch = htmlContent.match(/<script>([\s\S]*?)<\/script>/);
-    assert.ok(scriptMatch, 'Script tag must be present in index.html');
+  test('style.css contains complete design system and responsive rules', () => {
+    const cssContent = fs.readFileSync('style.css', 'utf8');
+    assert.ok(cssContent.includes('--primary: #7000ff;'), 'Uzum brand primary color must be defined');
+    assert.ok(cssContent.includes('.pipeline-tracker'), 'Pipeline stepper styles must be defined');
+    assert.ok(cssContent.includes('.cart-summary-sticky'), 'Sticky cart summary styles must be defined');
+    assert.ok(cssContent.includes('.product-card'), 'Product card styles must be defined');
+  });
+
+  test('app.js executes without any syntax or runtime errors and contains Intel/Ryzen products', () => {
+    const jsContent = fs.readFileSync('app.js', 'utf8');
+    assert.ok(jsContent.length > 1000, 'app.js must not be empty');
+    assert.ok(jsContent.includes('Ryzen 7 7800X3D'), 'AMD Ryzen 7 7800X3D must be in catalog');
+    assert.ok(jsContent.includes('Core i9-14900K'), 'Intel Core i9-14900K must be in catalog');
+    assert.ok(jsContent.includes('UZP-'), 'UzPost tracking format must be implemented');
     
     // Create an isolated sandbox with mock browser globals
     const mockLocalStorage = {
@@ -86,9 +102,9 @@ describe('plata.nam HTML/JS E2E Verification', () => {
     };
 
     // Evaluate script in sandbox
-    const scriptFunc = new Function('window', 'document', 'localStorage', 'navigator', 'Intl', scriptMatch[1]);
+    const scriptFunc = new Function('window', 'document', 'localStorage', 'navigator', 'Intl', jsContent);
     assert.doesNotThrow(() => {
       scriptFunc(sandbox.window, sandbox.document, sandbox.localStorage, sandbox.navigator, sandbox.Intl);
-    }, 'Script evaluation should execute without errors');
+    }, 'app.js should execute without any syntax or runtime errors');
   });
 });
