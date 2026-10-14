@@ -1328,8 +1328,14 @@
         <div class="header-top-info">
           <span>O'zbekiston bo'yicha UzPost tezyurar pochtasi orqali yetkazish</span>
           <span class="header-top-badge">Rasmiy Import & Kafolat</span>
+          <span style="font-size:12px; color:#ffd166;">MB Valyuta: $1 = 12,850 so'm</span>
         </div>
-        <div style="display: flex; gap: 16px;">
+        <div style="display: flex; gap: 16px; align-items: center;">
+          <a href="#" onclick="App.openLiveTrackingModal(); return false;" style="color: #64b5f6; font-weight: 600; font-size:12px; display:flex; align-items:center; gap:4px;">
+            <svg style="width:14px;height:14px;" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
+            <span>UzPost Trek Kuzatuv</span>
+          </a>
+          <span style="color:#444;">|</span>
           <a href="#" onclick="App.switchView('admin'); return false;" style="color: #00d26a; font-weight: 600;">Admin Panel (admin / admin2026)</a>
         </div>
       </div>
@@ -1575,7 +1581,8 @@
             <h2>plata.nam — Kirdi-Chiqdi Moliya va Buyurtmalar Nazorati</h2>
             <p>Xorijiy rasmiy do'konlardan krossbording xaridlar va UzPost logistika balansi</p>
           </div>
-          <div>
+          <div style="display:flex; gap:10px;">
+            <button class="cat-pill" style="background:var(--primary); color:#fff; border-color:var(--primary); font-weight:700;" onclick="App.openAdminAddProductModal()">+ Yangi Mahsulot Qo'shish</button>
             <button class="cat-pill" style="background:#252834; color:#fff;" onclick="App.switchView('catalog')">Saytga qaytish</button>
           </div>
         </div>
@@ -1647,6 +1654,32 @@
                 </tr>
               </thead>
               <tbody id="adminClientsTableBody">
+                <!-- Rendered via JS -->
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- Xorijiy Link Zayavkalari (URL Requests) Jadvali -->
+        <div class="admin-table-card">
+          <div class="table-card-head">
+            <h3>Mijozlarning Maxsus Zayavkalari (URL Requests)</h3>
+            <span style="font-size: 13px; color: var(--text-muted);">Xorijiy linklarga narx belgilash va mijozga taklif chiqarish</span>
+          </div>
+          <div class="data-table-wrap">
+            <table class="data-table">
+              <thead>
+                <tr>
+                  <th>Zayavka ID</th>
+                  <th>Mijoz</th>
+                  <th>Mahsulot / Havola</th>
+                  <th>Izoh</th>
+                  <th>Belgilangan Narx</th>
+                  <th>Status</th>
+                  <th>Amallar</th>
+                </tr>
+              </thead>
+              <tbody id="adminRequestsTableBody">
                 <!-- Rendered via JS -->
               </tbody>
             </table>
@@ -1797,6 +1830,123 @@
       </div>
       <div class="modal-body" id="favoritesModalContent">
         <!-- Rendered via JS -->
+      </div>
+    </div>
+  </div>
+
+  <!-- 5. PRODUCT DETAILS & SPECS MODAL -->
+  <div class="modal-overlay" id="productDetailsModal">
+    <div class="modal-box" style="max-width: 680px;">
+      <div class="modal-head">
+        <h3 id="detailProductCategory">Mahsulot tafsilotlari</h3>
+        <button class="modal-close-btn" onclick="App.closeModals()">&times;</button>
+      </div>
+      <div class="modal-body" id="productDetailsContent">
+        <!-- Rendered via JS -->
+      </div>
+    </div>
+  </div>
+
+  <!-- 6. LIVE UZPOST TRACKING MODAL -->
+  <div class="modal-overlay" id="liveTrackingModal">
+    <div class="modal-box" style="max-width: 620px;">
+      <div class="modal-head">
+        <h3>UzPost Jonli Trek Kuzatuv Tizimi</h3>
+        <button class="modal-close-btn" onclick="App.closeModals()">&times;</button>
+      </div>
+      <div class="modal-body">
+        <div style="display:flex; gap:10px; margin-bottom: 20px;">
+          <input type="text" id="liveTrackInput" class="form-input" placeholder="UZP-20261014-9902 yoki boshqa trek-kod" style="font-family:monospace; font-size:15px; font-weight:700;">
+          <button class="checkout-submit-btn" style="width:auto; padding:0 24px;" onclick="App.handleLiveTrackSearch()">Tekshirish</button>
+        </div>
+        <div id="liveTrackResult">
+          <!-- Rendered via JS -->
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 7. ADMIN ADD PRODUCT MODAL -->
+  <div class="modal-overlay" id="adminAddProductModal">
+    <div class="modal-box" style="max-width: 600px;">
+      <div class="modal-head">
+        <h3>Katalogga Yangi Mahsulot Qo'shish</h3>
+        <button class="modal-close-btn" onclick="App.closeModals()">&times;</button>
+      </div>
+      <div class="modal-body">
+        <form onsubmit="App.handleAdminAddProductSubmit(event)">
+          <div class="form-group">
+            <label class="form-label">Mahsulot nomi *</label>
+            <input type="text" id="newProdTitle" class="form-input" required placeholder="Masalan: ASUS ROG Maximus Z790 Dark Hero">
+          </div>
+          <div style="display:grid; grid-template-columns:1fr 1fr; gap:12px;">
+            <div class="form-group">
+              <label class="form-label">Toifa *</label>
+              <select id="newProdCategory" class="form-input" required>
+                <option value="Motherboard">Motherboard (Ona plata)</option>
+                <option value="Cooling">Cooling (Kuler / SVO)</option>
+                <option value="Storage">Storage (SSD / HDD)</option>
+                <option value="Accessories & Ports">Accessories & Ports</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Rasmiy xorijiy manba</label>
+              <input type="text" id="newProdSource" class="form-input" placeholder="asus.com / newegg" value="official global dealer">
+            </div>
+          </div>
+          <div style="display:grid; grid-template-columns:1fr 1fr 1fr; gap:12px;">
+            <div class="form-group">
+              <label class="form-label">Sotuv narxi (so'm) *</label>
+              <input type="number" id="newProdRetail" class="form-input" required placeholder="3200000">
+            </div>
+            <div class="form-group">
+              <label class="form-label">Tannarx (COGS) *</label>
+              <input type="number" id="newProdCost" class="form-input" required placeholder="2600000">
+            </div>
+            <div class="form-group">
+              <label class="form-label">Eski narx (chizilgan)</label>
+              <input type="number" id="newProdOld" class="form-input" placeholder="3800000">
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Rasm havolasi (URL)</label>
+            <input type="url" id="newProdImage" class="form-input" placeholder="https://images.unsplash.com/..." value="https://images.unsplash.com/photo-1587202372775-e229f172b9d7?auto=format&fit=crop&w=400&q=80">
+          </div>
+          <div class="form-group">
+            <label class="form-label">Qisqa texnik xususiyatlar *</label>
+            <textarea id="newProdSpecs" class="form-textarea" required placeholder="LGA1700, DDR5, PCIe 5.0, Wi-Fi 7, 20+1 Power Stages"></textarea>
+          </div>
+          <button type="submit" class="checkout-submit-btn">Katalogga saqlash</button>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- 8. ADMIN QUOTE MODAL -->
+  <div class="modal-overlay" id="adminQuoteModal">
+    <div class="modal-box" style="max-width: 480px;">
+      <div class="modal-head">
+        <h3>Zayavkaga Narx Belgilash</h3>
+        <button class="modal-close-btn" onclick="App.closeModals()">&times;</button>
+      </div>
+      <div class="modal-body">
+        <form onsubmit="App.handleAdminQuoteSubmit(event)">
+          <input type="hidden" id="quoteReqId">
+          <div class="form-group">
+            <label class="form-label">Mahsulot</label>
+            <div id="quoteModalTitle" style="font-weight:700; font-size:14px; margin-bottom:8px;">-</div>
+            <div id="quoteModalUrl" style="font-size:12px; color:var(--info); word-break:break-all;">-</div>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Mijozga taklif qilinuvchi sotuv narxi (so'm) *</label>
+            <input type="number" id="quoteRetailInput" class="form-input" required placeholder="Masalan: 3400000">
+          </div>
+          <div class="form-group">
+            <label class="form-label">Xorijdagi xarid tannarxi (COGS) *</label>
+            <input type="number" id="quoteCostInput" class="form-input" required placeholder="Masalan: 2800000">
+          </div>
+          <button type="submit" class="checkout-submit-btn">Narxni tasdiqlash & Taklif yuborish</button>
+        </form>
       </div>
     </div>
   </div>
@@ -2197,6 +2347,85 @@
       }
 
       getUrlRequests() { return this.state.urlRequests || []; }
+
+      addProduct(prod) {
+        const newProduct = {
+          id: "PROD-" + Date.now().toString().slice(-6),
+          title: prod.title || "Yangi kompyuter qismi",
+          category: prod.category || "Accessories & Ports",
+          retailPrice: Number(prod.retailPrice) || 1000000,
+          costPrice: Number(prod.costPrice) || 800000,
+          oldPrice: prod.oldPrice ? Number(prod.oldPrice) : Math.round(Number(prod.retailPrice) * 1.15),
+          image: prod.image || "https://images.unsplash.com/photo-1587202372775-e229f172b9d7?auto=format&fit=crop&w=400&q=80",
+          specs: prod.specs || "Rasmiy xorijiy import qismlar",
+          officialSource: prod.officialSource || "official partner",
+          oemTag: "plata.nam (Official Import)",
+          inStock: true
+        };
+        this.state.products.unshift(newProduct);
+        this.saveState(this.state);
+        return newProduct;
+      }
+
+      quoteUrlRequest(reqId, proposedRetail, proposedCost = null) {
+        const req = (this.state.urlRequests || []).find(r => r.id === reqId);
+        if (req) {
+          req.status = "APPROVED";
+          req.proposedPrice = Number(proposedRetail);
+          req.costPrice = proposedCost !== null ? Number(proposedCost) : Math.round(Number(proposedRetail) * 0.8);
+          this.saveState(this.state);
+        }
+        return req;
+      }
+
+      trackParcel(trackingNumber) {
+        const cleanTrack = String(trackingNumber).trim().toUpperCase();
+        const order = this.state.orders.find(o => o.logistics && o.logistics.trackingNumber.toUpperCase() === cleanTrack);
+        if (!order) {
+          return {
+            found: false,
+            trackingNumber: cleanTrack,
+            message: "Ushbu trek-raqam bo'yicha ma'lumot topilmadi"
+          };
+        }
+
+        const timeline = [
+          {
+            stage: "PAID",
+            title: "To'lov qabul qilindi & Muzlatildi",
+            location: "Toshkent, plata.nam bosh ofisi",
+            desc: "Buyurtma xorijiy dilerga yo'naltirishga tayyorlandi",
+            done: true
+          },
+          {
+            stage: "PURCHASED_OFFICIAL",
+            title: "Rasmiy xorijiy dilerdan xarid qilindi",
+            location: "AQSh / Yevropa saralash xabi",
+            desc: "Asl nusxada yetkazib beruvchi omboridan qabul qilindi",
+            done: order.stage !== "PAID"
+          },
+          {
+            stage: "WAREHOUSE_UZPOST",
+            title: "O'zbekistonga yetib keldi & UzPostga topshirildi",
+            location: "Toshkent xalqaro pochta saralash markazi",
+            desc: `Trek-kod ro'yxatga olindi: ${order.logistics.trackingNumber}`,
+            done: order.stage === "WAREHOUSE_UZPOST" || order.stage === "DELIVERED"
+          },
+          {
+            stage: "DELIVERED",
+            title: "Yetkazib berildi / Topshirishga tayyor",
+            location: order.logistics.address,
+            desc: `Mijoz: ${order.clientName} (${order.clientPhone})`,
+            done: order.stage === "DELIVERED"
+          }
+        ];
+
+        return {
+          found: true,
+          order,
+          timeline
+        };
+      }
     }
 
     const store = new PlataStoreClass();
@@ -2324,16 +2553,16 @@
           const isFav = favs.includes(p.id);
           return `
             <div class="product-card">
-              <div class="product-img-wrap">
+              <div class="product-img-wrap" onclick="App.openProductDetails('${p.id}')" style="cursor:pointer;">
                 <img src="${p.image}" alt="${p.title}" loading="lazy">
                 <span class="product-oem-tag">${p.oemTag}</span>
-                <button class="product-fav-btn ${isFav ? 'active' : ''}" onclick="App.toggleFav('${p.id}')" title="Saralanganlarga saqlash">
+                <button class="product-fav-btn ${isFav ? 'active' : ''}" onclick="event.stopPropagation(); App.toggleFav('${p.id}')" title="Saralanganlarga saqlash">
                   <svg style="width:18px;height:18px;" fill="${isFav ? 'currentColor' : 'none'}" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"></path></svg>
                 </button>
               </div>
               <div class="product-details">
                 <span class="product-category-lbl">${p.category}</span>
-                <h3 class="product-title" title="${p.title}">${p.title}</h3>
+                <h3 class="product-title" title="${p.title}" onclick="App.openProductDetails('${p.id}')" style="cursor:pointer;">${p.title}</h3>
                 <p class="product-specs">${p.specs}</p>
                 <div class="product-price-row">
                   <div>
@@ -2810,6 +3039,31 @@
             </tr>
           `;
         }).join('');
+
+        // URL Requests Table
+        const requestsTable = document.getElementById('adminRequestsTableBody');
+        if (requestsTable) {
+          const reqs = store.getUrlRequests();
+          if (reqs.length === 0) {
+            requestsTable.innerHTML = `<tr><td colspan="7" style="text-align:center;color:var(--text-muted);padding:20px;">Hozircha maxsus link zayavkalari kelib tushmagan.</td></tr>`;
+          } else {
+            requestsTable.innerHTML = reqs.map(r => `
+              <tr>
+                <td><b>${r.id}</b><br><small style="color:var(--text-muted);">${new Date(r.createdAt).toLocaleDateString('uz-UZ')}</small></td>
+                <td><b>${r.clientName}</b></td>
+                <td><b>${r.title}</b><br><a href="${r.url}" target="_blank" style="color:var(--info);font-size:12px;text-decoration:underline;">Rasmiy havolani ochish &nearr;</a></td>
+                <td>${r.note || '-'}</td>
+                <td><b>${r.proposedPrice ? App.formatMoney(r.proposedPrice) : `<span style="color:var(--danger);font-size:12px;">Belgilanmagan</span>`}</b></td>
+                <td><span class="status-badge ${r.status === 'APPROVED' ? 'delivered' : 'paid'}">${r.status === 'APPROVED' ? 'Taklif yuborildi' : 'Kutilmoqda'}</span></td>
+                <td>
+                  <button class="table-action-btn" onclick="App.openAdminQuoteModal('${r.id}')">
+                    ${r.status === 'APPROVED' ? 'Qayta belgilash' : 'Narx belgilash'}
+                  </button>
+                </td>
+              </tr>
+            `).join('');
+          }
+        }
       },
 
       handleAdminUpdateCost(orderId, newCost) {
@@ -2830,6 +3084,182 @@
         this.renderAdminDashboard();
         this.renderClientPortal();
         this.toast("Buyurtma statusi o'zgartirildi!", "success");
+      },
+
+      // PRODUCT DETAILS MODAL
+      openProductDetails(productId) {
+        const p = store.getProductById(productId);
+        if (!p) return;
+
+        document.getElementById('detailProductCategory').textContent = p.category + " — " + p.title;
+        const container = document.getElementById('productDetailsContent');
+        const isFav = store.getFavorites().includes(p.id);
+
+        container.innerHTML = `
+          <div style="display:grid; grid-template-columns: 240px 1fr; gap: 24px; align-items: start;">
+            <div>
+              <div style="background:var(--card-subtle); border-radius:12px; padding:16px; border:1px solid var(--border-color); text-align:center;">
+                <img src="${p.image}" alt="${p.title}" style="max-width:100%; max-height:220px; object-fit:contain;">
+              </div>
+              <div style="margin-top:12px; font-size:12px; color:var(--text-muted); text-align:center;">
+                OEM Kafolat: <b>12 oy rasmiy</b>
+              </div>
+            </div>
+
+            <div>
+              <span class="product-oem-tag" style="position:static; display:inline-block; margin-bottom:8px;">${p.oemTag}</span>
+              <h2 style="font-size:18px; font-weight:800; line-height:1.3; margin-bottom:10px;">${p.title}</h2>
+              <p style="font-size:13px; color:var(--text-subtle); margin-bottom:16px;">${p.specs}</p>
+
+              <div style="background:var(--card-subtle); padding:12px 16px; border-radius:10px; margin-bottom:18px; font-size:13px;">
+                <div style="display:flex; justify-content:space-between; margin-bottom:6px;">
+                  <span style="color:var(--text-muted);">Rasmiy xorijiy manba:</span>
+                  <span style="color:var(--info); font-weight:600;">${p.officialSource}</span>
+                </div>
+                <div style="display:flex; justify-content:space-between; margin-bottom:6px;">
+                  <span style="color:var(--text-muted);">Yetkazish muddati:</span>
+                  <span style="color:var(--success); font-weight:600;">UzPost orqali 24-48 soat</span>
+                </div>
+                <div style="display:flex; justify-content:space-between;">
+                  <span style="color:var(--text-muted);">Holati:</span>
+                  <span style="color:var(--success); font-weight:700;">Omborda mavjud (Yangi/OEM)</span>
+                </div>
+              </div>
+
+              <div style="display:flex; align-items:baseline; gap:12px; margin-bottom:20px;">
+                <span style="font-size:24px; font-weight:800; color:var(--text-main);">${App.formatMoney(p.retailPrice)}</span>
+                ${p.oldPrice ? `<span style="font-size:14px; color:var(--text-muted); text-decoration:line-through;">${App.formatMoney(p.oldPrice)}</span>` : ''}
+              </div>
+
+              <div style="display:flex; gap:12px;">
+                <button class="checkout-submit-btn" style="flex:1;" onclick="App.handleAddToCart('${p.id}'); App.closeModals();">
+                  <svg style="width:18px;height:18px;" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"></path></svg>
+                  <span>Savatga qo'shish</span>
+                </button>
+                <button class="action-btn" style="border:1px solid var(--border-color); padding:0 16px;" onclick="App.toggleFav('${p.id}'); App.closeModals();">
+                  <svg style="width:18px;height:18px;color:${isFav ? 'var(--danger)' : 'currentColor'};" fill="${isFav ? 'currentColor' : 'none'}" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"></path></svg>
+                </button>
+              </div>
+            </div>
+          </div>
+        `;
+
+        document.getElementById('productDetailsModal').classList.add('active');
+      },
+
+      // LIVE UZPOST TRACKING
+      openLiveTrackingModal() {
+        document.getElementById('liveTrackingModal').classList.add('active');
+        const orders = store.getOrders();
+        if (orders.length > 0) {
+          document.getElementById('liveTrackInput').value = orders[0].logistics.trackingNumber;
+          this.handleLiveTrackSearch();
+        }
+      },
+
+      handleLiveTrackSearch() {
+        const code = document.getElementById('liveTrackInput').value.trim();
+        const container = document.getElementById('liveTrackResult');
+        if (!code) {
+          container.innerHTML = `<p style="color:var(--danger);font-size:13px;">Iltimos, trek-kodni kiriting</p>`;
+          return;
+        }
+
+        const res = store.trackParcel(code);
+        if (!res.found) {
+          container.innerHTML = `
+            <div style="background:#fff2f2;border:1px solid rgba(247,56,89,0.3);border-radius:10px;padding:16px;text-align:center;">
+              <p style="color:var(--danger);font-weight:600;font-size:14px;">${res.message}</p>
+              <p style="font-size:12px;color:var(--text-muted);margin-top:4px;">Trek-kod formati: UZP-YYYYMMDD-XXXX</p>
+            </div>
+          `;
+          return;
+        }
+
+        const o = res.order;
+        container.innerHTML = `
+          <div style="background:var(--card-subtle);border-radius:10px;padding:16px;margin-bottom:20px;border:1px solid var(--border-color);">
+            <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;">
+              <span style="font-size:15px;font-weight:800;color:var(--primary);">${o.orderId}</span>
+              <span class="status-badge warehouse">${o.stage}</span>
+            </div>
+            <div style="font-size:13px;"><b>Mijoz:</b> ${o.clientName} (${o.clientPhone})</div>
+            <div style="font-size:13px;margin-top:2px;"><b>Yetkazish manzili:</b> ${o.logistics.address} (${o.logistics.postcode})</div>
+            <div style="font-size:13px;margin-top:2px;"><b>Tovarlar:</b> ${o.items.map(i => `${i.name} (x${i.qty})`).join(', ')}</div>
+          </div>
+
+          <h4 style="font-size:14px;font-weight:700;margin-bottom:14px;">UzPost Bosqichlari:</h4>
+          <div style="display:flex;flex-direction:column;gap:12px;border-left:3px solid var(--primary);padding-left:16px;margin-left:8px;">
+            ${res.timeline.map(t => `
+              <div style="opacity:${t.done ? '1' : '0.45'};position:relative;">
+                <div style="position:absolute;left:-23px;top:2px;width:12px;height:12px;border-radius:50%;background:${t.done ? 'var(--primary)' : '#bbb'};border:2px solid #fff;"></div>
+                <div style="font-size:13px;font-weight:700;color:${t.done ? 'var(--primary)' : 'var(--text-muted)'};">${t.title}</div>
+                <div style="font-size:12px;color:var(--text-main);">${t.location}</div>
+                <div style="font-size:11px;color:var(--text-muted);">${t.desc}</div>
+              </div>
+            `).join('')}
+          </div>
+        `;
+      },
+
+      // ADMIN PRODUCT MANAGEMENT
+      openAdminAddProductModal() {
+        document.getElementById('adminAddProductModal').classList.add('active');
+      },
+
+      handleAdminAddProductSubmit(event) {
+        event.preventDefault();
+        const title = document.getElementById('newProdTitle').value.trim();
+        const category = document.getElementById('newProdCategory').value;
+        const officialSource = document.getElementById('newProdSource').value.trim();
+        const retailPrice = Number(document.getElementById('newProdRetail').value);
+        const costPrice = Number(document.getElementById('newProdCost').value);
+        const oldPrice = Number(document.getElementById('newProdOld').value) || Math.round(retailPrice * 1.15);
+        const image = document.getElementById('newProdImage').value.trim();
+        const specs = document.getElementById('newProdSpecs').value.trim();
+
+        store.addProduct({
+          title,
+          category,
+          officialSource,
+          retailPrice,
+          costPrice,
+          oldPrice,
+          image,
+          specs
+        });
+
+        this.closeModals();
+        event.target.reset();
+        this.renderCatalog();
+        this.renderAdminDashboard();
+        this.toast("Yangi mahsulot katalogga muvaffaqiyatli qo'shildi!", "success");
+      },
+
+      // ADMIN URL REQUEST QUOTE
+      openAdminQuoteModal(reqId) {
+        const req = (store.getUrlRequests() || []).find(r => r.id === reqId);
+        if (!req) return;
+
+        document.getElementById('quoteReqId').value = req.id;
+        document.getElementById('quoteModalTitle').textContent = req.title;
+        document.getElementById('quoteModalUrl').textContent = req.url;
+        document.getElementById('quoteRetailInput').value = req.proposedPrice || '';
+        document.getElementById('quoteCostInput').value = req.costPrice || '';
+        document.getElementById('adminQuoteModal').classList.add('active');
+      },
+
+      handleAdminQuoteSubmit(event) {
+        event.preventDefault();
+        const reqId = document.getElementById('quoteReqId').value;
+        const retail = Number(document.getElementById('quoteRetailInput').value);
+        const cost = Number(document.getElementById('quoteCostInput').value);
+
+        store.quoteUrlRequest(reqId, retail, cost);
+        this.closeModals();
+        this.renderAdminDashboard();
+        this.renderClientPortal();
+        this.toast("Zayavkaga narx belgilandi va mijozga taklif chiqarildi!", "success");
       },
 
       // AUTHENTICATION

@@ -375,6 +375,83 @@ export function createPlataStore(storageEngine = null) {
       saveState(state);
       return newReq;
     },
-    getUrlRequests() { return state.urlRequests || []; }
+    getUrlRequests() { return state.urlRequests || []; },
+    addProduct(prod) {
+      const newProduct = {
+        id: "PROD-" + Date.now().toString().slice(-6),
+        title: prod.title || "Yangi kompyuter qismi",
+        category: prod.category || "Accessories & Ports",
+        retailPrice: Number(prod.retailPrice) || 1000000,
+        costPrice: Number(prod.costPrice) || 800000,
+        oldPrice: prod.oldPrice ? Number(prod.oldPrice) : Math.round(Number(prod.retailPrice) * 1.15),
+        image: prod.image || "https://images.unsplash.com/photo-1587202372775-e229f172b9d7?auto=format&fit=crop&w=400&q=80",
+        specs: prod.specs || "Rasmiy xorijiy import qismlar",
+        officialSource: prod.officialSource || "official partner",
+        oemTag: "plata.nam (Official Import)",
+        inStock: true
+      };
+      state.products.unshift(newProduct);
+      saveState(state);
+      return newProduct;
+    },
+    quoteUrlRequest(reqId, proposedRetail, proposedCost = null) {
+      const req = (state.urlRequests || []).find(r => r.id === reqId);
+      if (req) {
+        req.status = "APPROVED";
+        req.proposedPrice = Number(proposedRetail);
+        req.costPrice = proposedCost !== null ? Number(proposedCost) : Math.round(Number(proposedRetail) * 0.8);
+        saveState(state);
+      }
+      return req;
+    },
+    trackParcel(trackingNumber) {
+      const cleanTrack = String(trackingNumber).trim().toUpperCase();
+      const order = state.orders.find(o => o.logistics && o.logistics.trackingNumber.toUpperCase() === cleanTrack);
+      if (!order) {
+        return {
+          found: false,
+          trackingNumber: cleanTrack,
+          message: "Ushbu trek-raqam bo'yicha ma'lumot topilmadi"
+        };
+      }
+
+      const timeline = [
+        {
+          stage: "PAID",
+          title: "To'lov qabul qilindi & Muzlatildi",
+          location: "Toshkent, plata.nam bosh ofisi",
+          desc: "Buyurtma xorijiy dilerga yo'naltirishga tayyorlandi",
+          done: true
+        },
+        {
+          stage: "PURCHASED_OFFICIAL",
+          title: "Rasmiy xorijiy dilerdan xarid qilindi",
+          location: "AQSh / Yevropa saralash xabi",
+          desc: "Asl nusxada yetkazib beruvchi omboridan qabul qilindi",
+          done: order.stage !== "PAID"
+        },
+        {
+          stage: "WAREHOUSE_UZPOST",
+          title: "O'zbekistonga yetib keldi & UzPostga topshirildi",
+          location: "Toshkent xalqaro pochta saralash markazi",
+          desc: `Trek-kod ro'yxatga olindi: ${order.logistics.trackingNumber}`,
+          done: order.stage === "WAREHOUSE_UZPOST" || order.stage === "DELIVERED"
+        },
+        {
+          stage: "DELIVERED",
+          title: "Yetkazib berildi / Topshirishga tayyor",
+          location: order.logistics.address,
+          desc: `Mijoz: ${order.clientName} (${order.clientPhone})`,
+          done: order.stage === "DELIVERED"
+        }
+      ];
+
+      return {
+        found: true,
+        order,
+        timeline
+      };
+    }
   };
 }
+

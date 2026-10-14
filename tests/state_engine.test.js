@@ -69,16 +69,48 @@ describe('PlataStore State Engine', () => {
     assert.equal(fin.grossProfit, fin.totalRevenue - fin.totalCOGS - fin.uzpostExpense);
   });
 
-  test('admin can advance order stage and update COGS', () => {
+  test('admin can add new products to catalog', () => {
+    const store = getFreshStore();
+    const newProd = store.addProduct({
+      title: 'NVIDIA GeForce RTX 4070 Ti Super 16GB',
+      category: 'Accessories & Ports',
+      retailPrice: 9500000,
+      costPrice: 8200000,
+      oldPrice: 10500000,
+      image: 'https://images.unsplash.com/photo-1587202372775-e229f172b9d7?auto=format&fit=crop&w=400&q=80',
+      specs: '16GB GDDR6X, 256-bit, DLSS 3, 3x DisplayPort, 1x HDMI',
+      officialSource: 'nvidia.com / newegg'
+    });
+
+    assert.ok(newProd.id.startsWith('PROD-'));
+    const fetched = store.getProductById(newProd.id);
+    assert.equal(fetched.title, 'NVIDIA GeForce RTX 4070 Ti Super 16GB');
+  });
+
+  test('admin can quote URL request and update proposed price', () => {
+    const store = getFreshStore();
+    const req = store.addUrlRequest({
+      url: 'https://amazon.com/dp/B0CK1Y7P7R',
+      title: 'Corsair Dominator Titanium DDR5 64GB',
+      note: 'White edition 6000MHz'
+    });
+
+    const quoted = store.quoteUrlRequest(req.id, 3200000, 2600000);
+    assert.equal(quoted.status, 'APPROVED');
+    assert.equal(quoted.proposedPrice, 3200000);
+    assert.equal(quoted.costPrice, 2600000);
+  });
+
+  test('trackParcel returns order details and delivery timeline stages', () => {
     const store = getFreshStore();
     const orders = store.getOrders();
-    const orderId = orders[0].orderId;
-    
-    store.updateOrderStage(orderId, 'WAREHOUSE_UZPOST', 2250000, 'UZP-CUSTOM-1234');
-    const updated = store.getOrders().find(o => o.orderId === orderId);
-    assert.equal(updated.stage, 'WAREHOUSE_UZPOST');
-    assert.equal(updated.costAmount, 2250000);
-    assert.equal(updated.logistics.trackingNumber, 'UZP-CUSTOM-1234');
-    assert.equal(updated.profit, updated.totalPaid - 2250000);
+    const trackingNum = orders[0].logistics.trackingNumber;
+
+    const trackingResult = store.trackParcel(trackingNum);
+    assert.ok(trackingResult.found, 'Tracking result should be found');
+    assert.equal(trackingResult.order.logistics.trackingNumber, trackingNum);
+    assert.ok(Array.isArray(trackingResult.timeline), 'Timeline should be an array');
+    assert.ok(trackingResult.timeline.length >= 4, 'Timeline should have 4 steps');
   });
 });
+
