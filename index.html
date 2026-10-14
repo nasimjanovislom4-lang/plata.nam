@@ -1,0 +1,2943 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>plata.nam — Kompyuter butlovchi qismlari onlayn platformasi</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  
+  <style>
+    /* ==========================================================================
+       PLATA.NAM DESIGN SYSTEM (UZUM MARKET THEME)
+       ========================================================================== */
+    :root {
+      --primary: #7000ff;
+      --primary-hover: #5800cc;
+      --primary-light: #f3e8ff;
+      --primary-badge: #7000ff;
+      
+      --bg: #f2f4f7;
+      --card-bg: #ffffff;
+      --card-subtle: #f8f9fb;
+      
+      --text-main: #1f2026;
+      --text-muted: #8b8e99;
+      --text-subtle: #595b66;
+      
+      --border-color: #e2e5eb;
+      --border-light: #eff1f5;
+      
+      --danger: #f73859;
+      --danger-light: #fef0f2;
+      --success: #00b862;
+      --success-light: #e6f9f0;
+      --info: #0066cc;
+      --info-light: #e6f0fa;
+      --warning: #ff9800;
+      
+      --radius-sm: 8px;
+      --radius-md: 12px;
+      --radius-lg: 16px;
+      --radius-full: 9999px;
+      
+      --shadow-sm: 0 1px 3px rgba(0,0,0,0.06);
+      --shadow-md: 0 4px 12px rgba(0,0,0,0.08);
+      --shadow-lg: 0 10px 25px rgba(0,0,0,0.12);
+      
+      --font: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: var(--font);
+      background-color: var(--bg);
+      color: var(--text-main);
+      line-height: 1.5;
+      -webkit-font-smoothing: antialiased;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    button {
+      font-family: inherit;
+      cursor: pointer;
+      border: none;
+      outline: none;
+      background: none;
+    }
+
+    input, select, textarea {
+      font-family: inherit;
+      outline: none;
+    }
+
+    /* Container */
+    .container {
+      width: 100%;
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+
+    /* ==========================================================================
+       HEADER & NAVIGATION (image_5a9901 andozasi)
+       ========================================================================== */
+    .site-header {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      background: var(--card-bg);
+      border-bottom: 1px solid var(--border-color);
+      box-shadow: var(--shadow-sm);
+    }
+
+    .header-top {
+      background: #0f1015;
+      color: #b0b3bd;
+      font-size: 13px;
+      padding: 6px 0;
+    }
+    .header-top .container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .header-top-info {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+    .header-top-badge {
+      background: #252834;
+      color: #00d26a;
+      padding: 2px 8px;
+      border-radius: var(--radius-sm);
+      font-size: 11px;
+      font-weight: 600;
+    }
+
+    .header-main {
+      padding: 14px 0;
+    }
+    .header-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+    }
+
+    /* Logo */
+    .brand-logo {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 26px;
+      font-weight: 800;
+      color: var(--primary);
+      letter-spacing: -0.5px;
+      cursor: pointer;
+      user-select: none;
+    }
+    .brand-logo .dot {
+      color: var(--danger);
+    }
+    .brand-tag {
+      font-size: 11px;
+      text-transform: uppercase;
+      background: var(--primary-light);
+      color: var(--primary);
+      padding: 2px 6px;
+      border-radius: 4px;
+      font-weight: 700;
+      letter-spacing: 0.5px;
+    }
+
+    /* Search & Categories */
+    .header-search-bar {
+      flex: 1;
+      max-width: 580px;
+      display: flex;
+      position: relative;
+    }
+    .search-input {
+      width: 100%;
+      height: 44px;
+      border: 2px solid var(--border-color);
+      border-radius: var(--radius-md);
+      padding: 0 46px 0 16px;
+      font-size: 14px;
+      transition: border-color 0.2s;
+    }
+    .search-input:focus {
+      border-color: var(--primary);
+    }
+    .search-btn {
+      position: absolute;
+      right: 4px;
+      top: 4px;
+      width: 36px;
+      height: 36px;
+      background: var(--card-subtle);
+      border-radius: var(--radius-sm);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--text-subtle);
+    }
+    .search-btn:hover {
+      color: var(--primary);
+    }
+
+    /* Header Nav Actions */
+    .header-actions {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .action-btn {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 14px;
+      border-radius: var(--radius-md);
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--text-main);
+      transition: background 0.15s, color 0.15s;
+      position: relative;
+    }
+    .action-btn:hover {
+      background: var(--card-subtle);
+      color: var(--primary);
+    }
+    .action-btn svg {
+      width: 20px;
+      height: 20px;
+      stroke-width: 2;
+    }
+    
+    /* Cart Badge (image_5a9901 talabi) */
+    .cart-badge {
+      position: absolute;
+      top: 2px;
+      left: 22px;
+      background: var(--primary-badge);
+      color: #ffffff;
+      font-size: 11px;
+      font-weight: 700;
+      min-width: 18px;
+      height: 18px;
+      border-radius: var(--radius-full);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0 4px;
+      border: 2px solid #ffffff;
+    }
+
+    /* Sub Navigation Tabs */
+    .header-subnav {
+      background: #fafbfd;
+      border-top: 1px solid var(--border-light);
+      padding: 8px 0;
+    }
+    .category-pills {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      overflow-x: auto;
+      scrollbar-width: none;
+    }
+    .category-pills::-webkit-scrollbar {
+      display: none;
+    }
+    .cat-pill {
+      padding: 6px 14px;
+      border-radius: var(--radius-full);
+      font-size: 13px;
+      font-weight: 500;
+      background: var(--card-bg);
+      border: 1px solid var(--border-color);
+      color: var(--text-subtle);
+      white-space: nowrap;
+      transition: all 0.2s;
+    }
+    .cat-pill:hover, .cat-pill.active {
+      background: var(--primary);
+      color: #ffffff;
+      border-color: var(--primary);
+    }
+
+    /* ==========================================================================
+       MAIN VIEWS & SPA ROUTING
+       ========================================================================== */
+    main {
+      flex: 1;
+      padding: 24px 0 60px 0;
+    }
+
+    .view-section {
+      display: none;
+    }
+    .view-section.active {
+      display: block;
+      animation: fadeIn 0.2s ease-in-out;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(4px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Breadcrumbs */
+    .breadcrumbs {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 13px;
+      color: var(--text-muted);
+      margin-bottom: 20px;
+    }
+    .breadcrumbs span.current {
+      color: var(--text-main);
+      font-weight: 500;
+    }
+
+    /* ==========================================================================
+       1. CATALOG VIEW (CATALOG & PRODUCT CARDS)
+       ========================================================================== */
+    .catalog-hero-banner {
+      background: linear-gradient(135deg, #2b0066 0%, #7000ff 100%);
+      border-radius: var(--radius-lg);
+      padding: 32px 40px;
+      color: #ffffff;
+      margin-bottom: 30px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .catalog-hero-banner::after {
+      content: "";
+      position: absolute;
+      right: -40px;
+      bottom: -60px;
+      width: 240px;
+      height: 240px;
+      background: rgba(255,255,255,0.08);
+      border-radius: 50%;
+    }
+    .hero-content h1 {
+      font-size: 28px;
+      font-weight: 800;
+      margin-bottom: 8px;
+    }
+    .hero-content p {
+      font-size: 15px;
+      color: rgba(255,255,255,0.85);
+      max-width: 580px;
+    }
+    .hero-badge-tag {
+      background: rgba(255,255,255,0.2);
+      backdrop-filter: blur(10px);
+      padding: 6px 14px;
+      border-radius: var(--radius-full);
+      font-size: 13px;
+      font-weight: 600;
+      display: inline-block;
+      margin-bottom: 12px;
+    }
+
+    .products-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+      gap: 20px;
+    }
+
+    .product-card {
+      background: var(--card-bg);
+      border-radius: var(--radius-md);
+      overflow: hidden;
+      border: 1px solid var(--border-color);
+      display: flex;
+      flex-direction: column;
+      transition: transform 0.2s, box-shadow 0.2s;
+      position: relative;
+    }
+    .product-card:hover {
+      transform: translateY(-4px);
+      box-shadow: var(--shadow-md);
+    }
+    .product-img-wrap {
+      width: 100%;
+      height: 200px;
+      background: var(--card-subtle);
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+    }
+    .product-img-wrap img {
+      max-width: 90%;
+      max-height: 90%;
+      object-fit: contain;
+      transition: transform 0.3s;
+    }
+    .product-card:hover .product-img-wrap img {
+      transform: scale(1.05);
+    }
+    .product-fav-btn {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      width: 32px;
+      height: 32px;
+      background: rgba(255,255,255,0.9);
+      border-radius: var(--radius-full);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--text-muted);
+      box-shadow: var(--shadow-sm);
+      transition: color 0.2s, transform 0.15s;
+    }
+    .product-fav-btn:hover, .product-fav-btn.active {
+      color: var(--danger);
+      transform: scale(1.1);
+    }
+    .product-oem-tag {
+      position: absolute;
+      bottom: 8px;
+      left: 8px;
+      background: rgba(0,0,0,0.7);
+      color: #fff;
+      font-size: 10px;
+      padding: 2px 6px;
+      border-radius: 4px;
+      font-weight: 600;
+    }
+
+    .product-details {
+      padding: 16px;
+      display: flex;
+      flex-direction: column;
+      flex: 1;
+    }
+    .product-category-lbl {
+      font-size: 11px;
+      font-weight: 600;
+      color: var(--primary);
+      text-transform: uppercase;
+      margin-bottom: 4px;
+    }
+    .product-title {
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--text-main);
+      line-height: 1.35;
+      height: 38px;
+      overflow: hidden;
+      margin-bottom: 8px;
+    }
+    .product-specs {
+      font-size: 12px;
+      color: var(--text-muted);
+      margin-bottom: 14px;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+      min-height: 34px;
+    }
+    .product-price-row {
+      margin-top: auto;
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      padding-top: 10px;
+      border-top: 1px solid var(--border-light);
+    }
+    .current-price {
+      font-size: 18px;
+      font-weight: 800;
+      color: var(--text-main);
+    }
+    .old-price {
+      font-size: 12px;
+      color: var(--text-muted);
+      text-decoration: line-through;
+      margin-bottom: 2px;
+    }
+    .add-to-cart-btn {
+      width: 40px;
+      height: 40px;
+      background: var(--primary-light);
+      color: var(--primary);
+      border-radius: var(--radius-md);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.2s;
+    }
+    .add-to-cart-btn:hover {
+      background: var(--primary);
+      color: #ffffff;
+      transform: scale(1.05);
+    }
+
+    /* ==========================================================================
+       2. UZUM-STYLE SHOPPING CART (image_5a9921 andozasi)
+       ========================================================================== */
+    .cart-layout {
+      display: grid;
+      grid-template-columns: 1fr 380px;
+      gap: 24px;
+      align-items: start;
+    }
+
+    .cart-main-box {
+      background: var(--card-bg);
+      border-radius: var(--radius-lg);
+      border: 1px solid var(--border-color);
+      padding: 24px;
+    }
+
+    .cart-header-actions {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding-bottom: 16px;
+      border-bottom: 1px solid var(--border-color);
+      margin-bottom: 16px;
+    }
+    .cart-select-all {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 14px;
+      font-weight: 600;
+      cursor: pointer;
+    }
+    .cart-delete-selected {
+      font-size: 13px;
+      color: var(--danger);
+      font-weight: 500;
+      cursor: pointer;
+    }
+    .cart-delete-selected:hover {
+      text-decoration: underline;
+    }
+
+    /* Info Banner */
+    .uzpost-banner {
+      background: var(--info-light);
+      border: 1px solid rgba(0, 102, 204, 0.2);
+      border-radius: var(--radius-md);
+      padding: 12px 16px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 20px;
+      color: var(--info);
+      font-size: 13px;
+      font-weight: 600;
+    }
+    .uzpost-badge-icon {
+      background: var(--info);
+      color: #fff;
+      padding: 3px 8px;
+      border-radius: 4px;
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: 0.5px;
+    }
+
+    /* Cart Item List */
+    .cart-items-list {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .cart-item-row {
+      display: grid;
+      grid-template-columns: 24px 80px 1fr auto;
+      gap: 16px;
+      align-items: center;
+      padding: 16px 0;
+      border-bottom: 1px solid var(--border-light);
+    }
+    .cart-item-row:last-child {
+      border-bottom: none;
+    }
+
+    .item-checkbox {
+      width: 18px;
+      height: 18px;
+      accent-color: var(--primary);
+      cursor: pointer;
+    }
+
+    .item-thumbnail {
+      width: 80px;
+      height: 80px;
+      background: var(--card-subtle);
+      border-radius: var(--radius-sm);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      border: 1px solid var(--border-light);
+    }
+    .item-thumbnail img {
+      max-width: 90%;
+      max-height: 90%;
+      object-fit: contain;
+    }
+
+    .item-info-col {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+    .item-seller-tag {
+      font-size: 11px;
+      color: var(--text-muted);
+    }
+    .item-seller-tag b {
+      color: var(--text-subtle);
+    }
+    .item-title-text {
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--text-main);
+      line-height: 1.4;
+    }
+    .item-actions-links {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      margin-top: 6px;
+    }
+    .item-action-btn {
+      font-size: 12px;
+      color: var(--text-muted);
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      cursor: pointer;
+      transition: color 0.15s;
+    }
+    .item-action-btn:hover {
+      color: var(--primary);
+    }
+    .item-action-btn.delete:hover {
+      color: var(--danger);
+    }
+
+    .item-controls-col {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      gap: 8px;
+    }
+
+    /* Stepper [ - ] [ qty ] [ + ] */
+    .stepper-wrap {
+      display: flex;
+      align-items: center;
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-sm);
+      overflow: hidden;
+      background: var(--card-bg);
+    }
+    .stepper-btn {
+      width: 32px;
+      height: 32px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 16px;
+      font-weight: 600;
+      color: var(--text-subtle);
+      transition: background 0.15s, color 0.15s;
+    }
+    .stepper-btn:hover {
+      background: var(--card-subtle);
+      color: var(--primary);
+    }
+    .stepper-value {
+      width: 36px;
+      text-align: center;
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--text-main);
+    }
+
+    .item-price-box {
+      text-align: right;
+    }
+    .item-cur-price {
+      font-size: 16px;
+      font-weight: 800;
+      color: var(--text-main);
+    }
+    .item-old-price {
+      font-size: 12px;
+      color: var(--text-muted);
+      text-decoration: line-through;
+    }
+
+    /* STICKY SUMMARY CARD (O'ng blok) */
+    .cart-summary-sticky {
+      position: sticky;
+      top: 96px;
+      background: var(--card-bg);
+      border-radius: var(--radius-lg);
+      border: 1px solid var(--border-color);
+      padding: 24px;
+      box-shadow: var(--shadow-sm);
+    }
+    .summary-title {
+      font-size: 18px;
+      font-weight: 800;
+      margin-bottom: 18px;
+      color: var(--text-main);
+    }
+    .summary-line {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      font-size: 14px;
+      margin-bottom: 12px;
+      color: var(--text-subtle);
+    }
+    .summary-line.discount span:last-child {
+      color: var(--danger);
+      font-weight: 600;
+    }
+    .summary-line.shipping span:last-child {
+      color: var(--success);
+      font-weight: 600;
+    }
+    .summary-divider {
+      height: 1px;
+      background: var(--border-color);
+      margin: 18px 0;
+    }
+    .summary-total-line {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      margin-bottom: 20px;
+    }
+    .summary-total-lbl {
+      font-size: 16px;
+      font-weight: 700;
+      color: var(--text-main);
+    }
+    .summary-total-val {
+      font-size: 24px;
+      font-weight: 800;
+      color: var(--text-main);
+      letter-spacing: -0.5px;
+    }
+    .checkout-submit-btn {
+      width: 100%;
+      height: 52px;
+      background: var(--primary);
+      color: #ffffff;
+      font-size: 16px;
+      font-weight: 700;
+      border-radius: var(--radius-md);
+      transition: background 0.2s, transform 0.15s;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+    }
+    .checkout-submit-btn:hover {
+      background: var(--primary-hover);
+      transform: translateY(-1px);
+    }
+    .checkout-submit-btn:disabled {
+      background: #ccc;
+      cursor: not-allowed;
+      transform: none;
+    }
+
+    /* ==========================================================================
+       3. CLIENT PORTAL (BUYURTMA TREKKERI & URL ZAYAVKA)
+       ========================================================================== */
+    .portal-grid {
+      display: grid;
+      grid-template-columns: 300px 1fr;
+      gap: 24px;
+    }
+    .portal-sidebar {
+      background: var(--card-bg);
+      border-radius: var(--radius-lg);
+      border: 1px solid var(--border-color);
+      padding: 24px;
+      height: fit-content;
+    }
+    .user-profile-head {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      margin-bottom: 20px;
+      padding-bottom: 16px;
+      border-bottom: 1px solid var(--border-light);
+    }
+    .user-avatar-circle {
+      width: 54px;
+      height: 54px;
+      background: var(--primary-light);
+      color: var(--primary);
+      border-radius: var(--radius-full);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 20px;
+      font-weight: 800;
+    }
+    .user-meta-name {
+      font-weight: 700;
+      font-size: 16px;
+    }
+    .user-meta-phone {
+      font-size: 13px;
+      color: var(--text-muted);
+    }
+    .portal-nav-list {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+    .portal-nav-item {
+      padding: 10px 14px;
+      border-radius: var(--radius-md);
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--text-subtle);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      cursor: pointer;
+      transition: all 0.15s;
+    }
+    .portal-nav-item:hover, .portal-nav-item.active {
+      background: var(--primary-light);
+      color: var(--primary);
+      font-weight: 600;
+    }
+
+    .portal-content-area {
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+    }
+
+    /* Orders Card & Stage Pipeline */
+    .order-history-card {
+      background: var(--card-bg);
+      border-radius: var(--radius-lg);
+      border: 1px solid var(--border-color);
+      padding: 24px;
+    }
+    .order-head-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 20px;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+    .order-id-badge {
+      font-size: 16px;
+      font-weight: 800;
+      color: var(--primary);
+    }
+    .order-date-text {
+      font-size: 13px;
+      color: var(--text-muted);
+    }
+
+    /* 4-Stage Stepper Tracker */
+    .pipeline-tracker {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      position: relative;
+      margin: 28px 0 24px 0;
+    }
+    .pipeline-tracker::before {
+      content: "";
+      position: absolute;
+      top: 14px;
+      left: 10%;
+      right: 10%;
+      height: 3px;
+      background: var(--border-color);
+      z-index: 1;
+    }
+    .stage-step {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      position: relative;
+      z-index: 2;
+    }
+    .step-circle {
+      width: 32px;
+      height: 32px;
+      border-radius: var(--radius-full);
+      background: var(--border-color);
+      color: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 13px;
+      font-weight: 700;
+      margin-bottom: 8px;
+      transition: all 0.3s;
+    }
+    .stage-step.active .step-circle {
+      background: var(--primary);
+      box-shadow: 0 0 0 4px var(--primary-light);
+    }
+    .stage-step.completed .step-circle {
+      background: var(--success);
+    }
+    .step-label {
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--text-subtle);
+    }
+    .stage-step.active .step-label {
+      color: var(--primary);
+      font-weight: 700;
+    }
+
+    .order-details-box {
+      background: var(--card-subtle);
+      border-radius: var(--radius-md);
+      padding: 16px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 16px;
+      margin-top: 16px;
+    }
+    .tracking-code-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--info-light);
+      color: var(--info);
+      padding: 6px 12px;
+      border-radius: var(--radius-md);
+      font-family: monospace;
+      font-size: 14px;
+      font-weight: 700;
+    }
+    .copy-btn {
+      font-size: 11px;
+      background: #fff;
+      padding: 2px 6px;
+      border-radius: 4px;
+      color: var(--info);
+      font-weight: 600;
+      cursor: pointer;
+    }
+
+    /* URL Request Form */
+    .url-request-card {
+      background: var(--card-bg);
+      border-radius: var(--radius-lg);
+      border: 1px solid var(--border-color);
+      padding: 24px;
+    }
+    .form-group {
+      margin-bottom: 16px;
+    }
+    .form-label {
+      display: block;
+      font-size: 13px;
+      font-weight: 600;
+      margin-bottom: 6px;
+      color: var(--text-main);
+    }
+    .form-input {
+      width: 100%;
+      height: 44px;
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-md);
+      padding: 0 14px;
+      font-size: 14px;
+      transition: border-color 0.2s;
+    }
+    .form-input:focus {
+      border-color: var(--primary);
+    }
+    .form-textarea {
+      width: 100%;
+      height: 90px;
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-md);
+      padding: 10px 14px;
+      font-size: 14px;
+      resize: vertical;
+    }
+    .form-textarea:focus {
+      border-color: var(--primary);
+    }
+
+    /* ==========================================================================
+       4. SUPER-ADMIN DASHBOARD (MOLIYA & ANALITIKA)
+       ========================================================================== */
+    .admin-dashboard-wrap {
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+    }
+    .admin-head-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: #0f1015;
+      color: #fff;
+      padding: 20px 24px;
+      border-radius: var(--radius-lg);
+    }
+    .admin-title-wrap h2 {
+      font-size: 20px;
+      font-weight: 800;
+    }
+    .admin-title-wrap p {
+      font-size: 13px;
+      color: #8b8e99;
+    }
+
+    /* Cashflow 3-Stat Cards */
+    .cashflow-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+    }
+    .stat-card {
+      background: var(--card-bg);
+      border-radius: var(--radius-lg);
+      border: 1px solid var(--border-color);
+      padding: 24px;
+      display: flex;
+      flex-direction: column;
+      position: relative;
+      overflow: hidden;
+    }
+    .stat-card::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 4px;
+    }
+    .stat-card.revenue::before { background: var(--info); }
+    .stat-card.cogs::before { background: var(--warning); }
+    .stat-card.profit::before { background: var(--success); }
+
+    .stat-card-title {
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin-bottom: 8px;
+    }
+    .stat-card-value {
+      font-size: 26px;
+      font-weight: 800;
+      color: var(--text-main);
+      letter-spacing: -0.5px;
+    }
+    .stat-card-desc {
+      font-size: 12px;
+      color: var(--text-muted);
+      margin-top: 6px;
+    }
+
+    /* Admin Data Tables */
+    .admin-table-card {
+      background: var(--card-bg);
+      border-radius: var(--radius-lg);
+      border: 1px solid var(--border-color);
+      overflow: hidden;
+    }
+    .table-card-head {
+      padding: 18px 24px;
+      border-bottom: 1px solid var(--border-color);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .table-card-head h3 {
+      font-size: 16px;
+      font-weight: 700;
+    }
+
+    .data-table-wrap {
+      overflow-x: auto;
+    }
+    .data-table {
+      width: 100%;
+      border-collapse: collapse;
+      text-align: left;
+      font-size: 13px;
+    }
+    .data-table th {
+      background: var(--card-subtle);
+      padding: 12px 18px;
+      font-weight: 600;
+      color: var(--text-subtle);
+      border-bottom: 1px solid var(--border-color);
+    }
+    .data-table td {
+      padding: 14px 18px;
+      border-bottom: 1px solid var(--border-light);
+      color: var(--text-main);
+      vertical-align: middle;
+    }
+    .data-table tr:hover {
+      background: #fafbfd;
+    }
+
+    .status-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 4px 10px;
+      border-radius: var(--radius-full);
+      font-size: 11px;
+      font-weight: 700;
+    }
+    .status-badge.paid {
+      background: var(--info-light);
+      color: var(--info);
+    }
+    .status-badge.purchased {
+      background: #fff4e5;
+      color: #b76e00;
+    }
+    .status-badge.warehouse {
+      background: var(--primary-light);
+      color: var(--primary);
+    }
+    .status-badge.delivered {
+      background: var(--success-light);
+      color: var(--success);
+    }
+
+    .table-action-btn {
+      padding: 6px 12px;
+      border-radius: var(--radius-sm);
+      font-size: 12px;
+      font-weight: 600;
+      background: var(--primary-light);
+      color: var(--primary);
+      transition: all 0.15s;
+    }
+    .table-action-btn:hover {
+      background: var(--primary);
+      color: #fff;
+    }
+
+    /* ==========================================================================
+       MODALS & DIALOGS
+       ========================================================================== */
+    .modal-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(15, 16, 21, 0.6);
+      backdrop-filter: blur(4px);
+      z-index: 2000;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+    .modal-overlay.active {
+      display: flex;
+      animation: modalFadeIn 0.2s ease-out;
+    }
+
+    @keyframes modalFadeIn {
+      from { opacity: 0; transform: scale(0.97); }
+      to { opacity: 1; transform: scale(1); }
+    }
+
+    .modal-box {
+      background: var(--card-bg);
+      border-radius: var(--radius-lg);
+      width: 100%;
+      max-width: 520px;
+      max-height: 90vh;
+      overflow-y: auto;
+      box-shadow: var(--shadow-lg);
+      position: relative;
+    }
+    .modal-head {
+      padding: 20px 24px;
+      border-bottom: 1px solid var(--border-color);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .modal-head h3 {
+      font-size: 18px;
+      font-weight: 800;
+    }
+    .modal-close-btn {
+      font-size: 20px;
+      color: var(--text-muted);
+      cursor: pointer;
+      width: 32px;
+      height: 32px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: var(--radius-full);
+    }
+    .modal-close-btn:hover {
+      background: var(--card-subtle);
+      color: var(--text-main);
+    }
+    .modal-body {
+      padding: 24px;
+    }
+
+    /* Toast Notifications */
+    .toast-container {
+      position: fixed;
+      bottom: 24px;
+      right: 24px;
+      z-index: 3000;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      pointer-events: none;
+    }
+    .toast {
+      background: #1f2026;
+      color: #ffffff;
+      padding: 12px 20px;
+      border-radius: var(--radius-md);
+      font-size: 14px;
+      font-weight: 500;
+      box-shadow: var(--shadow-lg);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      pointer-events: auto;
+      animation: slideInRight 0.25s ease-out;
+    }
+    @keyframes slideInRight {
+      from { opacity: 0; transform: translateX(20px); }
+      to { opacity: 1; transform: translateX(0); }
+    }
+
+    /* Invoice Receipt (Printable View) */
+    .invoice-view {
+      border: 2px dashed var(--border-color);
+      border-radius: var(--radius-md);
+      padding: 20px;
+      background: #fff;
+    }
+    .invoice-header {
+      display: flex;
+      justify-content: space-between;
+      border-bottom: 2px solid var(--border-color);
+      padding-bottom: 14px;
+      margin-bottom: 16px;
+    }
+    .invoice-title {
+      font-size: 18px;
+      font-weight: 800;
+      color: var(--primary);
+    }
+    .invoice-table {
+      width: 100%;
+      margin: 16px 0;
+      border-collapse: collapse;
+      font-size: 13px;
+    }
+    .invoice-table th, .invoice-table td {
+      padding: 8px 0;
+      border-bottom: 1px solid var(--border-light);
+    }
+
+    /* Responsive */
+    @media (max-width: 900px) {
+      .cart-layout {
+        grid-template-columns: 1fr;
+      }
+      .cart-summary-sticky {
+        position: static;
+      }
+      .portal-grid {
+        grid-template-columns: 1fr;
+      }
+      .cashflow-grid {
+        grid-template-columns: 1fr;
+      }
+      .pipeline-tracker {
+        grid-template-columns: 1fr;
+        gap: 16px;
+      }
+      .pipeline-tracker::before {
+        display: none;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ==================== HEADER (image_5a9901 andozasi) ==================== -->
+  <header class="site-header">
+    <div class="header-top">
+      <div class="container">
+        <div class="header-top-info">
+          <span>O'zbekiston bo'yicha UzPost tezyurar pochtasi orqali yetkazish</span>
+          <span class="header-top-badge">Rasmiy Import & Kafolat</span>
+        </div>
+        <div style="display: flex; gap: 16px;">
+          <a href="#" onclick="App.switchView('admin'); return false;" style="color: #00d26a; font-weight: 600;">Admin Panel (admin / admin2026)</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="header-main">
+      <div class="container">
+        <div class="header-row">
+          <!-- Logo -->
+          <div class="brand-logo" onclick="App.switchView('catalog')">
+            <span>plata<span class="dot">.</span>nam</span>
+            <span class="brand-tag">OEM Direct</span>
+          </div>
+
+          <!-- Search Bar -->
+          <div class="header-search-bar">
+            <input type="text" id="searchInput" class="search-input" placeholder="Ona plata, kuler, SSD yoki portlarni qidirish..." oninput="App.handleSearch(this.value)">
+            <button class="search-btn" title="Qidirish">
+              <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
+            </button>
+          </div>
+
+          <!-- Header Actions (Kirish, Tanlangan, Savat) -->
+          <div class="header-actions">
+            <!-- 1. Kirish / Profil -->
+            <button class="action-btn" id="userMenuBtn" onclick="App.openAuthModal()">
+              <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"></path></svg>
+              <span id="userBtnLabel">Kirish</span>
+            </button>
+
+            <!-- 2. Saralanganlar (Heart) -->
+            <button class="action-btn" onclick="App.openFavoritesModal()">
+              <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"></path></svg>
+              <span>Saralangan</span>
+            </button>
+
+            <!-- 3. Savat (Bag + Neon Purple Badge) -->
+            <button class="action-btn" onclick="App.switchView('cart')">
+              <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"></path></svg>
+              <span class="cart-badge" id="cartBadgeCount">0</span>
+              <span>Savat</span>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Category Subnav -->
+    <div class="header-subnav">
+      <div class="container">
+        <div class="category-pills" id="categoryPills">
+          <button class="cat-pill active" onclick="App.filterCategory('all', this)">Barchasi</button>
+          <button class="cat-pill" onclick="App.filterCategory('Motherboard', this)">Ona platalar</button>
+          <button class="cat-pill" onclick="App.filterCategory('Cooling', this)">Kulerlar va SVO</button>
+          <button class="cat-pill" onclick="App.filterCategory('Storage', this)">SSD & HDD Xotira</button>
+          <button class="cat-pill" onclick="App.filterCategory('Accessories & Ports', this)">Aksessuar & Portlar</button>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- ==================== MAIN CONTENT CONTAINER ==================== -->
+  <main class="container">
+
+    <!-- 1. CATALOG VIEW -->
+    <section id="view-catalog" class="view-section active">
+      <div class="catalog-hero-banner">
+        <div class="hero-content">
+          <span class="hero-badge-tag">O'zbekistonda yagona konsyerj xizmati</span>
+          <h1>Rasmiy xorijiy dilerlardan to'g'ridan-to'g'ri import</h1>
+          <p>Ona platalar, SVO kulerlar, tezyurar NVMe xotiralar va noyob kontrollerlar — 100% rasmiy dilerlardan kafolatli buyurtma va UzPost orqali eshikkacha yetkazish.</p>
+        </div>
+      </div>
+
+      <div class="breadcrumbs">
+        <span onclick="App.switchView('catalog')" style="cursor: pointer;">Bosh sahifa</span>
+        <span>/</span>
+        <span class="current" id="catalogBreadcrumb">Katalog mahsulotlari</span>
+      </div>
+
+      <div class="products-grid" id="productsGrid">
+        <!-- Rendered via JS -->
+      </div>
+    </section>
+
+    <!-- 2. UZUM-STYLE SHOPPING CART VIEW (image_5a9921 andozasi) -->
+    <section id="view-cart" class="view-section">
+      <div class="breadcrumbs">
+        <span onclick="App.switchView('catalog')" style="cursor: pointer;">Bosh sahifa</span>
+        <span>/</span>
+        <span class="current">Savat (Korzina)</span>
+      </div>
+
+      <div class="cart-layout">
+        <!-- Chap Kolonna: Tovar boshqaruvi -->
+        <div class="cart-main-box">
+          <div class="cart-header-actions">
+            <label class="cart-select-all">
+              <input type="checkbox" id="selectAllCartCheckbox" class="item-checkbox" checked onchange="App.handleToggleAllCart(this.checked)">
+              <span>Barchasini tanlash</span>
+            </label>
+            <span class="cart-delete-selected" onclick="App.handleDeleteSelectedCart()">Tanlanganlarni o'chirish</span>
+          </div>
+
+          <!-- UzPost Info Banner -->
+          <div class="uzpost-banner">
+            <span class="uzpost-badge-icon">UzPost</span>
+            <span>Yetkazib berish: UzPost tezyurar pochtasi orqali — Butun respublika bo'ylab BEPUL</span>
+          </div>
+
+          <!-- Tovar Kartalari Ro'yxati -->
+          <div class="cart-items-list" id="cartItemsList">
+            <!-- Rendered via JS -->
+          </div>
+        </div>
+
+        <!-- O'ng Kolonna: Sticky Summary Card -->
+        <div class="cart-summary-sticky">
+          <h3 class="summary-title">Sizning buyurtmangiz</h3>
+          
+          <div class="summary-line">
+            <span id="summaryItemsCount">Mahsulotlar (0 dona):</span>
+            <span id="summaryOriginalTotal">0 so'm</span>
+          </div>
+          
+          <div class="summary-line discount">
+            <span>Chegirma (Aksiya):</span>
+            <span id="summaryDiscountTotal">-0 so'm</span>
+          </div>
+
+          <div class="summary-line shipping">
+            <span>UzPost yetkazish:</span>
+            <span>Bepul</span>
+          </div>
+
+          <div class="summary-divider"></div>
+
+          <div class="summary-total-line">
+            <span class="summary-total-lbl">Jami to'lov:</span>
+            <span class="summary-total-val" id="summaryFinalTotal">0 so'm</span>
+          </div>
+
+          <button class="checkout-submit-btn" id="btnCheckoutSubmit" onclick="App.openCheckoutModal()">
+            <span>Rasmiylashtirish</span>
+            <svg style="width:18px;height:18px;" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- 3. CLIENT PORTAL VIEW -->
+    <section id="view-client" class="view-section">
+      <div class="breadcrumbs">
+        <span onclick="App.switchView('catalog')" style="cursor: pointer;">Bosh sahifa</span>
+        <span>/</span>
+        <span class="current">Mijoz kabineti</span>
+      </div>
+
+      <div class="portal-grid">
+        <!-- Sidebar -->
+        <div class="portal-sidebar">
+          <div class="user-profile-head">
+            <div class="user-avatar-circle" id="portalAvatar">I</div>
+            <div>
+              <div class="user-meta-name" id="portalUserName">Islomjon</div>
+              <div class="user-meta-phone" id="portalUserPhone">+998 90 123 45 67</div>
+            </div>
+          </div>
+
+          <div class="portal-nav-list">
+            <div class="portal-nav-item active" onclick="App.switchPortalTab('orders', this)">
+              <span>Buyurtmalarim & Trek</span>
+              <span id="portalOrderCountBadge" style="background:var(--primary);color:#fff;font-size:11px;padding:2px 8px;border-radius:10px;">1</span>
+            </div>
+            <div class="portal-nav-item" onclick="App.switchPortalTab('url-request', this)">
+              <span>Xorijiy link bilan zayavka</span>
+              <span style="color:var(--primary);">+ Yangi</span>
+            </div>
+            <div class="portal-nav-item" onclick="App.logout()">
+              <span style="color:var(--danger);">Chiqish</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Content Area -->
+        <div class="portal-content-area">
+          <!-- Buyurtmalar Trekkeri -->
+          <div id="portal-tab-orders">
+            <h2 style="font-size: 20px; font-weight: 800; margin-bottom: 16px;">Mening buyurtmalarim</h2>
+            <div id="clientOrdersList" style="display:flex; flex-direction:column; gap:20px;">
+              <!-- Rendered via JS -->
+            </div>
+          </div>
+
+          <!-- URL Zayavka Shakli -->
+          <div id="portal-tab-url-request" style="display: none;">
+            <div class="url-request-card">
+              <h2 style="font-size: 20px; font-weight: 800; margin-bottom: 8px;">Maxsus butlovchi qism zayavkasi</h2>
+              <p style="font-size: 14px; color: var(--text-muted); margin-bottom: 20px;">Agar siz qidirayotgan plata yoki qism katalogda bo'lmasa, rasmiy do'kon (Newegg, Amazon, Asus) havolasini yuboring. Admin 1 soat ichida narx belgilaydi.</p>
+              
+              <form onsubmit="App.handleUrlRequestSubmit(event)">
+                <div class="form-group">
+                  <label class="form-label">Mahsulot havolasi (URL link) *</label>
+                  <input type="url" id="customUrlInput" class="form-input" required placeholder="https://www.newegg.com/p/N82E16813119...">
+                </div>
+                <div class="form-group">
+                  <label class="form-label">Mahsulot nomi yoki modeli</label>
+                  <input type="text" id="customTitleInput" class="form-input" placeholder="Masalan: ASRock X670E Taichi Carrara AM5">
+                </div>
+                <div class="form-group">
+                  <label class="form-label">Qo'shimcha izoh / talablar</label>
+                  <textarea id="customNoteInput" class="form-textarea" placeholder="Tezkor yetkazish yoki qo'shimcha kuler bilan..."></textarea>
+                </div>
+                <button type="submit" class="checkout-submit-btn" style="width: auto; padding: 0 32px;">
+                  Zayavkani yuborish
+                </button>
+              </form>
+
+              <div style="margin-top: 30px;">
+                <h3 style="font-size: 16px; font-weight: 700; margin-bottom: 14px;">Mening yuborgan zayavkalarim</h3>
+                <div id="myUrlRequestsList">
+                  <!-- Rendered via JS -->
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 4. SUPER-ADMIN DASHBOARD VIEW -->
+    <section id="view-admin" class="view-section">
+      <div class="breadcrumbs">
+        <span onclick="App.switchView('catalog')" style="cursor: pointer;">Bosh sahifa</span>
+        <span>/</span>
+        <span class="current">Super-Admin Boshqaruv Markazi</span>
+      </div>
+
+      <div class="admin-dashboard-wrap">
+        <!-- Admin Header -->
+        <div class="admin-head-bar">
+          <div class="admin-title-wrap">
+            <h2>plata.nam — Kirdi-Chiqdi Moliya va Buyurtmalar Nazorati</h2>
+            <p>Xorijiy rasmiy do'konlardan krossbording xaridlar va UzPost logistika balansi</p>
+          </div>
+          <div>
+            <button class="cat-pill" style="background:#252834; color:#fff;" onclick="App.switchView('catalog')">Saytga qaytish</button>
+          </div>
+        </div>
+
+        <!-- 3-Stat Cashflow Cards -->
+        <div class="cashflow-grid">
+          <div class="stat-card revenue">
+            <span class="stat-card-title">Kirdi (Jami Tushum / Revenue)</span>
+            <div class="stat-card-value" id="statRevenue">0 so'm</div>
+            <span class="stat-card-desc">Mijozlar tomonidan to'langan jami depozit mablag'i</span>
+          </div>
+
+          <div class="stat-card cogs">
+            <span class="stat-card-title">Chiqdi (COGS / Xarid Xarajati)</span>
+            <div class="stat-card-value" id="statCOGS">0 so'm</div>
+            <span class="stat-card-desc">Xorijiy dilerlardan xarid qilish tannarxi</span>
+          </div>
+
+          <div class="stat-card profit">
+            <span class="stat-card-title">Sof Foyda (Gross Profit)</span>
+            <div class="stat-card-value" id="statProfit">0 so'm</div>
+            <span class="stat-card-desc">Formula: Kirdi - Chiqdi - UzPost xarajati</span>
+          </div>
+        </div>
+
+        <!-- Buyurtmalar Pipeline Jadvali -->
+        <div class="admin-table-card">
+          <div class="table-card-head">
+            <h3>Buyurtmalar Konveyeri (Pipeline Tracker)</h3>
+            <span style="font-size: 13px; color: var(--text-muted);">Statusni keyingi bosqichga o'tkazish & trek biriktirish</span>
+          </div>
+          <div class="data-table-wrap">
+            <table class="data-table">
+              <thead>
+                <tr>
+                  <th>Buyurtma ID</th>
+                  <th>Mijoz</th>
+                  <th>Tovarlar</th>
+                  <th>To'langan</th>
+                  <th>Tannarx (COGS)</th>
+                  <th>Foyda</th>
+                  <th>UzPost Trek</th>
+                  <th>Status (Pipeline)</th>
+                  <th>Amallar</th>
+                </tr>
+              </thead>
+              <tbody id="adminOrdersTableBody">
+                <!-- Rendered via JS -->
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- Mijozlar Bazasi Jadvali -->
+        <div class="admin-table-card">
+          <div class="table-card-head">
+            <h3>Mijozlar Ro'yxati</h3>
+          </div>
+          <div class="data-table-wrap">
+            <table class="data-table">
+              <thead>
+                <tr>
+                  <th>Mijoz ID</th>
+                  <th>Ismi</th>
+                  <th>Telefon</th>
+                  <th>Buyurtmalar</th>
+                  <th>Jami xarid summasi</th>
+                  <th>Rol</th>
+                </tr>
+              </thead>
+              <tbody id="adminClientsTableBody">
+                <!-- Rendered via JS -->
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ==================== MODALS ==================== -->
+
+  <!-- 1. AUTH / LOGIN MODAL -->
+  <div class="modal-overlay" id="authModal">
+    <div class="modal-box">
+      <div class="modal-head">
+        <h3 id="authModalTitle">Tizimga kirish</h3>
+        <button class="modal-close-btn" onclick="App.closeModals()">&times;</button>
+      </div>
+      <div class="modal-body">
+        <div style="display: flex; gap: 10px; margin-bottom: 20px;">
+          <button id="authTabClient" class="cat-pill active" style="flex:1;" onclick="App.setAuthRole('client')">Mijoz bo'lib kirish</button>
+          <button id="authTabAdmin" class="cat-pill" style="flex:1;" onclick="App.setAuthRole('admin')">Super-Admin</button>
+        </div>
+
+        <form onsubmit="App.handleAuthSubmit(event)">
+          <div class="form-group" id="groupClientName">
+            <label class="form-label">To'liq ismingiz</label>
+            <input type="text" id="authNameInput" class="form-input" placeholder="Islomjon">
+          </div>
+          <div class="form-group" id="groupClientPhone">
+            <label class="form-label">Telefon raqamingiz</label>
+            <input type="text" id="authPhoneInput" class="form-input" placeholder="+998 90 123 45 67">
+          </div>
+
+          <div class="form-group" id="groupAdminLogin" style="display: none;">
+            <label class="form-label">Admin login</label>
+            <input type="text" id="authAdminLoginInput" class="form-input" placeholder="admin">
+          </div>
+          <div class="form-group" id="groupAdminPass" style="display: none;">
+            <label class="form-label">Admin parol</label>
+            <input type="password" id="authAdminPassInput" class="form-input" placeholder="admin2026">
+          </div>
+
+          <button type="submit" class="checkout-submit-btn" style="margin-top: 10px;">
+            Kirish
+          </button>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- 2. CHECKOUT & UZPOST LOGISTICS MODAL -->
+  <div class="modal-overlay" id="checkoutModal">
+    <div class="modal-box" style="max-width: 600px;">
+      <div class="modal-head">
+        <h3>UzPost Yetkazish va To'lov Shlyuzi</h3>
+        <button class="modal-close-btn" onclick="App.closeModals()">&times;</button>
+      </div>
+      <div class="modal-body">
+        <form onsubmit="App.handleProcessOrder(event)">
+          <h4 style="font-size: 14px; font-weight: 700; margin-bottom: 12px; color: var(--info);">1. UzPost Logistika ma'lumotlari</h4>
+          
+          <div style="display: flex; gap: 14px; margin-bottom: 14px;">
+            <label style="display:flex; align-items:center; gap:6px; font-size:13px; cursor:pointer;">
+              <input type="radio" name="deliveryType" value="Filialgacha" checked onchange="App.handleDeliveryTypeChange(this.value)">
+              <span>UzPost pochta bo'limigacha</span>
+            </label>
+            <label style="display:flex; align-items:center; gap:6px; font-size:13px; cursor:pointer;">
+              <input type="radio" name="deliveryType" value="Kuryer" onchange="App.handleDeliveryTypeChange(this.value)">
+              <span>Kuryer orqali eshikkacha</span>
+            </label>
+          </div>
+
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px;">
+            <div class="form-group">
+              <label class="form-label">Viloyat / Shahar *</label>
+              <select id="checkoutRegion" class="form-input" required>
+                <option value="Namangan">Namangan viloyati</option>
+                <option value="Toshkent">Toshkent shahri</option>
+                <option value="Samarqand">Samarqand viloyati</option>
+                <option value="Farg'ona">Farg'ona viloyati</option>
+                <option value="Andijon">Andijon viloyati</option>
+                <option value="Buxoro">Buxoro viloyati</option>
+              </select>
+            </div>
+            <div class="form-group" id="groupPostcode">
+              <label class="form-label">Pochta indeksi *</label>
+              <input type="text" id="checkoutPostcode" class="form-input" required placeholder="160100" value="160100">
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">Aniq manzil (Tuman, ko'cha, xonadon) *</label>
+            <input type="text" id="checkoutAddress" class="form-input" required placeholder="Namangan sh., Boburshoh ko'chasi, 14-uy">
+          </div>
+
+          <h4 style="font-size: 14px; font-weight: 700; margin: 20px 0 12px 0; color: var(--primary);">2. To'lov Shlyuzi (Uzcard / Humo / Visa)</h4>
+          <div style="background: var(--card-subtle); padding: 16px; border-radius: var(--radius-md); border: 1px solid var(--border-color); margin-bottom: 20px;">
+            <div class="form-group">
+              <label class="form-label">Karta raqami (16 xonali)</label>
+              <input type="text" id="checkoutCardNumber" class="form-input" required placeholder="8600 0000 0000 0000" maxlength="19" oninput="App.formatCardNumber(this)" value="8600 4492 8821 9041">
+            </div>
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px;">
+              <div class="form-group" style="margin-bottom:0;">
+                <label class="form-label">Muddati (MM/YY)</label>
+                <input type="text" id="checkoutCardExpiry" class="form-input" required placeholder="12/28" maxlength="5" value="12/28">
+              </div>
+              <div class="form-group" style="margin-bottom:0;">
+                <label class="form-label">CVV / CVC</label>
+                <input type="password" id="checkoutCardCvv" class="form-input" required placeholder="•••" maxlength="3" value="777">
+              </div>
+            </div>
+          </div>
+
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+            <span style="font-weight: 600; font-size: 15px;">To'lanadigan yakuniy summa:</span>
+            <span style="font-size: 20px; font-weight: 800; color: var(--primary);" id="modalPayAmount">0 so'm</span>
+          </div>
+
+          <button type="submit" class="checkout-submit-btn">
+            100% Xavfsiz to'lovni amalga oshirish
+          </button>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- 3. INVOICE / RECEIPT MODAL -->
+  <div class="modal-overlay" id="invoiceModal">
+    <div class="modal-box" style="max-width: 620px;">
+      <div class="modal-head">
+        <h3>Rasmiy To'lov Kvitansiyasi (Invoys)</h3>
+        <button class="modal-close-btn" onclick="App.closeModals()">&times;</button>
+      </div>
+      <div class="modal-body" id="invoiceModalContent">
+        <!-- Rendered via JS -->
+      </div>
+    </div>
+  </div>
+
+  <!-- 4. FAVORITES MODAL -->
+  <div class="modal-overlay" id="favoritesModal">
+    <div class="modal-box" style="max-width: 580px;">
+      <div class="modal-head">
+        <h3>Saralangan Mahsulotlar (Избранное)</h3>
+        <button class="modal-close-btn" onclick="App.closeModals()">&times;</button>
+      </div>
+      <div class="modal-body" id="favoritesModalContent">
+        <!-- Rendered via JS -->
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast Notification Area -->
+  <div class="toast-container" id="toastContainer"></div>
+
+  <!-- ==================== JAVASCRIPT LOGIC ==================== -->
+  <script>
+    /* ==========================================================================
+       PLATA.NAM CORE STATE & ENGINE
+       ========================================================================== */
+    const INITIAL_PRODUCTS = [
+      {
+        id: "PLT-B650",
+        title: "ASUS TUF GAMING B650-PLUS WIFI AM5",
+        category: "Motherboard",
+        retailPrice: 2850000,
+        costPrice: 2300000,
+        oldPrice: 3200000,
+        image: "https://images.unsplash.com/photo-1587202372775-e229f172b9d7?auto=format&fit=crop&w=400&q=80",
+        specs: "Socket AM5, DDR5, PCIe 5.0 M.2, 2.5Gb LAN, Wi-Fi 6, Aura Sync RGB",
+        officialSource: "asus.com / newegg",
+        oemTag: "plata.nam (Official Import)",
+        inStock: true
+      },
+      {
+        id: "PLT-Z790",
+        title: "MSI MAG Z790 TOMAHAWK WIFI DDR5 LGA1700",
+        category: "Motherboard",
+        retailPrice: 3450000,
+        costPrice: 2800000,
+        oldPrice: 3900000,
+        image: "https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=400&q=80",
+        specs: "Socket LGA1700 (14/13th Gen), PCIe 5.0, Wi-Fi 6E, 4x M.2 Slots",
+        officialSource: "msi.com / amazon",
+        oemTag: "plata.nam (Official Import)",
+        inStock: true
+      },
+      {
+        id: "CLR-AK620",
+        title: "DeepCool AK620 High-Performance Dual-Tower Cooler",
+        category: "Cooling",
+        retailPrice: 850000,
+        costPrice: 620000,
+        oldPrice: 990000,
+        image: "https://images.unsplash.com/photo-1587202372634-32705e3bf49c?auto=format&fit=crop&w=400&q=80",
+        specs: "260W TDP, 6 Heatpipes, 2x 120mm FDB Fans, LGA1700/AM5",
+        officialSource: "deepcool.com / newegg",
+        oemTag: "plata.nam (Official Import)",
+        inStock: true
+      },
+      {
+        id: "CLR-LT720",
+        title: "DeepCool LT720 360mm AIO Liquid Cooler (SVO)",
+        category: "Cooling",
+        retailPrice: 1750000,
+        costPrice: 1350000,
+        oldPrice: 1980000,
+        image: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=400&q=80",
+        specs: "360mm Radiator, 4th Gen Dual-Chamber Pump, Anti-Leak Tech, ARGB",
+        officialSource: "deepcool.com / amazon",
+        oemTag: "plata.nam (Official Import)",
+        inStock: true
+      },
+      {
+        id: "STR-RENEGADE-2TB",
+        title: "Kingston FURY Renegade 2TB M.2 PCIe 4.0 NVMe SSD",
+        category: "Storage",
+        retailPrice: 2200000,
+        costPrice: 1750000,
+        oldPrice: 2550000,
+        image: "https://images.unsplash.com/photo-1597872200969-2b65d56bd16b?auto=format&fit=crop&w=400&q=80",
+        specs: "Read: 7300 MB/s, Write: 7000 MB/s, Graphene Aluminum Heat Spreader",
+        officialSource: "kingston.com / newegg",
+        oemTag: "plata.nam (Official Import)",
+        inStock: true
+      },
+      {
+        id: "STR-EXOS-16TB",
+        title: "Seagate Exos X18 16TB Enterprise Server SATA HDD",
+        category: "Storage",
+        retailPrice: 3800000,
+        costPrice: 3100000,
+        oldPrice: 4300000,
+        image: "https://images.unsplash.com/photo-1531492746076-161ca9bcad58?auto=format&fit=crop&w=400&q=80",
+        specs: "7200 RPM, 256MB Cache, SATA 6Gb/s, 512e/4Kn, 2.5M hr MTBF",
+        officialSource: "seagate.com / newegg",
+        oemTag: "plata.nam (Official Import)",
+        inStock: true
+      },
+      {
+        id: "ACC-PCIE-TYPEC",
+        title: "PCIe to USB 3.2 Gen 2x2 Type-C (20Gbps) Expansion Card",
+        category: "Accessories & Ports",
+        retailPrice: 420000,
+        costPrice: 290000,
+        oldPrice: 510000,
+        image: "https://images.unsplash.com/photo-1550751827-4bd374c3f58b?auto=format&fit=crop&w=400&q=80",
+        specs: "Asmedia ASM3242 Chipset, PCIe 3.0 x4, Low Profile bracket included",
+        officialSource: "orico.cc / aliexpress official",
+        oemTag: "plata.nam (Official Import)",
+        inStock: true
+      },
+      {
+        id: "ACC-POSTCARD-PRO",
+        title: "PCIe & LPC Motherboard Hardware Diagnostic Post Card Pro",
+        category: "Accessories & Ports",
+        retailPrice: 360000,
+        costPrice: 240000,
+        oldPrice: 440000,
+        image: "https://images.unsplash.com/photo-1517420704952-d9f39e95b43e?auto=format&fit=crop&w=400&q=80",
+        specs: "Dual-code LED display, Support DDR4/DDR5 desktop & laptop diagnostic",
+        officialSource: "official oem factory",
+        oemTag: "plata.nam (Official Import)",
+        inStock: true
+      }
+    ];
+
+    const INITIAL_ORDERS = [
+      {
+        orderId: "ORD-2026-9041",
+        clientId: "USR-101",
+        clientName: "Islomjon",
+        clientPhone: "+998 90 123 45 67",
+        items: [
+          { id: "PLT-B650", name: "ASUS TUF GAMING B650-PLUS WIFI AM5", qty: 1, price: 2850000, oldPrice: 3200000 }
+        ],
+        totalPaid: 2850000,
+        costAmount: 2300000,
+        profit: 550000,
+        paymentStatus: "PAID",
+        paymentCard: "8600 **** **** 4492",
+        logistics: {
+          provider: "UzPost",
+          serviceType: "Filialgacha",
+          address: "Namangan sh., Boburshoh ko'chasi, 14-uy",
+          postcode: "160100",
+          trackingNumber: "UZP-20261014-9902"
+        },
+        stage: "PURCHASED_OFFICIAL", // Stages: PAID -> PURCHASED_OFFICIAL -> WAREHOUSE_UZPOST -> DELIVERED
+        createdAt: "2026-10-14T10:30:00.000Z"
+      }
+    ];
+
+    const DEFAULT_USER = {
+      id: "USR-101",
+      name: "Islomjon",
+      phone: "+998 90 123 45 67",
+      role: "client"
+    };
+
+    class PlataStoreClass {
+      constructor() {
+        this.STORAGE_KEY = 'plata_nam_db_v2';
+        this.state = this.loadState();
+      }
+
+      loadState() {
+        try {
+          const raw = localStorage.getItem(this.STORAGE_KEY);
+          if (raw) return JSON.parse(raw);
+        } catch (e) {
+          console.warn("Storage load error:", e);
+        }
+        const initial = {
+          currentUser: DEFAULT_USER,
+          cart: [{ productId: "PLT-B650", quantity: 1, selected: true }],
+          favorites: ["CLR-AK620"],
+          products: INITIAL_PRODUCTS,
+          orders: INITIAL_ORDERS,
+          urlRequests: []
+        };
+        this.saveState(initial);
+        return initial;
+      }
+
+      saveState(state) {
+        try {
+          localStorage.setItem(this.STORAGE_KEY, JSON.stringify(state));
+        } catch (e) {
+          console.error("Storage save error:", e);
+        }
+      }
+
+      getProducts() { return this.state.products; }
+      getProductById(id) { return this.state.products.find(p => p.id === id); }
+      getCurrentUser() { return this.state.currentUser; }
+      
+      setCurrentUser(user) {
+        this.state.currentUser = user;
+        this.saveState(this.state);
+        return this.state.currentUser;
+      }
+
+      getFavorites() { return this.state.favorites || []; }
+      toggleFavorite(productId) {
+        const favs = this.state.favorites || [];
+        const idx = favs.indexOf(productId);
+        if (idx > -1) {
+          favs.splice(idx, 1);
+        } else {
+          favs.push(productId);
+        }
+        this.state.favorites = favs;
+        this.saveState(this.state);
+        return this.state.favorites;
+      }
+
+      getCart() { return this.state.cart; }
+      getCartCount() {
+        return this.state.cart.reduce((sum, item) => sum + item.quantity, 0);
+      }
+
+      addToCart(productId, qty = 1) {
+        const existing = this.state.cart.find(i => i.productId === productId);
+        if (existing) {
+          existing.quantity += qty;
+        } else {
+          this.state.cart.push({ productId, quantity: qty, selected: true });
+        }
+        this.saveState(this.state);
+        return this.state.cart;
+      }
+
+      updateQuantity(productId, delta) {
+        const idx = this.state.cart.findIndex(i => i.productId === productId);
+        if (idx > -1) {
+          this.state.cart[idx].quantity += delta;
+          if (this.state.cart[idx].quantity <= 0) {
+            this.state.cart.splice(idx, 1);
+          }
+        }
+        this.saveState(this.state);
+        return this.state.cart;
+      }
+
+      removeFromCart(productId) {
+        this.state.cart = this.state.cart.filter(i => i.productId !== productId);
+        this.saveState(this.state);
+        return this.state.cart;
+      }
+
+      toggleItemSelect(productId, selected) {
+        const item = this.state.cart.find(i => i.productId === productId);
+        if (item) {
+          item.selected = selected !== undefined ? selected : !item.selected;
+        }
+        this.saveState(this.state);
+        return this.state.cart;
+      }
+
+      toggleAllCart(selectAll) {
+        this.state.cart.forEach(item => { item.selected = selectAll; });
+        this.saveState(this.state);
+        return this.state.cart;
+      }
+
+      deleteSelectedCart() {
+        this.state.cart = this.state.cart.filter(i => !i.selected);
+        this.saveState(this.state);
+        return this.state.cart;
+      }
+
+      getCartCalculation() {
+        const selectedItems = this.state.cart.filter(i => i.selected);
+        let totalRetail = 0;
+        let totalOld = 0;
+        let totalCost = 0;
+        let count = 0;
+
+        selectedItems.forEach(item => {
+          const prod = this.getProductById(item.productId);
+          if (prod) {
+            count += item.quantity;
+            totalRetail += prod.retailPrice * item.quantity;
+            totalOld += (prod.oldPrice || prod.retailPrice) * item.quantity;
+            totalCost += prod.costPrice * item.quantity;
+          }
+        });
+
+        const discount = Math.max(0, totalOld - totalRetail);
+        const deliveryFee = 0;
+        const finalAmount = totalRetail + deliveryFee;
+
+        return {
+          count,
+          totalRetail,
+          totalOld,
+          discount,
+          deliveryFee,
+          finalAmount,
+          totalCost,
+          selectedItems
+        };
+      }
+
+      createOrder({ client, logistics, paymentCard }) {
+        const calc = this.getCartCalculation();
+        if (calc.count === 0) throw new Error("Savatda tanlangan mahsulot mavjud emas");
+
+        const randomSuffix = Math.floor(1000 + Math.random() * 9000);
+        const dateStr = new Date().toISOString().slice(0, 10).replace(/-/g, '');
+        const trackingNumber = `UZP-${dateStr}-${randomSuffix}`;
+        const orderId = `ORD-2026-${Math.floor(1000 + Math.random() * 9000)}`;
+
+        const orderItems = calc.selectedItems.map(item => {
+          const prod = this.getProductById(item.productId);
+          return {
+            id: prod.id,
+            name: prod.title,
+            qty: item.quantity,
+            price: prod.retailPrice,
+            costPrice: prod.costPrice,
+            oldPrice: prod.oldPrice
+          };
+        });
+
+        const newOrder = {
+          orderId,
+          clientId: client.id || "USR-GUEST",
+          clientName: client.name || "Noma'lum Mijoz",
+          clientPhone: client.phone || "+998900000000",
+          items: orderItems,
+          totalPaid: calc.finalAmount,
+          costAmount: calc.totalCost,
+          profit: calc.finalAmount - calc.totalCost,
+          paymentStatus: "PAID",
+          paymentCard: paymentCard || "8600 **** **** 0000",
+          logistics: {
+            provider: "UzPost",
+            serviceType: logistics.serviceType || "Filialgacha",
+            address: logistics.address,
+            postcode: logistics.postcode || "160100",
+            trackingNumber
+          },
+          stage: "PAID",
+          createdAt: new Date().toISOString()
+        };
+
+        this.state.orders.unshift(newOrder);
+        this.deleteSelectedCart();
+        this.saveState(this.state);
+        return newOrder;
+      }
+
+      getOrders() { return this.state.orders; }
+      getClientOrders(clientId) {
+        return this.state.orders.filter(o => o.clientId === clientId);
+      }
+
+      updateOrderStage(orderId, nextStage, updatedCostPrice = null, customTracking = null) {
+        const order = this.state.orders.find(o => o.orderId === orderId);
+        if (order) {
+          order.stage = nextStage;
+          if (updatedCostPrice !== null && !isNaN(updatedCostPrice)) {
+            order.costAmount = Number(updatedCostPrice);
+            order.profit = order.totalPaid - order.costAmount;
+          }
+          if (customTracking) {
+            order.logistics.trackingNumber = customTracking;
+          }
+          this.saveState(this.state);
+        }
+        return order;
+      }
+
+      getFinancialReport() {
+        const totalRevenue = this.state.orders.reduce((sum, o) => sum + (o.totalPaid || 0), 0);
+        const totalCOGS = this.state.orders.reduce((sum, o) => sum + (o.costAmount || 0), 0);
+        const uzpostExpense = 0;
+        const grossProfit = totalRevenue - totalCOGS - uzpostExpense;
+        return {
+          totalRevenue,
+          totalCOGS,
+          uzpostExpense,
+          grossProfit,
+          orderCount: this.state.orders.length
+        };
+      }
+
+      addUrlRequest(req) {
+        const newReq = {
+          id: "REQ-" + Date.now(),
+          clientId: this.state.currentUser.id,
+          clientName: this.state.currentUser.name,
+          url: req.url,
+          title: req.title || "Maxsus butlovchi qism",
+          note: req.note || "",
+          status: "PENDING",
+          proposedPrice: null,
+          createdAt: new Date().toISOString()
+        };
+        if (!this.state.urlRequests) this.state.urlRequests = [];
+        this.state.urlRequests.unshift(newReq);
+        this.saveState(this.state);
+        return newReq;
+      }
+
+      getUrlRequests() { return this.state.urlRequests || []; }
+    }
+
+    const store = new PlataStoreClass();
+
+    /* ==========================================================================
+       APPLICATION CONTROLLER & UI CONTROLS
+       ========================================================================== */
+    const App = {
+      currentView: 'catalog',
+      activeCategory: 'all',
+      searchQuery: '',
+      authRole: 'client',
+
+      init() {
+        this.updateHeaderUI();
+        this.renderCatalog();
+        this.renderCart();
+        this.renderClientPortal();
+        this.renderAdminDashboard();
+      },
+
+      formatMoney(num) {
+        return new Intl.NumberFormat('uz-UZ').format(num) + " so'm";
+      },
+
+      toast(msg, type = 'info') {
+        const container = document.getElementById('toastContainer');
+        const toast = document.createElement('div');
+        toast.className = 'toast';
+        toast.innerHTML = `
+          <svg style="width:18px;height:18px;color:${type === 'error' ? 'var(--danger)' : '#00d26a'}" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+          <span>${msg}</span>
+        `;
+        container.appendChild(toast);
+        setTimeout(() => {
+          toast.style.opacity = '0';
+          toast.style.transition = 'opacity 0.3s';
+          setTimeout(() => toast.remove(), 300);
+        }, 3200);
+      },
+
+      // SPA VIEW SWITCHER
+      switchView(viewName) {
+        if (viewName === 'admin' && store.getCurrentUser().role !== 'admin') {
+          this.setAuthRole('admin');
+          this.openAuthModal();
+          return;
+        }
+
+        this.currentView = viewName;
+        document.querySelectorAll('.view-section').forEach(sec => sec.classList.remove('active'));
+        const target = document.getElementById('view-' + viewName);
+        if (target) target.classList.add('active');
+
+        if (viewName === 'cart') this.renderCart();
+        if (viewName === 'client') this.renderClientPortal();
+        if (viewName === 'admin') this.renderAdminDashboard();
+        if (viewName === 'catalog') this.renderCatalog();
+
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      },
+
+      updateHeaderUI() {
+        const user = store.getCurrentUser();
+        const userBtn = document.getElementById('userBtnLabel');
+        if (user.role === 'admin') {
+          userBtn.textContent = "Admin (Chiqish)";
+        } else if (user.role === 'client') {
+          userBtn.textContent = user.name;
+        } else {
+          userBtn.textContent = "Kirish";
+        }
+
+        const count = store.getCartCount();
+        const badge = document.getElementById('cartBadgeCount');
+        badge.textContent = count;
+        badge.style.display = count > 0 ? 'flex' : 'none';
+      },
+
+      // CATALOG
+      filterCategory(category, element) {
+        this.activeCategory = category;
+        document.querySelectorAll('.cat-pill').forEach(btn => btn.classList.remove('active'));
+        if (element) element.classList.add('active');
+        
+        const bread = document.getElementById('catalogBreadcrumb');
+        bread.textContent = category === 'all' ? 'Barcha mahsulotlar' : category;
+        this.renderCatalog();
+      },
+
+      handleSearch(query) {
+        this.searchQuery = query.toLowerCase().trim();
+        this.renderCatalog();
+      },
+
+      renderCatalog() {
+        const container = document.getElementById('productsGrid');
+        let products = store.getProducts();
+
+        if (this.activeCategory !== 'all') {
+          products = products.filter(p => p.category === this.activeCategory);
+        }
+
+        if (this.searchQuery) {
+          products = products.filter(p => 
+            p.title.toLowerCase().includes(this.searchQuery) ||
+            p.specs.toLowerCase().includes(this.searchQuery) ||
+            p.category.toLowerCase().includes(this.searchQuery)
+          );
+        }
+
+        if (products.length === 0) {
+          container.innerHTML = `
+            <div style="grid-column: 1/-1; text-align: center; padding: 60px 20px; background:#fff; border-radius:16px;">
+              <p style="font-size:18px; font-weight:600; color:var(--text-muted); margin-bottom:8px;">Hech qanday mahsulot topilmadi</p>
+              <button class="checkout-submit-btn" style="width:auto; margin:0 auto; padding:0 24px;" onclick="App.switchView('client'); App.switchPortalTab('url-request');">Maxsus buyurtma (URL) qoldirish</button>
+            </div>
+          `;
+          return;
+        }
+
+        const favs = store.getFavorites();
+
+        container.innerHTML = products.map(p => {
+          const isFav = favs.includes(p.id);
+          return `
+            <div class="product-card">
+              <div class="product-img-wrap">
+                <img src="${p.image}" alt="${p.title}" loading="lazy">
+                <span class="product-oem-tag">${p.oemTag}</span>
+                <button class="product-fav-btn ${isFav ? 'active' : ''}" onclick="App.toggleFav('${p.id}')" title="Saralanganlarga saqlash">
+                  <svg style="width:18px;height:18px;" fill="${isFav ? 'currentColor' : 'none'}" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"></path></svg>
+                </button>
+              </div>
+              <div class="product-details">
+                <span class="product-category-lbl">${p.category}</span>
+                <h3 class="product-title" title="${p.title}">${p.title}</h3>
+                <p class="product-specs">${p.specs}</p>
+                <div class="product-price-row">
+                  <div>
+                    ${p.oldPrice ? `<div class="old-price">${App.formatMoney(p.oldPrice)}</div>` : ''}
+                    <div class="current-price">${App.formatMoney(p.retailPrice)}</div>
+                  </div>
+                  <button class="add-to-cart-btn" onclick="App.handleAddToCart('${p.id}')" title="Savatga qo'shish">
+                    <svg style="width:20px;height:20px;" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path></svg>
+                  </button>
+                </div>
+              </div>
+            </div>
+          `;
+        }).join('');
+      },
+
+      handleAddToCart(productId) {
+        store.addToCart(productId, 1);
+        this.updateHeaderUI();
+        this.toast("Mahsulot savatga qo'shildi!", "success");
+      },
+
+      toggleFav(productId) {
+        store.toggleFavorite(productId);
+        this.renderCatalog();
+        this.toast("Saralanganlar yangilandi", "info");
+      },
+
+      // SHOPPING CART (UZUM STYLE)
+      renderCart() {
+        const cart = store.getCart();
+        const listContainer = document.getElementById('cartItemsList');
+
+        if (cart.length === 0) {
+          listContainer.innerHTML = `
+            <div style="text-align:center; padding: 40px 20px;">
+              <p style="font-size:16px; font-weight:600; color:var(--text-muted); margin-bottom:14px;">Savatingiz hozircha bo'sh</p>
+              <button class="checkout-submit-btn" style="width:auto; margin:0 auto; padding:0 24px;" onclick="App.switchView('catalog')">Katalogni ko'rish</button>
+            </div>
+          `;
+          this.updateCartSummary();
+          return;
+        }
+
+        const favs = store.getFavorites();
+
+        listContainer.innerHTML = cart.map(item => {
+          const prod = store.getProductById(item.productId);
+          if (!prod) return '';
+          const isFav = favs.includes(prod.id);
+
+          return `
+            <div class="cart-item-row">
+              <input type="checkbox" class="item-checkbox" ${item.selected ? 'checked' : ''} onchange="App.handleToggleCartItem('${prod.id}', this.checked)">
+              
+              <div class="item-thumbnail">
+                <img src="${prod.image}" alt="${prod.title}">
+              </div>
+
+              <div class="item-info-col">
+                <span class="item-seller-tag">Sotuvchi: <b>${prod.oemTag}</b></span>
+                <span class="item-title-text">${prod.title}</span>
+                <div class="item-actions-links">
+                  <span class="item-action-btn" onclick="App.toggleFav('${prod.id}')">
+                    <svg style="width:14px;height:14px;" fill="${isFav ? 'currentColor' : 'none'}" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"></path></svg>
+                    <span>${isFav ? 'Saqlangan' : 'Saqlash'}</span>
+                  </span>
+                  <span class="item-action-btn delete" onclick="App.handleRemoveCartItem('${prod.id}')">
+                    <svg style="width:14px;height:14px;" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"></path></svg>
+                    <span>O'chirish</span>
+                  </span>
+                </div>
+              </div>
+
+              <div class="item-controls-col">
+                <div class="stepper-wrap">
+                  <button class="stepper-btn" onclick="App.handleQuantityChange('${prod.id}', -1)">−</button>
+                  <span class="stepper-value">${item.quantity}</span>
+                  <button class="stepper-btn" onclick="App.handleQuantityChange('${prod.id}', 1)">+</button>
+                </div>
+                <div class="item-price-box">
+                  <div class="item-cur-price">${App.formatMoney(prod.retailPrice * item.quantity)}</div>
+                  ${prod.oldPrice ? `<div class="item-old-price">${App.formatMoney(prod.oldPrice * item.quantity)}</div>` : ''}
+                </div>
+              </div>
+            </div>
+          `;
+        }).join('');
+
+        this.updateCartSummary();
+      },
+
+      handleToggleCartItem(productId, selected) {
+        store.toggleItemSelect(productId, selected);
+        this.updateCartSummary();
+      },
+
+      handleToggleAllCart(selectAll) {
+        store.toggleAllCart(selectAll);
+        this.renderCart();
+      },
+
+      handleDeleteSelectedCart() {
+        store.deleteSelectedCart();
+        this.renderCart();
+        this.updateHeaderUI();
+        this.toast("Tanlangan mahsulotlar savatdan o'chirildi", "info");
+      },
+
+      handleQuantityChange(productId, delta) {
+        store.updateQuantity(productId, delta);
+        this.renderCart();
+        this.updateHeaderUI();
+      },
+
+      handleRemoveCartItem(productId) {
+        store.removeFromCart(productId);
+        this.renderCart();
+        this.updateHeaderUI();
+        this.toast("Mahsulot savatdan olib tashlandi", "info");
+      },
+
+      updateCartSummary() {
+        const calc = store.getCartCalculation();
+        document.getElementById('summaryItemsCount').textContent = `Mahsulotlar (${calc.count} dona):`;
+        document.getElementById('summaryOriginalTotal').textContent = this.formatMoney(calc.totalOld || calc.totalRetail);
+        document.getElementById('summaryDiscountTotal').textContent = `-${this.formatMoney(calc.discount)}`;
+        document.getElementById('summaryFinalTotal').textContent = this.formatMoney(calc.finalAmount);
+        
+        const btn = document.getElementById('btnCheckoutSubmit');
+        btn.disabled = calc.count === 0;
+
+        const cart = store.getCart();
+        const allSelected = cart.length > 0 && cart.every(i => i.selected);
+        const selectAllCb = document.getElementById('selectAllCartCheckbox');
+        if (selectAllCb) selectAllCb.checked = allSelected;
+      },
+
+      // CHECKOUT & LOGISTICS
+      openCheckoutModal() {
+        const calc = store.getCartCalculation();
+        if (calc.count === 0) {
+          this.toast("Iltimos, avval mahsulot tanlang", "error");
+          return;
+        }
+        document.getElementById('modalPayAmount').textContent = this.formatMoney(calc.finalAmount);
+        document.getElementById('checkoutModal').classList.add('active');
+      },
+
+      handleDeliveryTypeChange(val) {
+        const groupPostcode = document.getElementById('groupPostcode');
+        if (val === 'Filialgacha') {
+          groupPostcode.style.display = 'block';
+        } else {
+          groupPostcode.style.display = 'none';
+        }
+      },
+
+      formatCardNumber(input) {
+        let v = input.value.replace(/\D/g, '').slice(0, 16);
+        let matches = v.match(/\d{4,16}/g);
+        let match = matches && matches[0] || '';
+        let parts = [];
+        for (let i = 0, len = match.length; i < len; i += 4) {
+          parts.push(match.substring(i, i + 4));
+        }
+        if (parts.length) {
+          input.value = parts.join(' ');
+        } else {
+          input.value = v;
+        }
+      },
+
+      handleProcessOrder(event) {
+        event.preventDefault();
+        const deliveryType = document.querySelector('input[name="deliveryType"]:checked').value;
+        const region = document.getElementById('checkoutRegion').value;
+        const address = document.getElementById('checkoutAddress').value;
+        const postcode = document.getElementById('checkoutPostcode').value || '160100';
+        const cardNum = document.getElementById('checkoutCardNumber').value;
+
+        const user = store.getCurrentUser();
+
+        try {
+          const order = store.createOrder({
+            client: user,
+            logistics: {
+              serviceType: deliveryType,
+              address: `${region} viloyati, ${address}`,
+              postcode
+            },
+            paymentCard: cardNum.slice(0, 4) + ' **** **** ' + cardNum.slice(-4)
+          });
+
+          this.closeModals();
+          this.updateHeaderUI();
+          this.renderCart();
+          this.renderClientPortal();
+          this.renderAdminDashboard();
+
+          this.toast("To'lov muvaffaqiyatli amalga oshirildi!", "success");
+          this.showInvoice(order);
+        } catch (e) {
+          this.toast(e.message, "error");
+        }
+      },
+
+      showInvoice(order) {
+        const modal = document.getElementById('invoiceModal');
+        const content = document.getElementById('invoiceModalContent');
+
+        content.innerHTML = `
+          <div class="invoice-view">
+            <div class="invoice-header">
+              <div>
+                <div class="invoice-title">plata.nam</div>
+                <div style="font-size:12px;color:var(--text-muted);">Krossbording rasmiy to'lov cheki</div>
+              </div>
+              <div style="text-align:right;">
+                <div style="font-weight:700;font-size:14px;">${order.orderId}</div>
+                <div style="font-size:12px;color:var(--text-muted);">${new Date(order.createdAt).toLocaleString('uz-UZ')}</div>
+              </div>
+            </div>
+
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;font-size:13px;margin-bottom:14px;">
+              <div>
+                <b>Mijoz:</b> ${order.clientName}<br>
+                <b>Tel:</b> ${order.clientPhone}
+              </div>
+              <div>
+                <b>UzPost Trek-raqami:</b> <span style="color:var(--info);font-weight:700;">${order.logistics.trackingNumber}</span><br>
+                <b>Manzil:</b> ${order.logistics.address} (${order.logistics.postcode})
+              </div>
+            </div>
+
+            <table class="invoice-table">
+              <thead>
+                <tr>
+                  <th>Mahsulot</th>
+                  <th style="text-align:center;">Soni</th>
+                  <th style="text-align:right;">Narx</th>
+                  <th style="text-align:right;">Jami</th>
+                </tr>
+              </thead>
+              <tbody>
+                ${order.items.map(i => `
+                  <tr>
+                    <td>${i.name}</td>
+                    <td style="text-align:center;">${i.qty}</td>
+                    <td style="text-align:right;">${App.formatMoney(i.price)}</td>
+                    <td style="text-align:right;">${App.formatMoney(i.price * i.qty)}</td>
+                  </tr>
+                `).join('')}
+              </tbody>
+            </table>
+
+            <div style="display:flex;justify-content:space-between;align-items:center;font-size:16px;font-weight:800;padding-top:10px;border-top:2px solid var(--border-color);">
+              <span>To'landi (Uzcard/Humo):</span>
+              <span style="color:var(--success);">${App.formatMoney(order.totalPaid)}</span>
+            </div>
+          </div>
+
+          <div style="display:flex;gap:10px;margin-top:20px;">
+            <button class="checkout-submit-btn" style="flex:1;" onclick="App.closeModals(); App.switchView('client');">Buyurtmani kuzatish (Kabinet)</button>
+            <button class="cat-pill" style="padding:0 20px;" onclick="window.print()">Chop etish</button>
+          </div>
+        `;
+
+        modal.classList.add('active');
+      },
+
+      // CLIENT PORTAL
+      renderClientPortal() {
+        const user = store.getCurrentUser();
+        document.getElementById('portalUserName').textContent = user.name;
+        document.getElementById('portalUserPhone').textContent = user.phone;
+        document.getElementById('portalAvatar').textContent = user.name.charAt(0).toUpperCase();
+
+        const orders = store.getClientOrders(user.id);
+        document.getElementById('portalOrderCountBadge').textContent = orders.length;
+
+        const container = document.getElementById('clientOrdersList');
+        if (orders.length === 0) {
+          container.innerHTML = `<p style="color:var(--text-muted);padding:20px 0;">Sizda hali buyurtmalar mavjud emas.</p>`;
+          return;
+        }
+
+        const stages = [
+          { key: "PAID", label: "To'lov qilindi" },
+          { key: "PURCHASED_OFFICIAL", label: "Rasmiy xarid" },
+          { key: "WAREHOUSE_UZPOST", label: "UzPostga topshirildi" },
+          { key: "DELIVERED", label: "Yetkazib berildi" }
+        ];
+
+        container.innerHTML = orders.map(o => {
+          const currentStageIndex = stages.findIndex(s => s.key === o.stage);
+
+          return `
+            <div class="order-history-card">
+              <div class="order-head-bar">
+                <div>
+                  <span class="order-id-badge">${o.orderId}</span>
+                  <span class="order-date-text"> • ${new Date(o.createdAt).toLocaleDateString('uz-UZ')}</span>
+                </div>
+                <div style="font-weight:700; font-size:16px; color:var(--text-main);">
+                  ${App.formatMoney(o.totalPaid)}
+                </div>
+              </div>
+
+              <!-- 4-Stage Stepper Tracker -->
+              <div class="pipeline-tracker">
+                ${stages.map((st, idx) => {
+                  let cls = '';
+                  if (idx < currentStageIndex) cls = 'completed';
+                  else if (idx === currentStageIndex) cls = 'active';
+
+                  return `
+                    <div class="stage-step ${cls}">
+                      <div class="step-circle">${idx < currentStageIndex ? '✓' : idx + 1}</div>
+                      <span class="step-label">${st.label}</span>
+                    </div>
+                  `;
+                }).join('')}
+              </div>
+
+              <!-- Order Details Box -->
+              <div class="order-details-box">
+                <div>
+                  <div style="font-size:12px;color:var(--text-muted);">UzPost Trek-kodi:</div>
+                  <div class="tracking-code-pill">
+                    <span>${o.logistics.trackingNumber}</span>
+                    <button class="copy-btn" onclick="navigator.clipboard.writeText('${o.logistics.trackingNumber}'); App.toast('Trek-kod nusxalandi!', 'info');">Nusxa</button>
+                  </div>
+                </div>
+
+                <div>
+                  <div style="font-size:12px;color:var(--text-muted);">Yetkazish manzili:</div>
+                  <div style="font-size:13px;font-weight:600;">${o.logistics.address}</div>
+                </div>
+
+                <div>
+                  <button class="cat-pill" onclick="App.showExistingOrderInvoice('${o.orderId}')">Invoysni ko'rish</button>
+                </div>
+              </div>
+            </div>
+          `;
+        }).join('');
+
+        this.renderMyUrlRequests();
+      },
+
+      showExistingOrderInvoice(orderId) {
+        const order = store.getOrders().find(o => o.orderId === orderId);
+        if (order) this.showInvoice(order);
+      },
+
+      switchPortalTab(tabName, el) {
+        document.querySelectorAll('.portal-nav-item').forEach(item => item.classList.remove('active'));
+        if (el) el.classList.add('active');
+
+        document.getElementById('portal-tab-orders').style.display = tabName === 'orders' ? 'block' : 'none';
+        document.getElementById('portal-tab-url-request').style.display = tabName === 'url-request' ? 'block' : 'none';
+      },
+
+      handleUrlRequestSubmit(event) {
+        event.preventDefault();
+        const url = document.getElementById('customUrlInput').value;
+        const title = document.getElementById('customTitleInput').value;
+        const note = document.getElementById('customNoteInput').value;
+
+        store.addUrlRequest({ url, title, note });
+        this.toast("Zayavka qabul qilindi! Admin ko'rib chiqadi.", "success");
+        event.target.reset();
+        this.renderMyUrlRequests();
+      },
+
+      renderMyUrlRequests() {
+        const container = document.getElementById('myUrlRequestsList');
+        if (!container) return;
+        const reqs = store.getUrlRequests();
+
+        if (reqs.length === 0) {
+          container.innerHTML = `<p style="font-size:13px; color:var(--text-muted);">Hozircha maxsus zayavkalar yo'q.</p>`;
+          return;
+        }
+
+        container.innerHTML = reqs.map(r => `
+          <div style="background:var(--card-subtle); padding:12px 16px; border-radius:var(--radius-md); margin-bottom:10px; border:1px solid var(--border-light);">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:4px;">
+              <b>${r.title}</b>
+              <span class="status-badge paid">${r.status}</span>
+            </div>
+            <div style="font-size:12px; color:var(--info); word-break:break-all;">${r.url}</div>
+            ${r.note ? `<div style="font-size:12px; color:var(--text-muted); margin-top:4px;">Izoh: ${r.note}</div>` : ''}
+          </div>
+        `).join('');
+      },
+
+      // ADMIN DASHBOARD & CASHFLOW MOLIYA DOSKASI
+      renderAdminDashboard() {
+        const fin = store.getFinancialReport();
+        document.getElementById('statRevenue').textContent = this.formatMoney(fin.totalRevenue);
+        document.getElementById('statCOGS').textContent = this.formatMoney(fin.totalCOGS);
+        document.getElementById('statProfit').textContent = this.formatMoney(fin.grossProfit);
+
+        const orders = store.getOrders();
+        const tableBody = document.getElementById('adminOrdersTableBody');
+
+        const stageNextMap = {
+          "PAID": "PURCHASED_OFFICIAL",
+          "PURCHASED_OFFICIAL": "WAREHOUSE_UZPOST",
+          "WAREHOUSE_UZPOST": "DELIVERED",
+          "DELIVERED": null
+        };
+
+        const stageLabelMap = {
+          "PAID": { label: "To'lov qilindi", cls: "paid" },
+          "PURCHASED_OFFICIAL": { label: "Xarid qilindi", cls: "purchased" },
+          "WAREHOUSE_UZPOST": { label: "UzPostda", cls: "warehouse" },
+          "DELIVERED": { label: "Yetkazildi", cls: "delivered" }
+        };
+
+        tableBody.innerHTML = orders.map(o => {
+          const next = stageNextMap[o.stage];
+          const stInfo = stageLabelMap[o.stage] || { label: o.stage, cls: "paid" };
+
+          return `
+            <tr>
+              <td><b>${o.orderId}</b><br><small style="color:var(--text-muted);">${new Date(o.createdAt).toLocaleDateString('uz-UZ')}</small></td>
+              <td><b>${o.clientName}</b><br><small>${o.clientPhone}</small></td>
+              <td>${o.items.map(i => `${i.name} (x${i.qty})`).join('<br>')}</td>
+              <td><b>${App.formatMoney(o.totalPaid)}</b></td>
+              <td>
+                <input type="number" style="width:110px;padding:4px 8px;border:1px solid var(--border-color);border-radius:4px;" value="${o.costAmount}" onchange="App.handleAdminUpdateCost('${o.orderId}', this.value)">
+              </td>
+              <td style="color:${o.profit >= 0 ? 'var(--success)' : 'var(--danger)'};font-weight:700;">${App.formatMoney(o.profit)}</td>
+              <td>
+                <input type="text" style="width:130px;padding:4px 8px;border:1px solid var(--border-color);border-radius:4px;font-family:monospace;" value="${o.logistics.trackingNumber}" onchange="App.handleAdminUpdateTracking('${o.orderId}', this.value)">
+              </td>
+              <td>
+                <span class="status-badge ${stInfo.cls}">${stInfo.label}</span>
+              </td>
+              <td>
+                ${next ? `
+                  <button class="table-action-btn" onclick="App.handleAdminAdvanceStage('${o.orderId}', '${next}')">
+                    Keyingi: ${stageLabelMap[next].label} &rarr;
+                  </button>
+                ` : `<span style="color:var(--success);font-weight:700;">Tugatilgan</span>`}
+              </td>
+            </tr>
+          `;
+        }).join('');
+
+        // Clients Table
+        const clientsTable = document.getElementById('adminClientsTableBody');
+        const clients = [
+          { id: "USR-101", name: "Islomjon", phone: "+998 90 123 45 67", role: "client" },
+          { id: "USR-102", name: "Bobur Mirzo", phone: "+998 93 456 78 90", role: "client" },
+          { id: "USR-ADM", name: "Super Admin", phone: "+998 90 999 00 00", role: "admin" }
+        ];
+
+        clientsTable.innerHTML = clients.map(c => {
+          const clientOrders = store.getClientOrders(c.id);
+          const totalSpent = clientOrders.reduce((sum, o) => sum + o.totalPaid, 0);
+
+          return `
+            <tr>
+              <td><b>${c.id}</b></td>
+              <td>${c.name}</td>
+              <td>${c.phone}</td>
+              <td>${clientOrders.length} ta</td>
+              <td><b>${App.formatMoney(totalSpent)}</b></td>
+              <td><span class="status-badge ${c.role === 'admin' ? 'warehouse' : 'paid'}">${c.role}</span></td>
+            </tr>
+          `;
+        }).join('');
+      },
+
+      handleAdminUpdateCost(orderId, newCost) {
+        store.updateOrderStage(orderId, store.getOrders().find(o => o.orderId === orderId).stage, Number(newCost));
+        this.renderAdminDashboard();
+        this.toast("Tannarx va foyda yangilandi!", "success");
+      },
+
+      handleAdminUpdateTracking(orderId, newTracking) {
+        const order = store.getOrders().find(o => o.orderId === orderId);
+        store.updateOrderStage(orderId, order.stage, null, newTracking);
+        this.renderAdminDashboard();
+        this.toast("UzPost trek-raqami yangilandi!", "info");
+      },
+
+      handleAdminAdvanceStage(orderId, nextStage) {
+        store.updateOrderStage(orderId, nextStage);
+        this.renderAdminDashboard();
+        this.renderClientPortal();
+        this.toast("Buyurtma statusi o'zgartirildi!", "success");
+      },
+
+      // AUTHENTICATION
+      openAuthModal() {
+        const user = store.getCurrentUser();
+        if (user.role === 'admin') {
+          this.logout();
+          return;
+        }
+        document.getElementById('authModal').classList.add('active');
+      },
+
+      setAuthRole(role) {
+        this.authRole = role;
+        document.getElementById('authTabClient').classList.toggle('active', role === 'client');
+        document.getElementById('authTabAdmin').classList.toggle('active', role === 'admin');
+
+        document.getElementById('groupClientName').style.display = role === 'client' ? 'block' : 'none';
+        document.getElementById('groupClientPhone').style.display = role === 'client' ? 'block' : 'none';
+        document.getElementById('groupAdminLogin').style.display = role === 'admin' ? 'block' : 'none';
+        document.getElementById('groupAdminPass').style.display = role === 'admin' ? 'block' : 'none';
+        document.getElementById('authModalTitle').textContent = role === 'admin' ? "Super-Admin Kirishi" : "Mijoz bo'lib kirish";
+      },
+
+      handleAuthSubmit(event) {
+        event.preventDefault();
+        if (this.authRole === 'admin') {
+          const l = document.getElementById('authAdminLoginInput').value.trim();
+          const p = document.getElementById('authAdminPassInput').value.trim();
+          if (l === 'admin' && p === 'admin2026') {
+            store.setCurrentUser({
+              id: 'USR-ADM',
+              name: 'Super Admin',
+              phone: '+998 90 999 00 00',
+              role: 'admin'
+            });
+            this.closeModals();
+            this.updateHeaderUI();
+            this.switchView('admin');
+            this.toast("Admin sifatida muvaffaqiyatli kirdingiz!", "success");
+          } else {
+            this.toast("Login yoki parol noto'g'ri (admin / admin2026)", "error");
+          }
+        } else {
+          const name = document.getElementById('authNameInput').value.trim() || 'Islomjon';
+          const phone = document.getElementById('authPhoneInput').value.trim() || '+998 90 123 45 67';
+          store.setCurrentUser({
+            id: 'USR-101',
+            name,
+            phone,
+            role: 'client'
+          });
+          this.closeModals();
+          this.updateHeaderUI();
+          this.switchView('client');
+          this.toast(`Xush kelibsiz, ${name}!`, "success");
+        }
+      },
+
+      logout() {
+        store.setCurrentUser(DEFAULT_USER);
+        this.updateHeaderUI();
+        this.switchView('catalog');
+        this.toast("Tizimdan chiqildi", "info");
+      },
+
+      // FAVORITES MODAL
+      openFavoritesModal() {
+        const favIds = store.getFavorites();
+        const modal = document.getElementById('favoritesModal');
+        const content = document.getElementById('favoritesModalContent');
+
+        if (favIds.length === 0) {
+          content.innerHTML = `<p style="color:var(--text-muted);text-align:center;padding:30px 0;">Saralangan mahsulotlar yo'q.</p>`;
+        } else {
+          const products = store.getProducts().filter(p => favIds.includes(p.id));
+          content.innerHTML = `
+            <div style="display:flex;flex-direction:column;gap:12px;">
+              ${products.map(p => `
+                <div style="display:flex;align-items:center;gap:14px;padding:10px 0;border-bottom:1px solid var(--border-light);">
+                  <img src="${p.image}" style="width:60px;height:60px;object-fit:contain;background:var(--card-subtle);border-radius:8px;">
+                  <div style="flex:1;">
+                    <div style="font-size:13px;font-weight:600;">${p.title}</div>
+                    <div style="font-size:14px;font-weight:800;color:var(--primary);margin-top:2px;">${App.formatMoney(p.retailPrice)}</div>
+                  </div>
+                  <button class="cat-pill" style="background:var(--primary-light);color:var(--primary);" onclick="App.handleAddToCart('${p.id}'); App.closeModals();">Savatga</button>
+                </div>
+              `).join('')}
+            </div>
+          `;
+        }
+        modal.classList.add('active');
+      },
+
+      closeModals() {
+        document.querySelectorAll('.modal-overlay').forEach(m => m.classList.remove('active'));
+      }
+    };
+
+    // Close modal on escape
+    window.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') App.closeModals();
+    });
+
+    // Initialize App when DOM ready
+    window.addEventListener('DOMContentLoaded', () => {
+      App.init();
+    });
+  </script>
+</body>
+</html>
