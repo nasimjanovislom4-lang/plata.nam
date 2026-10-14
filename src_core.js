@@ -1,6 +1,33 @@
 // Core data and state engine for plata.nam
 
 export const INITIAL_PRODUCTS = [
+  // --- AMD RYZEN PROTSESSORLARI & PLATALARI ---
+  {
+    id: "CPU-RYZEN-7800X3D",
+    title: "AMD Ryzen 7 7800X3D Gaming Processor AM5",
+    category: "Protsessorlar (CPU)",
+    retailPrice: 5200000,
+    costPrice: 4300000,
+    oldPrice: 5800000,
+    image: "https://images.unsplash.com/photo-1591799264318-7e6ef8ddb7ea?auto=format&fit=crop&w=400&q=80",
+    specs: "Socket AM5, 8 Cores / 16 Threads, 5.0 GHz Turbo, 104MB 3D V-Cache, 120W TDP",
+    officialSource: "amd.com / newegg official",
+    oemTag: "plata.nam (Official Import)",
+    inStock: true
+  },
+  {
+    id: "CPU-RYZEN-7950X",
+    title: "AMD Ryzen 9 7950X Workstation Processor AM5",
+    category: "Protsessorlar (CPU)",
+    retailPrice: 6500000,
+    costPrice: 5400000,
+    oldPrice: 7200000,
+    image: "https://images.unsplash.com/photo-1555680202-c86f0e12f086?auto=format&fit=crop&w=400&q=80",
+    specs: "Socket AM5, 16 Cores / 32 Threads, 5.7 GHz Boost, 80MB Cache, PCIe 5.0",
+    officialSource: "amd.com / amazon",
+    oemTag: "plata.nam (Official Import)",
+    inStock: true
+  },
   {
     id: "PLT-B650",
     title: "ASUS TUF GAMING B650-PLUS WIFI AM5",
@@ -15,6 +42,47 @@ export const INITIAL_PRODUCTS = [
     inStock: true
   },
   {
+    id: "PLT-X670E-TAICHI",
+    title: "ASRock X670E Taichi Carrara Marble AM5",
+    category: "Motherboard",
+    retailPrice: 6200000,
+    costPrice: 5100000,
+    oldPrice: 6900000,
+    image: "https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=400&q=80",
+    specs: "Socket AM5, 24+2+1 Phase VRM, Dual USB4 Type-C, PCIe 5.0 x16, Carrara Marble Look",
+    officialSource: "asrock.com / newegg",
+    oemTag: "plata.nam (Official Import)",
+    inStock: true
+  },
+
+  // --- INTEL CORE PROTSESSORLARI & PLATALARI ---
+  {
+    id: "CPU-INTEL-14900K",
+    title: "Intel Core i9-14900K Flagship CPU LGA1700",
+    category: "Protsessorlar (CPU)",
+    retailPrice: 6800000,
+    costPrice: 5600000,
+    oldPrice: 7600000,
+    image: "https://images.unsplash.com/photo-1591799264318-7e6ef8ddb7ea?auto=format&fit=crop&w=400&q=80",
+    specs: "Socket LGA1700, 24 Cores (8P+16E) / 32 Threads, Up to 6.0 GHz, 36MB SmartCache",
+    officialSource: "intel.com / newegg official",
+    oemTag: "plata.nam (Official Import)",
+    inStock: true
+  },
+  {
+    id: "CPU-INTEL-14700K",
+    title: "Intel Core i7-14700K Gaming & Render CPU LGA1700",
+    category: "Protsessorlar (CPU)",
+    retailPrice: 4900000,
+    costPrice: 4100000,
+    oldPrice: 5500000,
+    image: "https://images.unsplash.com/photo-1555680202-c86f0e12f086?auto=format&fit=crop&w=400&q=80",
+    specs: "Socket LGA1700, 20 Cores (8P+12E) / 28 Threads, Up to 5.6 GHz, 33MB Cache",
+    officialSource: "intel.com / amazon",
+    oemTag: "plata.nam (Official Import)",
+    inStock: true
+  },
+  {
     id: "PLT-Z790",
     title: "MSI MAG Z790 TOMAHAWK WIFI DDR5 LGA1700",
     category: "Motherboard",
@@ -24,6 +92,19 @@ export const INITIAL_PRODUCTS = [
     image: "https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=400&q=80",
     specs: "Socket LGA1700 (14/13th Gen), PCIe 5.0, Wi-Fi 6E, 4x M.2 Slots",
     officialSource: "msi.com / amazon",
+    oemTag: "plata.nam (Official Import)",
+    inStock: true
+  },
+  {
+    id: "PLT-Z790-DARKHERO",
+    title: "ASUS ROG MAXIMUS Z790 DARK HERO LGA1700",
+    category: "Motherboard",
+    retailPrice: 8900000,
+    costPrice: 7300000,
+    oldPrice: 9800000,
+    image: "https://images.unsplash.com/photo-1587202372775-e229f172b9d7?auto=format&fit=crop&w=400&q=80",
+    specs: "LGA1700, 20+1+2 Power Stages, Wi-Fi 7, Dual Thunderbolt 4, 5x M.2 Slots",
+    officialSource: "asus.com / official dealer",
     oemTag: "plata.nam (Official Import)",
     inStock: true
   },
@@ -147,7 +228,7 @@ export function createPlataStore(storageEngine = null) {
     setItem(k, v) { this._data[k] = String(v); }
   });
 
-  const STORAGE_KEY = 'plata_nam_db_v2';
+  const STORAGE_KEY = 'plata_nam_db_v4';
 
   function loadState() {
     try {

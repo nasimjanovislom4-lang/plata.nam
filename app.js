@@ -232,7 +232,7 @@ const DEFAULT_USER = {
 
 class PlataStoreClass {
   constructor() {
-    this.STORAGE_KEY = 'plata_nam_db_v3';
+    this.STORAGE_KEY = 'plata_nam_db_v4';
     this.state = this.loadState();
   }
 
