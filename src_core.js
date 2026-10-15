@@ -470,7 +470,8 @@ export function createPlataStore(storageEngine = null) {
         oldPrice: prod.oldPrice ? Number(prod.oldPrice) : Math.round(Number(prod.retailPrice) * 1.15),
         image: prod.image || "https://images.unsplash.com/photo-1587202372775-e229f172b9d7?auto=format&fit=crop&w=400&q=80",
         specs: prod.specs || "Rasmiy xorijiy import qismlar",
-        officialSource: prod.officialSource || "official partner",
+        officialSource: prod.officialSource || "Amazon.com / Intel Store",
+        amazonUrl: prod.amazonUrl || `https://www.amazon.com/s?k=${encodeURIComponent(prod.title || 'Intel Core i3')}`,
         oemTag: "plata.nam (Official Import)",
         inStock: true
       };
