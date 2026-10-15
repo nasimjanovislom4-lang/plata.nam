@@ -232,7 +232,7 @@ const DEFAULT_USER = {
 
 class PlataStoreClass {
   constructor() {
-    this.STORAGE_KEY = 'plata_nam_db_v4';
+    this.STORAGE_KEY = 'plata_nam_db_v5';
     this.state = this.loadState();
   }
 
@@ -246,7 +246,7 @@ class PlataStoreClass {
     const initial = {
       currentUser: DEFAULT_USER,
       cart: [{ productId: "CPU-RYZEN-7800X3D", quantity: 1, selected: true }],
-      favorites: ["PLT-B650", "CLR-AK620"],
+      favorites: [],
       products: INITIAL_PRODUCTS,
       orders: INITIAL_ORDERS,
       urlRequests: []
@@ -622,18 +622,29 @@ const App = {
   updateHeaderUI() {
     const user = store.getCurrentUser();
     const userBtn = document.getElementById('userBtnLabel');
-    if (user.role === 'admin') {
-      userBtn.textContent = "Admin (Chiqish)";
-    } else if (user.role === 'client') {
-      userBtn.textContent = user.name;
-    } else {
-      userBtn.textContent = "Kirish";
+    if (userBtn) {
+      if (user.role === 'admin') {
+        userBtn.textContent = "Admin (Chiqish)";
+      } else if (user.role === 'client') {
+        userBtn.textContent = user.name;
+      } else {
+        userBtn.textContent = "Kirish";
+      }
     }
 
     const count = store.getCartCount();
     const badge = document.getElementById('cartBadgeCount');
-    badge.textContent = count;
-    badge.style.display = count > 0 ? 'flex' : 'none';
+    if (badge) {
+      badge.textContent = count;
+      badge.style.display = count > 0 ? 'flex' : 'none';
+    }
+
+    const favCount = store.getFavorites().length;
+    const favBadge = document.getElementById('favBadgeCount');
+    if (favBadge) {
+      favBadge.textContent = favCount;
+      favBadge.style.display = favCount > 0 ? 'flex' : 'none';
+    }
   },
 
   // CATALOG
@@ -718,8 +729,14 @@ const App = {
 
   toggleFav(productId) {
     store.toggleFavorite(productId);
+    const isFav = store.getFavorites().includes(productId);
     this.renderCatalog();
-    this.toast("Saralanganlar yangilandi", "info");
+    this.updateHeaderUI();
+    const favModal = document.getElementById('favoritesModal');
+    if (favModal && favModal.classList.contains('active')) {
+      this.openFavoritesModal();
+    }
+    this.toast(isFav ? "Saralanganlarga saqlandi ❤️" : "Saralanganlardan o'chirildi", "info");
   },
 
   // SHOPPING CART (UZUM STYLE)
@@ -1465,25 +1482,51 @@ const App = {
     const content = document.getElementById('favoritesModalContent');
 
     if (favIds.length === 0) {
-      content.innerHTML = `<p style="color:var(--text-muted);text-align:center;padding:30px 0;">Saralangan mahsulotlar yo'q.</p>`;
+      content.innerHTML = `
+        <div style="text-align:center; padding:36px 16px;">
+          <svg style="width:48px;height:48px;color:var(--text-muted);margin:0 auto 12px;display:block;" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"></path>
+          </svg>
+          <div style="font-weight:700;font-size:16px;color:var(--text-main);margin-bottom:6px;">Saralangan mahsulotlar hozircha yo'q</div>
+          <p style="font-size:13px;color:var(--text-muted);line-height:1.5;max-width:320px;margin:0 auto 16px;">
+            Mahsulot kartochkasidagi yurakcha (🤍) belgisini bosish orqali o'zingiz yoqtirgan tovarlarni shu yerga saqlab qo'yishingiz mumkin.
+          </p>
+          <button class="checkout-submit-btn" style="width:auto;margin:0 auto;padding:0 24px;" onclick="App.closeModals(); App.switchView('catalog');">
+            Katalogni ko'rish
+          </button>
+        </div>
+      `;
     } else {
       const products = store.getProducts().filter(p => favIds.includes(p.id));
       content.innerHTML = `
         <div style="display:flex;flex-direction:column;gap:12px;">
           ${products.map(p => `
-            <div style="display:flex;align-items:center;gap:14px;padding:10px 0;border-bottom:1px solid var(--border-light);">
-              <img src="${p.image}" style="width:60px;height:60px;object-fit:contain;background:var(--card-subtle);border-radius:8px;">
+            <div style="display:flex;align-items:center;gap:14px;padding:12px 0;border-bottom:1px solid var(--border-light);">
+              <img src="${p.image}" alt="${p.title}" style="width:64px;height:64px;object-fit:contain;background:var(--card-subtle);border-radius:8px;padding:4px;">
               <div style="flex:1;">
-                <div style="font-size:13px;font-weight:600;">${p.title}</div>
-                <div style="font-size:14px;font-weight:800;color:var(--primary);margin-top:2px;">${App.formatMoney(p.retailPrice)}</div>
+                <div style="font-size:13px;font-weight:600;line-height:1.3;cursor:pointer;" onclick="App.closeModals(); App.openProductDetails('${p.id}');">${p.title}</div>
+                <div style="font-size:14px;font-weight:800;color:var(--primary);margin-top:4px;">${App.formatMoney(p.retailPrice)}</div>
               </div>
-              <button class="cat-pill" style="background:var(--primary-light);color:var(--primary);" onclick="App.handleAddToCart('${p.id}'); App.closeModals();">Savatga</button>
+              <div style="display:flex;align-items:center;gap:8px;">
+                <button class="cat-pill" style="background:var(--primary-light);color:var(--primary);font-weight:600;" onclick="App.handleAddToCart('${p.id}'); App.closeModals();">Savatga</button>
+                <button class="action-btn" onclick="App.removeFavoriteFromModal('${p.id}')" title="Saralanganlardan o'chirish" style="padding:6px;border-radius:6px;color:var(--danger);border:1px solid rgba(247,56,89,0.2);">
+                  <svg style="width:16px;height:16px;" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"></path></svg>
+                </button>
+              </div>
             </div>
           `).join('')}
         </div>
       `;
     }
     modal.classList.add('active');
+  },
+
+  removeFavoriteFromModal(productId) {
+    store.toggleFavorite(productId);
+    this.updateHeaderUI();
+    this.renderCatalog();
+    this.openFavoritesModal();
+    this.toast("Mahsulot saralanganlardan o'chirildi", "info");
   },
 
   closeModals() {

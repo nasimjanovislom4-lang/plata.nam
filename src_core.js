@@ -228,7 +228,7 @@ export function createPlataStore(storageEngine = null) {
     setItem(k, v) { this._data[k] = String(v); }
   });
 
-  const STORAGE_KEY = 'plata_nam_db_v4';
+  const STORAGE_KEY = 'plata_nam_db_v5';
 
   function loadState() {
     try {
@@ -244,7 +244,7 @@ export function createPlataStore(storageEngine = null) {
       cart: [
         { productId: "PLT-B650", quantity: 1, selected: true }
       ],
-      favorites: ["CLR-AK620"],
+      favorites: [],
       products: INITIAL_PRODUCTS,
       orders: INITIAL_ORDERS,
       urlRequests: []
