@@ -12,7 +12,7 @@ export const INITIAL_PRODUCTS = [
     image: "https://images.unsplash.com/photo-1591799264318-7e6ef8ddb7ea?auto=format&fit=crop&w=400&q=80",
     specs: "Socket AM5, 8 Cores / 16 Threads, 5.0 GHz Turbo, 104MB 3D V-Cache, 120W TDP",
     officialSource: "Amazon.com / AMD Official Store",
-    amazonUrl: "https://www.amazon.com/dp/B0BTZB7F88",
+    amazonUrl: "https://www.amazon.com/s?k=AMD+Ryzen+7+7800X3D",
     oemTag: "Amazon Direct Import",
     inStock: true
   },
@@ -26,7 +26,7 @@ export const INITIAL_PRODUCTS = [
     image: "https://images.unsplash.com/photo-1555680202-c86f0e12f086?auto=format&fit=crop&w=400&q=80",
     specs: "Socket AM5, 16 Cores / 32 Threads, 5.7 GHz Boost, 80MB Cache, PCIe 5.0",
     officialSource: "Amazon.com / AMD Official Store",
-    amazonUrl: "https://www.amazon.com/dp/B0BBHD5D8Y",
+    amazonUrl: "https://www.amazon.com/s?k=AMD+Ryzen+9+7950X",
     oemTag: "Amazon Direct Import",
     inStock: true
   },
@@ -40,7 +40,7 @@ export const INITIAL_PRODUCTS = [
     image: "https://images.unsplash.com/photo-1587202372775-e229f172b9d7?auto=format&fit=crop&w=400&q=80",
     specs: "Socket AM5, DDR5, PCIe 5.0 M.2, 2.5Gb LAN, Wi-Fi 6, Aura Sync RGB",
     officialSource: "Amazon.com / ASUS Store",
-    amazonUrl: "https://www.amazon.com/dp/B0BHMTST8Z",
+    amazonUrl: "https://www.amazon.com/s?k=ASUS+TUF+GAMING+B650-PLUS+WIFI",
     oemTag: "Amazon Direct Import",
     inStock: true
   },
@@ -54,7 +54,7 @@ export const INITIAL_PRODUCTS = [
     image: "https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=400&q=80",
     specs: "Socket AM5, 24+2+1 Phase VRM, Dual USB4 Type-C, PCIe 5.0 x16, Carrara Marble Look",
     officialSource: "Amazon.com / ASRock Store",
-    amazonUrl: "https://www.amazon.com/dp/B0BHD49N47",
+    amazonUrl: "https://www.amazon.com/s?k=ASRock+X670E+Taichi+Carrara",
     oemTag: "Amazon Direct Import",
     inStock: true
   },
@@ -70,7 +70,7 @@ export const INITIAL_PRODUCTS = [
     image: "https://images.unsplash.com/photo-1591799264318-7e6ef8ddb7ea?auto=format&fit=crop&w=400&q=80",
     specs: "Socket LGA1700, 24 Cores (8P+16E) / 32 Threads, Up to 6.0 GHz, 36MB SmartCache",
     officialSource: "Amazon.com / Intel Store",
-    amazonUrl: "https://www.amazon.com/dp/B0CG79D9S9",
+    amazonUrl: "https://www.amazon.com/s?k=Intel+Core+i9-14900K",
     oemTag: "Amazon Direct Import",
     inStock: true
   },
@@ -84,7 +84,7 @@ export const INITIAL_PRODUCTS = [
     image: "https://images.unsplash.com/photo-1555680202-c86f0e12f086?auto=format&fit=crop&w=400&q=80",
     specs: "Socket LGA1700, 20 Cores (8P+12E) / 28 Threads, Up to 5.6 GHz, 33MB Cache",
     officialSource: "Amazon.com / Intel Store",
-    amazonUrl: "https://www.amazon.com/dp/B0CG7BY7FL",
+    amazonUrl: "https://www.amazon.com/s?k=Intel+Core+i7-14700K",
     oemTag: "Amazon Direct Import",
     inStock: true
   },
@@ -98,7 +98,7 @@ export const INITIAL_PRODUCTS = [
     image: "https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=400&q=80",
     specs: "Socket LGA1700 (14/13th Gen), PCIe 5.0, Wi-Fi 6E, 4x M.2 Slots",
     officialSource: "Amazon.com / MSI Store",
-    amazonUrl: "https://www.amazon.com/dp/B0BHC5S6T7",
+    amazonUrl: "https://www.amazon.com/s?k=MSI+MAG+Z790+TOMAHAWK+WIFI",
     oemTag: "Amazon Direct Import",
     inStock: true
   },
@@ -112,7 +112,7 @@ export const INITIAL_PRODUCTS = [
     image: "https://images.unsplash.com/photo-1587202372775-e229f172b9d7?auto=format&fit=crop&w=400&q=80",
     specs: "LGA1700, 20+1+2 Power Stages, Wi-Fi 7, Dual Thunderbolt 4, 5x M.2 Slots",
     officialSource: "Amazon.com / ASUS ROG Store",
-    amazonUrl: "https://www.amazon.com/dp/B0CJN1D26F",
+    amazonUrl: "https://www.amazon.com/s?k=ASUS+ROG+MAXIMUS+Z790+DARK+HERO",
     oemTag: "Amazon Direct Import",
     inStock: true
   },
@@ -128,7 +128,7 @@ export const INITIAL_PRODUCTS = [
     image: "https://images.unsplash.com/photo-1587202372634-32705e3bf49c?auto=format&fit=crop&w=400&q=80",
     specs: "260W TDP, 6 Heatpipes, 2x 120mm FDB Fans, LGA1700/AM5",
     officialSource: "Amazon.com / DeepCool Store",
-    amazonUrl: "https://www.amazon.com/dp/B09CS9ZN7F",
+    amazonUrl: "https://www.amazon.com/s?k=DeepCool+AK620",
     oemTag: "Amazon Direct Import",
     inStock: true
   },
@@ -142,7 +142,7 @@ export const INITIAL_PRODUCTS = [
     image: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=400&q=80",
     specs: "360mm Radiator, 4th Gen Dual-Chamber Pump, Anti-Leak Tech, ARGB",
     officialSource: "Amazon.com / DeepCool Store",
-    amazonUrl: "https://www.amazon.com/dp/B0BB3515BH",
+    amazonUrl: "https://www.amazon.com/s?k=DeepCool+LT720",
     oemTag: "Amazon Direct Import",
     inStock: true
   },
@@ -158,7 +158,7 @@ export const INITIAL_PRODUCTS = [
     image: "https://images.unsplash.com/photo-1597872200969-2b65d56bd16b?auto=format&fit=crop&w=400&q=80",
     specs: "Read: 7300 MB/s, Write: 7000 MB/s, Graphene Aluminum Heat Spreader",
     officialSource: "Amazon.com / Kingston Store",
-    amazonUrl: "https://www.amazon.com/dp/B09K3793HQ",
+    amazonUrl: "https://www.amazon.com/s?k=Kingston+FURY+Renegade+2TB",
     oemTag: "Amazon Direct Import",
     inStock: true
   },
@@ -172,7 +172,7 @@ export const INITIAL_PRODUCTS = [
     image: "https://images.unsplash.com/photo-1531492746076-161ca9bcad58?auto=format&fit=crop&w=400&q=80",
     specs: "7200 RPM, 256MB Cache, SATA 6Gb/s, 512e/4Kn, 2.5M hr MTBF",
     officialSource: "Amazon.com / Seagate Store",
-    amazonUrl: "https://www.amazon.com/dp/B07SPFPKF4",
+    amazonUrl: "https://www.amazon.com/s?k=Seagate+Exos+X18+16TB",
     oemTag: "Amazon Direct Import",
     inStock: true
   },
@@ -188,7 +188,7 @@ export const INITIAL_PRODUCTS = [
     image: "https://images.unsplash.com/photo-1550751827-4bd374c3f58b?auto=format&fit=crop&w=400&q=80",
     specs: "Asmedia ASM3242 Chipset, PCIe 3.0 x4, Low Profile bracket included",
     officialSource: "Amazon.com / Orico Store",
-    amazonUrl: "https://www.amazon.com/dp/B089Y7YWDW",
+    amazonUrl: "https://www.amazon.com/s?k=PCIe+USB+3.2+Gen+2x2+Type-C+20Gbps",
     oemTag: "Amazon Direct Import",
     inStock: true
   },
@@ -202,7 +202,7 @@ export const INITIAL_PRODUCTS = [
     image: "https://images.unsplash.com/photo-1517420704952-d9f39e95b43e?auto=format&fit=crop&w=400&q=80",
     specs: "Dual-code LED display, Support DDR4/DDR5 desktop & laptop diagnostic",
     officialSource: "Amazon.com / Diagnostic Hardware",
-    amazonUrl: "https://www.amazon.com/dp/B07V6SZVSC",
+    amazonUrl: "https://www.amazon.com/s?k=Motherboard+Diagnostic+Post+Card+PCIe",
     oemTag: "Amazon Direct Import",
     inStock: true
   }
@@ -225,7 +225,7 @@ export function createPlataStore(storageEngine = null) {
     setItem(k, v) { this._data[k] = String(v); }
   });
 
-  const STORAGE_KEY = 'plata_nam_db_v6';
+  const STORAGE_KEY = 'plata_nam_db_v7';
 
   function loadState() {
     try {

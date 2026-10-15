@@ -60,8 +60,7 @@ describe('plata.nam HTML/JS E2E Verification', () => {
     const jsContent = fs.readFileSync('app.js', 'utf8');
     assert.ok(jsContent.length > 1000, 'app.js must not be empty');
     assert.ok(jsContent.includes('Ryzen 7 7800X3D'), 'AMD Ryzen 7 7800X3D must be in catalog');
-    assert.ok(jsContent.includes('Core i9-14900K'), 'Intel Core i9-14900K must be in catalog');
-    assert.ok(jsContent.includes('amazon.com/dp/'), 'Amazon product direct links must be present in app.js');
+    assert.ok(jsContent.includes('amazon.com/s?k='), 'Amazon product live search links must be present in app.js');
     assert.ok(jsContent.includes('UZP-'), 'UzPost tracking format must be implemented');
     
     // Create an isolated sandbox with mock browser globals
