@@ -63,7 +63,19 @@ describe('PlataStore State Engine', () => {
 
   test('financial report calculates Revenue, COGS and Gross Profit formula', () => {
     const store = getFreshStore();
-    const fin = store.getFinancialReport();
+    // Default revenue/cogs should be 0 when no orders exist
+    let fin = store.getFinancialReport();
+    assert.equal(fin.totalRevenue, 0);
+    assert.equal(fin.totalCOGS, 0);
+    assert.equal(fin.grossProfit, 0);
+
+    // Create an order to verify formula
+    store.createOrder({
+      client: { id: 'USR-TEST', name: 'Alisher', phone: '+998931112233' },
+      logistics: { serviceType: 'Filialgacha', address: 'Toshkent sh.', postcode: '100000' },
+      paymentCard: '8600 1234 5678 9012'
+    });
+    fin = store.getFinancialReport();
     assert.ok(fin.totalRevenue > 0);
     assert.ok(fin.totalCOGS > 0);
     assert.equal(fin.grossProfit, fin.totalRevenue - fin.totalCOGS - fin.uzpostExpense);
@@ -79,7 +91,8 @@ describe('PlataStore State Engine', () => {
       oldPrice: 10500000,
       image: 'https://images.unsplash.com/photo-1587202372775-e229f172b9d7?auto=format&fit=crop&w=400&q=80',
       specs: '16GB GDDR6X, 256-bit, DLSS 3, 3x DisplayPort, 1x HDMI',
-      officialSource: 'nvidia.com / newegg'
+      officialSource: 'Amazon.com / NVIDIA Store',
+      amazonUrl: 'https://www.amazon.com/dp/B0CS3ZZNHD'
     });
 
     assert.ok(newProd.id.startsWith('PROD-'));
@@ -90,7 +103,7 @@ describe('PlataStore State Engine', () => {
   test('admin can quote URL request and update proposed price', () => {
     const store = getFreshStore();
     const req = store.addUrlRequest({
-      url: 'https://amazon.com/dp/B0CK1Y7P7R',
+      url: 'https://www.amazon.com/dp/B0CK1Y7P7R',
       title: 'Corsair Dominator Titanium DDR5 64GB',
       note: 'White edition 6000MHz'
     });
@@ -103,8 +116,12 @@ describe('PlataStore State Engine', () => {
 
   test('trackParcel returns order details and delivery timeline stages', () => {
     const store = getFreshStore();
-    const orders = store.getOrders();
-    const trackingNum = orders[0].logistics.trackingNumber;
+    const order = store.createOrder({
+      client: { id: 'USR-TEST', name: 'Alisher', phone: '+998931112233' },
+      logistics: { serviceType: 'Filialgacha', address: 'Toshkent sh.', postcode: '100000' },
+      paymentCard: '8600 1234 5678 9012'
+    });
+    const trackingNum = order.logistics.trackingNumber;
 
     const trackingResult = store.trackParcel(trackingNum);
     assert.ok(trackingResult.found, 'Tracking result should be found');

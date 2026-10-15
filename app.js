@@ -3,7 +3,7 @@
    ========================================================================== */
 
 const INITIAL_PRODUCTS = [
-  // --- AMD RYZEN PROTSESSORLARI & PLATALARI ---
+  // --- AMD RYZEN PROTSESSORLARI & PLATALARI (AMAZON DIRECT) ---
   {
     id: "CPU-RYZEN-7800X3D",
     title: "AMD Ryzen 7 7800X3D Gaming Processor AM5",
@@ -13,8 +13,9 @@ const INITIAL_PRODUCTS = [
     oldPrice: 5800000,
     image: "https://images.unsplash.com/photo-1591799264318-7e6ef8ddb7ea?auto=format&fit=crop&w=400&q=80",
     specs: "Socket AM5, 8 Cores / 16 Threads, 5.0 GHz Turbo, 104MB 3D V-Cache, 120W TDP",
-    officialSource: "amd.com / newegg official",
-    oemTag: "plata.nam (Official Import)",
+    officialSource: "Amazon.com / AMD Official Store",
+    amazonUrl: "https://www.amazon.com/dp/B0BTZB7F88",
+    oemTag: "Amazon Direct Import",
     inStock: true
   },
   {
@@ -26,8 +27,9 @@ const INITIAL_PRODUCTS = [
     oldPrice: 7200000,
     image: "https://images.unsplash.com/photo-1555680202-c86f0e12f086?auto=format&fit=crop&w=400&q=80",
     specs: "Socket AM5, 16 Cores / 32 Threads, 5.7 GHz Boost, 80MB Cache, PCIe 5.0",
-    officialSource: "amd.com / amazon",
-    oemTag: "plata.nam (Official Import)",
+    officialSource: "Amazon.com / AMD Official Store",
+    amazonUrl: "https://www.amazon.com/dp/B0BBHD5D8Y",
+    oemTag: "Amazon Direct Import",
     inStock: true
   },
   {
@@ -39,8 +41,9 @@ const INITIAL_PRODUCTS = [
     oldPrice: 3200000,
     image: "https://images.unsplash.com/photo-1587202372775-e229f172b9d7?auto=format&fit=crop&w=400&q=80",
     specs: "Socket AM5, DDR5, PCIe 5.0 M.2, 2.5Gb LAN, Wi-Fi 6, Aura Sync RGB",
-    officialSource: "asus.com / newegg",
-    oemTag: "plata.nam (Official Import)",
+    officialSource: "Amazon.com / ASUS Store",
+    amazonUrl: "https://www.amazon.com/dp/B0BHMTST8Z",
+    oemTag: "Amazon Direct Import",
     inStock: true
   },
   {
@@ -52,12 +55,13 @@ const INITIAL_PRODUCTS = [
     oldPrice: 6900000,
     image: "https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=400&q=80",
     specs: "Socket AM5, 24+2+1 Phase VRM, Dual USB4 Type-C, PCIe 5.0 x16, Carrara Marble Look",
-    officialSource: "asrock.com / newegg",
-    oemTag: "plata.nam (Official Import)",
+    officialSource: "Amazon.com / ASRock Store",
+    amazonUrl: "https://www.amazon.com/dp/B0BHD49N47",
+    oemTag: "Amazon Direct Import",
     inStock: true
   },
 
-  // --- INTEL CORE PROTSESSORLARI & PLATALARI ---
+  // --- INTEL CORE PROTSESSORLARI & PLATALARI (AMAZON DIRECT) ---
   {
     id: "CPU-INTEL-14900K",
     title: "Intel Core i9-14900K Flagship CPU LGA1700",
@@ -67,8 +71,9 @@ const INITIAL_PRODUCTS = [
     oldPrice: 7600000,
     image: "https://images.unsplash.com/photo-1591799264318-7e6ef8ddb7ea?auto=format&fit=crop&w=400&q=80",
     specs: "Socket LGA1700, 24 Cores (8P+16E) / 32 Threads, Up to 6.0 GHz, 36MB SmartCache",
-    officialSource: "intel.com / newegg official",
-    oemTag: "plata.nam (Official Import)",
+    officialSource: "Amazon.com / Intel Store",
+    amazonUrl: "https://www.amazon.com/dp/B0CG79D9S9",
+    oemTag: "Amazon Direct Import",
     inStock: true
   },
   {
@@ -80,8 +85,9 @@ const INITIAL_PRODUCTS = [
     oldPrice: 5500000,
     image: "https://images.unsplash.com/photo-1555680202-c86f0e12f086?auto=format&fit=crop&w=400&q=80",
     specs: "Socket LGA1700, 20 Cores (8P+12E) / 28 Threads, Up to 5.6 GHz, 33MB Cache",
-    officialSource: "intel.com / amazon",
-    oemTag: "plata.nam (Official Import)",
+    officialSource: "Amazon.com / Intel Store",
+    amazonUrl: "https://www.amazon.com/dp/B0CG7BY7FL",
+    oemTag: "Amazon Direct Import",
     inStock: true
   },
   {
@@ -93,8 +99,9 @@ const INITIAL_PRODUCTS = [
     oldPrice: 3900000,
     image: "https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=400&q=80",
     specs: "Socket LGA1700 (14/13th Gen), PCIe 5.0, Wi-Fi 6E, 4x M.2 Slots",
-    officialSource: "msi.com / amazon",
-    oemTag: "plata.nam (Official Import)",
+    officialSource: "Amazon.com / MSI Store",
+    amazonUrl: "https://www.amazon.com/dp/B0BHC5S6T7",
+    oemTag: "Amazon Direct Import",
     inStock: true
   },
   {
@@ -106,12 +113,13 @@ const INITIAL_PRODUCTS = [
     oldPrice: 9800000,
     image: "https://images.unsplash.com/photo-1587202372775-e229f172b9d7?auto=format&fit=crop&w=400&q=80",
     specs: "LGA1700, 20+1+2 Power Stages, Wi-Fi 7, Dual Thunderbolt 4, 5x M.2 Slots",
-    officialSource: "asus.com / official dealer",
-    oemTag: "plata.nam (Official Import)",
+    officialSource: "Amazon.com / ASUS ROG Store",
+    amazonUrl: "https://www.amazon.com/dp/B0CJN1D26F",
+    oemTag: "Amazon Direct Import",
     inStock: true
   },
 
-  // --- SOVUTISH TIZIMLARI (COOLING) ---
+  // --- SOVUTISH TIZIMLARI (COOLING - AMAZON DIRECT) ---
   {
     id: "CLR-AK620",
     title: "DeepCool AK620 High-Performance Dual-Tower Cooler",
@@ -121,8 +129,9 @@ const INITIAL_PRODUCTS = [
     oldPrice: 990000,
     image: "https://images.unsplash.com/photo-1587202372634-32705e3bf49c?auto=format&fit=crop&w=400&q=80",
     specs: "260W TDP, 6 Heatpipes, 2x 120mm FDB Fans, LGA1700/AM5",
-    officialSource: "deepcool.com / newegg",
-    oemTag: "plata.nam (Official Import)",
+    officialSource: "Amazon.com / DeepCool Store",
+    amazonUrl: "https://www.amazon.com/dp/B09CS9ZN7F",
+    oemTag: "Amazon Direct Import",
     inStock: true
   },
   {
@@ -134,12 +143,13 @@ const INITIAL_PRODUCTS = [
     oldPrice: 1980000,
     image: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=400&q=80",
     specs: "360mm Radiator, 4th Gen Dual-Chamber Pump, Anti-Leak Tech, ARGB",
-    officialSource: "deepcool.com / amazon",
-    oemTag: "plata.nam (Official Import)",
+    officialSource: "Amazon.com / DeepCool Store",
+    amazonUrl: "https://www.amazon.com/dp/B0BB3515BH",
+    oemTag: "Amazon Direct Import",
     inStock: true
   },
 
-  // --- XOTIRA VA DISKLAR (STORAGE) ---
+  // --- XOTIRA & SAQLASH (STORAGE - AMAZON DIRECT) ---
   {
     id: "STR-RENEGADE-2TB",
     title: "Kingston FURY Renegade 2TB M.2 PCIe 4.0 NVMe SSD",
@@ -149,8 +159,9 @@ const INITIAL_PRODUCTS = [
     oldPrice: 2550000,
     image: "https://images.unsplash.com/photo-1597872200969-2b65d56bd16b?auto=format&fit=crop&w=400&q=80",
     specs: "Read: 7300 MB/s, Write: 7000 MB/s, Graphene Aluminum Heat Spreader",
-    officialSource: "kingston.com / newegg",
-    oemTag: "plata.nam (Official Import)",
+    officialSource: "Amazon.com / Kingston Store",
+    amazonUrl: "https://www.amazon.com/dp/B09K3793HQ",
+    oemTag: "Amazon Direct Import",
     inStock: true
   },
   {
@@ -162,12 +173,13 @@ const INITIAL_PRODUCTS = [
     oldPrice: 4300000,
     image: "https://images.unsplash.com/photo-1531492746076-161ca9bcad58?auto=format&fit=crop&w=400&q=80",
     specs: "7200 RPM, 256MB Cache, SATA 6Gb/s, 512e/4Kn, 2.5M hr MTBF",
-    officialSource: "seagate.com / newegg",
-    oemTag: "plata.nam (Official Import)",
+    officialSource: "Amazon.com / Seagate Store",
+    amazonUrl: "https://www.amazon.com/dp/B07SPFPKF4",
+    oemTag: "Amazon Direct Import",
     inStock: true
   },
 
-  // --- AKSESSUARLAR VA PORTLAR ---
+  // --- AKSESSUARLAR VA PORTLAR (AMAZON DIRECT) ---
   {
     id: "ACC-PCIE-TYPEC",
     title: "PCIe to USB 3.2 Gen 2x2 Type-C (20Gbps) Expansion Card",
@@ -177,8 +189,9 @@ const INITIAL_PRODUCTS = [
     oldPrice: 510000,
     image: "https://images.unsplash.com/photo-1550751827-4bd374c3f58b?auto=format&fit=crop&w=400&q=80",
     specs: "Asmedia ASM3242 Chipset, PCIe 3.0 x4, Low Profile bracket included",
-    officialSource: "orico.cc / aliexpress official",
-    oemTag: "plata.nam (Official Import)",
+    officialSource: "Amazon.com / Orico Store",
+    amazonUrl: "https://www.amazon.com/dp/B089Y7YWDW",
+    oemTag: "Amazon Direct Import",
     inStock: true
   },
   {
@@ -190,38 +203,15 @@ const INITIAL_PRODUCTS = [
     oldPrice: 440000,
     image: "https://images.unsplash.com/photo-1517420704952-d9f39e95b43e?auto=format&fit=crop&w=400&q=80",
     specs: "Dual-code LED display, Support DDR4/DDR5 desktop & laptop diagnostic",
-    officialSource: "official oem factory",
-    oemTag: "plata.nam (Official Import)",
+    officialSource: "Amazon.com / Diagnostic Hardware",
+    amazonUrl: "https://www.amazon.com/dp/B07V6SZVSC",
+    oemTag: "Amazon Direct Import",
     inStock: true
   }
 ];
 
-const INITIAL_ORDERS = [
-  {
-    orderId: "ORD-2026-9041",
-    clientId: "USR-101",
-    clientName: "Islomjon",
-    clientPhone: "+998 90 123 45 67",
-    items: [
-      { id: "CPU-RYZEN-7800X3D", name: "AMD Ryzen 7 7800X3D Gaming Processor AM5", qty: 1, price: 5200000, oldPrice: 5800000 },
-      { id: "PLT-B650", name: "ASUS TUF GAMING B650-PLUS WIFI AM5", qty: 1, price: 2850000, oldPrice: 3200000 }
-    ],
-    totalPaid: 8050000,
-    costAmount: 6600000,
-    profit: 1450000,
-    paymentStatus: "PAID",
-    paymentCard: "8600 **** **** 4492",
-    logistics: {
-      provider: "UzPost",
-      serviceType: "Filialgacha",
-      address: "Namangan sh., Boburshoh ko'chasi, 14-uy",
-      postcode: "160100",
-      trackingNumber: "UZP-20261014-9902"
-    },
-    stage: "PURCHASED_OFFICIAL", // Stages: PAID -> PURCHASED_OFFICIAL -> WAREHOUSE_UZPOST -> DELIVERED
-    createdAt: "2026-10-14T10:30:00.000Z"
-  }
-];
+// Bo'sh boshlang'ich buyurtmalar (Admin panelda mijoz haqiqiy buyurtma berganidagina paydo bo'ladi)
+const INITIAL_ORDERS = [];
 
 const DEFAULT_USER = {
   id: "USR-101",
@@ -232,7 +222,7 @@ const DEFAULT_USER = {
 
 class PlataStoreClass {
   constructor() {
-    this.STORAGE_KEY = 'plata_nam_db_v5';
+    this.STORAGE_KEY = 'plata_nam_db_v6';
     this.state = this.loadState();
   }
 
@@ -245,10 +235,10 @@ class PlataStoreClass {
     }
     const initial = {
       currentUser: DEFAULT_USER,
-      cart: [{ productId: "CPU-RYZEN-7800X3D", quantity: 1, selected: true }],
+      cart: [],
       favorites: [],
-      products: INITIAL_PRODUCTS,
-      orders: INITIAL_ORDERS,
+      products: [...INITIAL_PRODUCTS],
+      orders: [...INITIAL_ORDERS],
       urlRequests: []
     };
     this.saveState(initial);
@@ -392,7 +382,8 @@ class PlataStoreClass {
         qty: item.quantity,
         price: prod.retailPrice,
         costPrice: prod.costPrice,
-        oldPrice: prod.oldPrice
+        oldPrice: prod.oldPrice,
+        amazonUrl: prod.amazonUrl || `https://www.amazon.com/s?k=${encodeURIComponent(prod.title)}`
       };
     });
 
@@ -425,6 +416,11 @@ class PlataStoreClass {
   }
 
   getOrders() { return this.state.orders; }
+  deleteOrder(orderId) {
+    this.state.orders = this.state.orders.filter(o => o.orderId !== orderId);
+    this.saveState(this.state);
+    return this.state.orders;
+  }
   getClientOrders(clientId) {
     return this.state.orders.filter(o => o.clientId === clientId);
   }
@@ -703,7 +699,13 @@ const App = {
             </button>
           </div>
           <div class="product-details">
-            <span class="product-category-lbl">${p.category}</span>
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:4px;">
+              <span class="product-category-lbl">${p.category}</span>
+              <a href="${p.amazonUrl || 'https://www.amazon.com'}" target="_blank" rel="noopener noreferrer" onclick="event.stopPropagation();" style="font-size:11px; color:#ff9900; font-weight:700; text-decoration:none; display:flex; align-items:center; gap:2px; background:rgba(255,153,0,0.1); padding:2px 6px; border-radius:4px;" title="Amazon.com rasmiy havolasi ('cilka')">
+                <span>Amazon "cilka"si</span>
+                <svg style="width:11px;height:11px;" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg>
+              </a>
+            </div>
             <h3 class="product-title" title="${p.title}" onclick="App.openProductDetails('${p.id}')" style="cursor:pointer;">${p.title}</h3>
             <p class="product-specs">${p.specs}</p>
             <div class="product-price-row">
@@ -1134,60 +1136,88 @@ const App = {
       "DELIVERED": { label: "Yetkazildi", cls: "delivered" }
     };
 
-    tableBody.innerHTML = orders.map(o => {
-      const next = stageNextMap[o.stage];
-      const stInfo = stageLabelMap[o.stage] || { label: o.stage, cls: "paid" };
+    if (orders.length === 0) {
+      tableBody.innerHTML = `<tr><td colspan="9" style="text-align:center; padding:36px 16px; color:var(--text-muted); font-size:14px;">Hozircha buyurtmalar mavjud emas. Mijozlar saytdan tovar buyurtma berganda to'lov kirdi-chiqdisi va Amazon xarid havolalari real vaqtda shu yerda paydo bo'ladi.</td></tr>`;
+    } else {
+      tableBody.innerHTML = orders.map(o => {
+        const next = stageNextMap[o.stage];
+        const stInfo = stageLabelMap[o.stage] || { label: o.stage, cls: "paid" };
 
-      return `
-        <tr>
-          <td><b>${o.orderId}</b><br><small style="color:var(--text-muted);">${new Date(o.createdAt).toLocaleDateString('uz-UZ')}</small></td>
-          <td><b>${o.clientName}</b><br><small>${o.clientPhone}</small></td>
-          <td>${o.items.map(i => `${i.name} (x${i.qty})`).join('<br>')}</td>
-          <td><b>${App.formatMoney(o.totalPaid)}</b></td>
-          <td>
-            <input type="number" style="width:110px;padding:4px 8px;border:1px solid var(--border-color);border-radius:4px;" value="${o.costAmount}" onchange="App.handleAdminUpdateCost('${o.orderId}', this.value)">
-          </td>
-          <td style="color:${o.profit >= 0 ? 'var(--success)' : 'var(--danger)'};font-weight:700;">${App.formatMoney(o.profit)}</td>
-          <td>
-            <input type="text" style="width:130px;padding:4px 8px;border:1px solid var(--border-color);border-radius:4px;font-family:monospace;" value="${o.logistics.trackingNumber}" onchange="App.handleAdminUpdateTracking('${o.orderId}', this.value)">
-          </td>
-          <td>
-            <span class="status-badge ${stInfo.cls}">${stInfo.label}</span>
-          </td>
-          <td>
-            ${next ? `
-              <button class="table-action-btn" onclick="App.handleAdminAdvanceStage('${o.orderId}', '${next}')">
-                Keyingi: ${stageLabelMap[next].label} &rarr;
-              </button>
-            ` : `<span style="color:var(--success);font-weight:700;">Tugatilgan</span>`}
-          </td>
-        </tr>
-      `;
-    }).join('');
+        return `
+          <tr>
+            <td><b>${o.orderId}</b><br><small style="color:var(--text-muted);">${new Date(o.createdAt).toLocaleDateString('uz-UZ')}</small></td>
+            <td><b>${o.clientName}</b><br><small>${o.clientPhone}</small></td>
+            <td>
+              ${o.items.map(i => `
+                <div style="margin-bottom:6px;">
+                  <b>${i.name}</b> (x${i.qty})<br>
+                  <a href="${i.amazonUrl || 'https://www.amazon.com'}" target="_blank" rel="noopener noreferrer" style="color:#ff9900; font-size:11px; font-weight:700; text-decoration:underline; display:inline-flex; align-items:center; gap:2px;">
+                    <span>Amazon xarid "cilka"si ↗</span>
+                  </a>
+                </div>
+              `).join('')}
+            </td>
+            <td><b>${App.formatMoney(o.totalPaid)}</b></td>
+            <td>
+              <input type="number" style="width:110px;padding:4px 8px;border:1px solid var(--border-color);border-radius:4px;" value="${o.costAmount}" onchange="App.handleAdminUpdateCost('${o.orderId}', this.value)">
+            </td>
+            <td style="color:${o.profit >= 0 ? 'var(--success)' : 'var(--danger)'};font-weight:700;">${App.formatMoney(o.profit)}</td>
+            <td>
+              <input type="text" style="width:130px;padding:4px 8px;border:1px solid var(--border-color);border-radius:4px;font-family:monospace;" value="${o.logistics.trackingNumber}" onchange="App.handleAdminUpdateTracking('${o.orderId}', this.value)">
+            </td>
+            <td>
+              <span class="status-badge ${stInfo.cls}">${stInfo.label}</span>
+            </td>
+            <td>
+              <div style="display:flex; align-items:center; gap:6px;">
+                ${next ? `
+                  <button class="table-action-btn" onclick="App.handleAdminAdvanceStage('${o.orderId}', '${next}')">
+                    Keyingi: ${stageLabelMap[next].label} &rarr;
+                  </button>
+                ` : `<span style="color:var(--success);font-weight:700;">Tugatilgan</span>`}
+                <button class="action-btn" onclick="App.handleAdminDeleteOrder('${o.orderId}')" title="Buyurtmani o'chirish" style="color:var(--danger); padding:4px 6px; border:1px solid rgba(247,56,89,0.3); border-radius:4px;">
+                  <svg style="width:14px;height:14px;" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"></path></svg>
+                </button>
+              </div>
+            </td>
+          </tr>
+        `;
+      }).join('');
+    }
 
     // Clients Table
     const clientsTable = document.getElementById('adminClientsTableBody');
-    const clients = [
-      { id: "USR-101", name: "Islomjon", phone: "+998 90 123 45 67", role: "client" },
-      { id: "USR-102", name: "Bobur Mirzo", phone: "+998 93 456 78 90", role: "client" },
-      { id: "USR-ADM", name: "Super Admin", phone: "+998 90 999 00 00", role: "admin" }
-    ];
+    if (clientsTable) {
+      if (orders.length === 0) {
+        clientsTable.innerHTML = `<tr><td colspan="6" style="text-align:center; padding:24px; color:var(--text-muted); font-size:14px;">Hozircha xarid qilgan mijozlar yo'q.</td></tr>`;
+      } else {
+        const clientMap = {};
+        orders.forEach(o => {
+          if (!clientMap[o.clientId]) {
+            clientMap[o.clientId] = {
+              id: o.clientId,
+              name: o.clientName,
+              phone: o.clientPhone,
+              ordersCount: 0,
+              totalSpent: 0
+            };
+          }
+          clientMap[o.clientId].ordersCount += 1;
+          clientMap[o.clientId].totalSpent += o.totalPaid;
+        });
 
-    clientsTable.innerHTML = clients.map(c => {
-      const clientOrders = store.getClientOrders(c.id);
-      const totalSpent = clientOrders.reduce((sum, o) => sum + o.totalPaid, 0);
-
-      return `
-        <tr>
-          <td><b>${c.id}</b></td>
-          <td>${c.name}</td>
-          <td>${c.phone}</td>
-          <td>${clientOrders.length} ta</td>
-          <td><b>${App.formatMoney(totalSpent)}</b></td>
-          <td><span class="status-badge ${c.role === 'admin' ? 'warehouse' : 'paid'}">${c.role}</span></td>
-        </tr>
-      `;
-    }).join('');
+        clientsTable.innerHTML = Object.values(clientMap).map(c => `
+          <tr>
+            <td><b>${c.id}</b></td>
+            <td>${c.name}</td>
+            <td>${c.phone}</td>
+            <td>${c.ordersCount} ta</td>
+            <td><b>${App.formatMoney(c.totalSpent)}</b></td>
+            <td><span class="status-badge paid">Mijoz</span></td>
+          </tr>
+        `).join('');
+      }
+    }
 
     // URL Requests Table
     const requestsTable = document.getElementById('adminRequestsTableBody');
@@ -1235,6 +1265,15 @@ const App = {
     this.toast("Buyurtma statusi o'zgartirildi!", "success");
   },
 
+  handleAdminDeleteOrder(orderId) {
+    if (confirm("Ushbu buyurtmani ro'yxatdan o'chirmoqchimisiz?")) {
+      store.deleteOrder(orderId);
+      this.renderAdminDashboard();
+      this.renderClientPortal();
+      this.toast("Buyurtma o'chirildi", "info");
+    }
+  },
+
   // PRODUCT DETAILS MODAL
   openProductDetails(productId) {
     const p = store.getProductById(productId);
@@ -1260,10 +1299,17 @@ const App = {
           <h2 style="font-size:18px; font-weight:800; line-height:1.3; margin-bottom:10px;">${p.title}</h2>
           <p style="font-size:13px; color:var(--text-subtle); margin-bottom:16px;">${p.specs}</p>
 
-          <div style="background:var(--card-subtle); padding:12px 16px; border-radius:10px; margin-bottom:18px; font-size:13px;">
+          <div style="background:var(--card-subtle); padding:14px 16px; border-radius:10px; margin-bottom:18px; font-size:13px; border:1px solid var(--border-light);">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:10px; padding-bottom:8px; border-bottom:1px solid var(--border-light);">
+              <span style="color:var(--text-muted); font-weight:600;">Asl nusxa "cilka"si:</span>
+              <a href="${p.amazonUrl || 'https://www.amazon.com'}" target="_blank" rel="noopener noreferrer" style="color:#ff9900; font-weight:800; display:inline-flex; align-items:center; gap:4px; text-decoration:underline;">
+                <span>Amazon.com da ochish</span>
+                <svg style="width:14px;height:14px;" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg>
+              </a>
+            </div>
             <div style="display:flex; justify-content:space-between; margin-bottom:6px;">
               <span style="color:var(--text-muted);">Rasmiy xorijiy manba:</span>
-              <span style="color:var(--info); font-weight:600;">${p.officialSource}</span>
+              <span style="color:var(--text-main); font-weight:600;">${p.officialSource}</span>
             </div>
             <div style="display:flex; justify-content:space-between; margin-bottom:6px;">
               <span style="color:var(--text-muted);">Yetkazish muddati:</span>
@@ -1272,6 +1318,9 @@ const App = {
             <div style="display:flex; justify-content:space-between;">
               <span style="color:var(--text-muted);">Holati:</span>
               <span style="color:var(--success); font-weight:700;">Omborda mavjud (Yangi/OEM)</span>
+            </div>
+            <div style="margin-top:10px; padding-top:8px; border-top:1px dashed var(--border-color); font-size:12px; color:var(--text-subtle);">
+              🛡️ <b>To'lov tizimi:</b> Ushbu tovar to'g'ridan-to'g'ri Amazon'dan xarid qilinadi. To'lov plata.nam (Uzcard / Humo) orqali kirdi-chiqdi qilinadi va xavfsiz kafolatlanadi.
             </div>
           </div>
 
