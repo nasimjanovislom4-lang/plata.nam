@@ -41,6 +41,8 @@ describe('plata.nam HTML/JS E2E Verification', () => {
     assert.ok(htmlContent.includes('id="statCOGS"'), 'COGS stat card must exist');
     assert.ok(htmlContent.includes('id="statProfit"'), 'Gross profit stat card must exist');
     assert.ok(htmlContent.includes('id="adminOrdersTableBody"'), 'Admin orders table must exist');
+    assert.ok(htmlContent.includes('id="tgBotTokenInput"'), 'Telegram bot token input must exist');
+    assert.ok(htmlContent.includes('id="tgChatIdInput"'), 'Telegram chat id input must exist');
     assert.ok(htmlContent.includes('admin2026'), 'Admin credentials must be configured');
 
     // 7. Verification of separated file links
@@ -54,6 +56,7 @@ describe('plata.nam HTML/JS E2E Verification', () => {
     assert.ok(cssContent.includes('.pipeline-tracker'), 'Pipeline stepper styles must be defined');
     assert.ok(cssContent.includes('.cart-summary-sticky'), 'Sticky cart summary styles must be defined');
     assert.ok(cssContent.includes('.product-card'), 'Product card styles must be defined');
+    assert.ok(cssContent.includes('.telegram-settings-card'), 'Telegram settings styles must be defined');
   });
 
   test('app.js executes without any syntax or runtime errors and contains Intel/Ryzen products', () => {
@@ -61,6 +64,7 @@ describe('plata.nam HTML/JS E2E Verification', () => {
     assert.ok(jsContent.length > 1000, 'app.js must not be empty');
     assert.ok(jsContent.includes('Ryzen 7 7800X3D'), 'AMD Ryzen 7 7800X3D must be in catalog');
     assert.ok(jsContent.includes('amazon.com/s?k='), 'Amazon product live search links must be present in app.js');
+    assert.ok(jsContent.includes('sendTelegramMessage'), 'Telegram notification dispatch method must exist in app.js');
     assert.ok(jsContent.includes('UZP-'), 'UzPost tracking format must be implemented');
     
     // Create an isolated sandbox with mock browser globals

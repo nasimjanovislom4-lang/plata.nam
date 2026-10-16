@@ -304,6 +304,53 @@
           </div>
         </div>
 
+        <!-- Telegram Xabarnoma Tizimi (Bot & Guruh integratsiyasi) -->
+        <div class="admin-table-card telegram-settings-card">
+          <div class="table-card-head" style="background: linear-gradient(135deg, rgba(36, 161, 222, 0.08), rgba(112, 0, 255, 0.05));">
+            <div style="display:flex; align-items:center; gap:12px;">
+              <div class="tg-icon-bubble">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21.5 2L2 9.5l7 3.5 3.5 7L21.5 2z"/><path d="M9 13l5.5-5.5"/></svg>
+              </div>
+              <div>
+                <h3 style="display:flex; align-items:center; gap:8px;">
+                  Telegram Bot Xabarnomalari (Buyurtma & Zayavkalar)
+                  <span id="tgStatusBadge" class="status-badge paid">Sozlanmagan</span>
+                </h3>
+                <span style="font-size:13px; color:var(--text-muted);">Yangi buyurtma va xorijiy link so'rovlari administrator Telegramiga avtomatik yuboriladi</span>
+              </div>
+            </div>
+            <button class="cat-pill" style="border-color:var(--info); color:var(--info); font-weight:600;" onclick="App.handleTelegramTestPing()">
+              🔔 Sinov Xabari (Test Ping)
+            </button>
+          </div>
+          <div style="padding: 20px 24px;">
+            <div style="display:grid; grid-template-columns: 1fr 1fr; gap:16px;">
+              <div class="form-group">
+                <label class="form-label" style="display:flex; justify-content:space-between;">
+                  <span>Telegram Bot Token *</span>
+                  <small style="color:var(--text-muted);">@BotFather bergan token</small>
+                </label>
+                <input type="text" id="tgBotTokenInput" class="form-input" placeholder="Masalan: 7123456789:AAHq_..." style="font-family:monospace; font-size:13px;">
+              </div>
+              <div class="form-group">
+                <label class="form-label" style="display:flex; justify-content:space-between;">
+                  <span>Admin Chat ID (Shaxsiy yoki Guruh ID) *</span>
+                  <small style="color:var(--text-muted);">@userinfobot bergan ID</small>
+                </label>
+                <input type="text" id="tgChatIdInput" class="form-input" placeholder="Masalan: 987654321 yoki -100..." style="font-family:monospace; font-size:13px;">
+              </div>
+            </div>
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-top:12px; padding-top:12px; border-top:1px solid var(--border-light); flex-wrap:wrap; gap:12px;">
+              <div style="font-size:12px; color:var(--text-muted); max-width:650px;">
+                💡 <b>Tezkor ulash yo'riqnomasi:</b> Telegram'da <code>@BotFather</code> ga kirib <code>/newbot</code> orqali bot oching va tokenni ko'chiring. Keyin <code>@userinfobot</code> ga kirib o'z ID raqamingizni oling va shu yerga saqlang. Guruhga yuborish uchun botni guruhga qo'shing va guruh ID sini kiriting.
+              </div>
+              <button class="checkout-submit-btn" style="width:auto; padding:10px 24px;" onclick="App.handleSaveTelegramSettings()">
+                Sozlamalarni Saqlash
+              </button>
+            </div>
+          </div>
+        </div>
+
         <!-- Buyurtmalar Pipeline Jadvali -->
         <div class="admin-table-card">
           <div class="table-card-head">

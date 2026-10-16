@@ -1072,13 +1072,31 @@ main {
   margin-top: 6px;
 }
 
-/* Admin Data Tables */
+/* Admin Data Tables & Telegram Integration */
 .admin-table-card {
   background: var(--card-bg);
   border-radius: var(--radius-lg);
   border: 1px solid var(--border-color);
   overflow: hidden;
 }
+
+.telegram-settings-card {
+  border-left: 4px solid #24A1DE;
+  box-shadow: 0 4px 20px rgba(36, 161, 222, 0.08);
+}
+.tg-icon-bubble {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #24A1DE, #0088cc);
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  box-shadow: 0 4px 12px rgba(36, 161, 222, 0.35);
+}
+
 .table-card-head {
   padding: 18px 24px;
   border-bottom: 1px solid var(--border-color);

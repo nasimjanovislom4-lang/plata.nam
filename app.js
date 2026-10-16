@@ -914,6 +914,22 @@ const App = {
       this.renderClientPortal();
       this.renderAdminDashboard();
 
+      // Telegram Bot xabarnomasini avtomatik yuborish
+      const itemsListText = (order.items || []).map(it => `• <b>${it.name}</b> (${it.qty} dona) — ${App.formatMoney(it.price * it.qty)}`).join('\n');
+      const tgOrderMessage = `📦 <b>YANGI BUYURTMA KELIB TUSHDI!</b> (#${order.orderId})\n` +
+        `━━━━━━━━━━━━━━━━━━━━━\n` +
+        `👤 <b>Mijoz:</b> ${order.clientName}\n` +
+        `📞 <b>Telefon:</b> ${order.clientPhone}\n` +
+        `📍 <b>Yetkazish manzili:</b> ${order.logistics.address}\n` +
+        `📮 <b>UzPost indeksi:</b> ${order.logistics.postcode} (${order.logistics.serviceType})\n\n` +
+        `🛒 <b>Buyurtma tarkibi:</b>\n${itemsListText}\n\n` +
+        `💰 <b>Jami to'lov:</b> ${App.formatMoney(order.totalPaid)} (Uzcard/Humo)\n` +
+        `🎯 <b>Kutilayotgan sof foyda:</b> +${App.formatMoney(order.profit)}\n` +
+        `🚚 <b>UzPost Trek-raqami:</b> <code>${order.logistics.trackingNumber}</code>\n` +
+        `━━━━━━━━━━━━━━━━━━━━━\n` +
+        `⚡ <i>plata.nam — Krossbording boshqaruv tizimi</i>`;
+      this.sendTelegramMessage(tgOrderMessage);
+
       this.toast("To'lov muvaffaqiyatli amalga oshirildi!", "success");
       this.showInvoice(order);
     } catch (e) {
@@ -1085,6 +1101,19 @@ const App = {
     const note = document.getElementById('customNoteInput').value;
 
     store.addUrlRequest({ url, title, note });
+
+    // Telegram Bot xabarnomasini avtomatik yuborish
+    const user = store.getCurrentUser();
+    const tgUrlMessage = `🔗 <b>YANGI XORIJdan IMPORT ZAYAVKASI!</b>\n` +
+      `━━━━━━━━━━━━━━━━━━━━━\n` +
+      `👤 <b>Mijoz:</b> ${user.name} (${user.phone})\n` +
+      `🏷 <b>Mahsulot:</b> ${title || "Maxsus butlovchi qism"}\n` +
+      `🌐 <b>Havola:</b> ${url}\n` +
+      `📝 <b>Izoh:</b> ${note || "Izoh qoldirilmagan"}\n` +
+      `━━━━━━━━━━━━━━━━━━━━━\n` +
+      `👉 <i>Admin panelga kirib narx belgilashingiz mumkin!</i>`;
+    this.sendTelegramMessage(tgUrlMessage);
+
     this.toast("Zayavka qabul qilindi! Admin ko'rib chiqadi.", "success");
     event.target.reset();
     this.renderMyUrlRequests();
@@ -1119,6 +1148,7 @@ const App = {
     document.getElementById('statRevenue').textContent = this.formatMoney(fin.totalRevenue);
     document.getElementById('statCOGS').textContent = this.formatMoney(fin.totalCOGS);
     document.getElementById('statProfit').textContent = this.formatMoney(fin.grossProfit);
+    this.updateTelegramUI();
 
     const orders = store.getOrders();
     const tableBody = document.getElementById('adminOrdersTableBody');
@@ -1459,6 +1489,113 @@ const App = {
     this.renderAdminDashboard();
     this.renderClientPortal();
     this.toast("Zayavkaga narx belgilandi va mijozga taklif chiqarildi!", "success");
+  },
+
+  // TELEGRAM BOT INTEGRATSIYASI
+  getTelegramConfig() {
+    try {
+      const raw = localStorage.getItem('plata_telegram_config');
+      if (raw) return JSON.parse(raw);
+    } catch (e) {
+      console.warn("Telegram sozlamalarini o'qishda xatolik:", e);
+    }
+    return {
+      botToken: '',
+      chatId: '',
+      enabled: true
+    };
+  },
+
+  handleSaveTelegramSettings() {
+    const tokenInput = document.getElementById('tgBotTokenInput');
+    const chatInput = document.getElementById('tgChatIdInput');
+    if (!tokenInput || !chatInput) return;
+
+    const botToken = tokenInput.value.trim();
+    const chatId = chatInput.value.trim();
+
+    if (!botToken || !chatId) {
+      this.toast("Iltimos, Bot Token va Chat ID maydonlarini to'ldiring!", "error");
+      return;
+    }
+
+    const config = { botToken, chatId, enabled: true };
+    localStorage.setItem('plata_telegram_config', JSON.stringify(config));
+    this.updateTelegramUI();
+    this.toast("Telegram sozlamalari muvaffaqiyatli saqlandi!", "success");
+  },
+
+  updateTelegramUI() {
+    const config = this.getTelegramConfig();
+    const badge = document.getElementById('tgStatusBadge');
+    const tokenInput = document.getElementById('tgBotTokenInput');
+    const chatInput = document.getElementById('tgChatIdInput');
+
+    if (tokenInput && chatInput) {
+      if (config.botToken && !tokenInput.value) tokenInput.value = config.botToken;
+      if (config.chatId && !chatInput.value) chatInput.value = config.chatId;
+    }
+
+    if (badge) {
+      if (config.botToken && config.chatId) {
+        badge.textContent = "Aktiv ulangan ✓";
+        badge.className = "status-badge delivered";
+      } else {
+        badge.textContent = "Sozlanmagan";
+        badge.className = "status-badge paid";
+      }
+    }
+  },
+
+  async sendTelegramMessage(htmlText) {
+    const config = this.getTelegramConfig();
+    if (!config.botToken || !config.chatId) {
+      console.info("Telegram notification skipped: Bot token or Chat ID is not configured.");
+      return false;
+    }
+
+    try {
+      const url = `https://api.telegram.org/bot${config.botToken}/sendMessage`;
+      const res = await fetch(url, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          chat_id: config.chatId,
+          text: htmlText,
+          parse_mode: 'HTML',
+          disable_web_page_preview: false
+        })
+      });
+      const data = await res.json();
+      if (!data.ok) {
+        console.warn("Telegram API error:", data.description);
+      }
+      return data.ok;
+    } catch (err) {
+      console.warn("Telegram network dispatch error:", err);
+      return false;
+    }
+  },
+
+  async handleTelegramTestPing() {
+    const config = this.getTelegramConfig();
+    if (!config.botToken || !config.chatId) {
+      this.toast("Avval Bot Token va Chat ID ni kiritib, 'Sozlamalarni Saqlash'ni bosing!", "warning");
+      return;
+    }
+
+    this.toast("Telegramga sinov xabari jo'natilmoqda...", "info");
+    const testMsg = `🔔 <b>plata.nam — Telegram Bot Aloqa Sinovi!</b>\n\n` +
+      `✅ <i>Xabarnoma tizimi muvaffaqiyatli ulandi!</i>\n` +
+      `🕒 Vaqt: <b>${new Date().toLocaleString('uz-UZ')}</b>\n` +
+      `📦 Endi saytga tushgan har bir yangi buyurtma va krossbording zayavkalari ushbu chatga bir zumda yetib keladi.`;
+
+    const success = await this.sendTelegramMessage(testMsg);
+    if (success) {
+      this.toast("Sinov xabari Telegram'ingizga muvaffaqiyatli yuborildi! 🚀", "success");
+    } else {
+      this.toast("Xatolik! Bot Token yoki Chat ID noto'g'ri, yoki botga /start bosilmagan.", "error");
+    }
   },
 
   // AUTHENTICATION
