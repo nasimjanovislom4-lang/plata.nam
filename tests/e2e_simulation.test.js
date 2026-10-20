@@ -57,6 +57,7 @@ describe('plata.nam HTML/JS E2E Verification', () => {
     assert.ok(cssContent.includes('.cart-summary-sticky'), 'Sticky cart summary styles must be defined');
     assert.ok(cssContent.includes('.product-card'), 'Product card styles must be defined');
     assert.ok(cssContent.includes('.telegram-settings-card'), 'Telegram settings styles must be defined');
+    assert.ok(cssContent.includes('.floating-tg-widget'), 'Floating Telegram widget styles must be defined');
   });
 
   test('app.js executes without any syntax or runtime errors and contains Intel/Ryzen products', () => {
