@@ -214,7 +214,7 @@ export const INITIAL_ORDERS = [];
 export const DEFAULT_USER = {
   id: "USR-101",
   name: "Islomjon",
-  phone: "+998 90 123 45 67",
+  phone: "+998 33 750 30 20",
   role: "client"
 };
 
@@ -225,7 +225,7 @@ export function createPlataStore(storageEngine = null) {
     setItem(k, v) { this._data[k] = String(v); }
   });
 
-  const STORAGE_KEY = 'plata_nam_db_v8';
+  const STORAGE_KEY = 'plata_nam_db_v9';
 
   function loadState() {
     try {

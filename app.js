@@ -216,13 +216,13 @@ const INITIAL_ORDERS = [];
 const DEFAULT_USER = {
   id: "USR-101",
   name: "Islomjon",
-  phone: "+998 90 123 45 67",
+  phone: "+998 33 750 30 20",
   role: "client"
 };
 
 class PlataStoreClass {
   constructor() {
-    this.STORAGE_KEY = 'plata_nam_db_v8';
+    this.STORAGE_KEY = 'plata_nam_db_v9';
     this.state = this.loadState();
   }
 
@@ -992,13 +992,23 @@ const App = {
         </div>
       </div>
 
-      <div style="display:flex;gap:10px;margin-top:20px;">
-        <button class="checkout-submit-btn" style="flex:1;" onclick="App.closeModals(); App.switchView('client');">Buyurtmani kuzatish (Kabinet)</button>
+      <div style="display:flex;gap:10px;margin-top:20px;flex-wrap:wrap;">
+        <button class="checkout-submit-btn" style="flex:1;min-width:180px;" onclick="App.closeModals(); App.switchView('client');">Buyurtmani kuzatish (Kabinet)</button>
+        <a href="${App.getTelegramDirectLink(order)}" target="_blank" class="cat-pill" style="background:#24A1DE; color:#fff; border-color:#24A1DE; font-weight:700; display:flex; align-items:center; gap:6px; text-decoration:none; padding:10px 18px;">
+          <svg style="width:16px;height:16px;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21.5 2L2 9.5l7 3.5 3.5 7L21.5 2z"/><path d="M9 13l5.5-5.5"/></svg>
+          Telegram (+998 33 750 30 20) ga yuborish
+        </a>
         <button class="cat-pill" style="padding:0 20px;" onclick="window.print()">Chop etish</button>
       </div>
     `;
 
     modal.classList.add('active');
+  },
+
+  getTelegramDirectLink(order) {
+    const itemsText = (order.items || []).map(i => `• ${i.name} (${i.qty} dona)`).join('\n');
+    const msg = `📦 plata.nam — Yangi Buyurtma #${order.orderId}\n\n👤 Mijoz: ${order.clientName}\n📞 Telefon: ${order.clientPhone}\n📍 Manzil: ${order.logistics.address} (${order.logistics.postcode})\n\n🛒 Mahsulotlar:\n${itemsText}\n\n💰 To'lov: ${App.formatMoney(order.totalPaid)}\n🚚 UzPost Trek: ${order.logistics.trackingNumber}`;
+    return `https://t.me/share/url?url=${encodeURIComponent('https://t.me/+998337503020')}&text=${encodeURIComponent(msg)}`;
   },
 
   // CLIENT PORTAL
@@ -1629,7 +1639,7 @@ const App = {
         store.setCurrentUser({
           id: 'USR-ADM',
           name: 'Super Admin',
-          phone: '+998 90 999 00 00',
+          phone: '+998 33 750 30 20',
           role: 'admin'
         });
         this.closeModals();
@@ -1641,7 +1651,7 @@ const App = {
       }
     } else {
       const name = document.getElementById('authNameInput').value.trim() || 'Islomjon';
-      const phone = document.getElementById('authPhoneInput').value.trim() || '+998 90 123 45 67';
+      const phone = document.getElementById('authPhoneInput').value.trim() || '+998 33 750 30 20';
       store.setCurrentUser({
         id: 'USR-101',
         name,
