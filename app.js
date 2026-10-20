@@ -1510,7 +1510,7 @@ const App = {
       console.warn("Telegram sozlamalarini o'qishda xatolik:", e);
     }
     return {
-      botToken: '',
+      botToken: '8824555327:AAEp5i90_8Tux8ZHQ8Aaju55lvGHKTmUyhc',
       chatId: '',
       enabled: true
     };
@@ -1521,11 +1521,11 @@ const App = {
     const chatInput = document.getElementById('tgChatIdInput');
     if (!tokenInput || !chatInput) return;
 
-    const botToken = tokenInput.value.trim();
+    const botToken = tokenInput.value.trim() || '8824555327:AAEp5i90_8Tux8ZHQ8Aaju55lvGHKTmUyhc';
     const chatId = chatInput.value.trim();
 
-    if (!botToken || !chatId) {
-      this.toast("Iltimos, Bot Token va Chat ID maydonlarini to'ldiring!", "error");
+    if (!chatId) {
+      this.toast("Iltimos, Chat ID maydonini to'ldiring yoki 'Chat ID ni Avtomatik Aniqlash' tugmasini bosing!", "error");
       return;
     }
 
@@ -1542,7 +1542,7 @@ const App = {
     const chatInput = document.getElementById('tgChatIdInput');
 
     if (tokenInput && chatInput) {
-      if (config.botToken && !tokenInput.value) tokenInput.value = config.botToken;
+      tokenInput.value = config.botToken || '8824555327:AAEp5i90_8Tux8ZHQ8Aaju55lvGHKTmUyhc';
       if (config.chatId && !chatInput.value) chatInput.value = config.chatId;
     }
 
@@ -1551,9 +1551,38 @@ const App = {
         badge.textContent = "Aktiv ulangan ✓";
         badge.className = "status-badge delivered";
       } else {
-        badge.textContent = "Sozlanmagan";
+        badge.textContent = "Chat ID kutilmoqda";
         badge.className = "status-badge paid";
       }
+    }
+  },
+
+  async handleAutoDetectChatId() {
+    const config = this.getTelegramConfig();
+    const token = config.botToken || '8824555327:AAEp5i90_8Tux8ZHQ8Aaju55lvGHKTmUyhc';
+    this.toast("@PlataNamBot dan yangi xabarlar tekshirilmoqda...", "info");
+
+    try {
+      const res = await fetch(`https://api.telegram.org/bot${token}/getUpdates`);
+      const data = await res.json();
+      if (data.ok && data.result && data.result.length > 0) {
+        const lastMsg = data.result[data.result.length - 1];
+        const fromUser = lastMsg.message ? lastMsg.message.from : (lastMsg.channel_post ? lastMsg.channel_post.chat : null);
+        const chatId = lastMsg.message ? lastMsg.message.chat.id : (lastMsg.channel_post ? lastMsg.channel_post.chat.id : null);
+        if (chatId) {
+          const chatInput = document.getElementById('tgChatIdInput');
+          if (chatInput) chatInput.value = String(chatId);
+          config.chatId = String(chatId);
+          config.botToken = token;
+          localStorage.setItem('plata_telegram_config', JSON.stringify(config));
+          this.updateTelegramUI();
+          this.toast(`Chat ID topildi va ulandi: ${chatId} (${fromUser ? fromUser.first_name : ''})!`, "success");
+          return;
+        }
+      }
+      this.toast("Hali xabar kelmadi. Telegram'da @PlataNamBot ga kirib bir marta /start deb yozing!", "warning");
+    } catch (e) {
+      this.toast("Xatolik yuz berdi: " + e.message, "error");
     }
   },
 
@@ -1590,7 +1619,7 @@ const App = {
   async handleTelegramTestPing() {
     const config = this.getTelegramConfig();
     if (!config.botToken || !config.chatId) {
-      this.toast("Avval Bot Token va Chat ID ni kiritib, 'Sozlamalarni Saqlash'ni bosing!", "warning");
+      this.toast("Avval Chat ID maydonini to'ldiring yoki 'Chat ID ni Avtomatik Aniqlash'ni bosing!", "warning");
       return;
     }
 
@@ -1598,13 +1627,14 @@ const App = {
     const testMsg = `🔔 <b>plata.nam — Telegram Bot Aloqa Sinovi!</b>\n\n` +
       `✅ <i>Xabarnoma tizimi muvaffaqiyatli ulandi!</i>\n` +
       `🕒 Vaqt: <b>${new Date().toLocaleString('uz-UZ')}</b>\n` +
-      `📦 Endi saytga tushgan har bir yangi buyurtma va krossbording zayavkalari ushbu chatga bir zumda yetib keladi.`;
+      `🤖 Bot: <b>@PlataNamBot</b>\n` +
+      `📦 Endi saytga tushgan har bir yangi buyurtma va krossbording zayavkalari shu yerga keladi.`;
 
     const success = await this.sendTelegramMessage(testMsg);
     if (success) {
       this.toast("Sinov xabari Telegram'ingizga muvaffaqiyatli yuborildi! 🚀", "success");
     } else {
-      this.toast("Xatolik! Bot Token yoki Chat ID noto'g'ri, yoki botga /start bosilmagan.", "error");
+      this.toast("Xatolik! Chat ID noto'g'ri, yoki botga /start bosilmagan.", "error");
     }
   },
 

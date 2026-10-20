@@ -324,31 +324,36 @@
                 <span style="font-size:13px; color:var(--text-muted);">Yangi buyurtma va xorijiy link so'rovlari administrator Telegramiga avtomatik yuboriladi</span>
               </div>
             </div>
-            <button class="cat-pill" style="border-color:var(--info); color:var(--info); font-weight:600;" onclick="App.handleTelegramTestPing()">
-              🔔 Sinov Xabari (Test Ping)
-            </button>
+            <div style="display:flex; gap:10px; align-items:center;">
+              <button class="cat-pill" style="border-color:#24A1DE; color:#24A1DE; font-weight:700;" onclick="App.handleAutoDetectChatId()">
+                🔍 Chat ID ni Avtomatik Aniqlash
+              </button>
+              <button class="cat-pill" style="border-color:var(--info); color:var(--info); font-weight:600;" onclick="App.handleTelegramTestPing()">
+                🔔 Sinov Xabari (Test Ping)
+              </button>
+            </div>
           </div>
           <div style="padding: 20px 24px;">
             <div style="display:grid; grid-template-columns: 1fr 1fr; gap:16px;">
               <div class="form-group">
                 <label class="form-label" style="display:flex; justify-content:space-between;">
-                  <span>Telegram Bot Token *</span>
-                  <small style="color:var(--text-muted);">@BotFather bergan token</small>
+                  <span>Telegram Bot (@PlataNamBot) *</span>
+                  <small style="color:var(--success); font-weight:700;">Ulangan: @PlataNamBot</small>
                 </label>
-                <input type="text" id="tgBotTokenInput" class="form-input" placeholder="Masalan: 7123456789:AAHq_..." style="font-family:monospace; font-size:13px;">
+                <input type="text" id="tgBotTokenInput" class="form-input" value="8824555327:AAEp5i90_8Tux8ZHQ8Aaju55lvGHKTmUyhc" placeholder="Masalan: 7123456789:AAHq_..." style="font-family:monospace; font-size:13px;">
               </div>
               <div class="form-group">
                 <label class="form-label" style="display:flex; justify-content:space-between;">
                   <span>Admin Chat ID (Shaxsiy yoki Guruh ID) *</span>
-                  <small style="color:var(--text-muted);">@userinfobot bergan ID</small>
+                  <small style="color:var(--text-muted);">Sizning raqamli ID raqamingiz</small>
                 </label>
                 <input type="text" id="tgChatIdInput" class="form-input" placeholder="Masalan: 987654321 yoki -100..." style="font-family:monospace; font-size:13px;">
               </div>
             </div>
             <div style="display:flex; justify-content:space-between; align-items:center; margin-top:12px; padding-top:12px; border-top:1px solid var(--border-light); flex-wrap:wrap; gap:12px;">
               <div style="font-size:12px; color:var(--text-muted); max-width:650px;">
-                📱 <b>Ulangan administrator raqami:</b> <a href="https://t.me/+998337503020" target="_blank" style="color:var(--info); font-weight:700;">+998 33 750 30 20</a><br>
-                💡 <b>Bot orqali avtomatik olish uchun:</b> Ushbu raqamdagi Telegram profilingizdan <code>@userinfobot</code> ga kiring va o'z raqamli <code>Id</code> raqamingizni olib, yuqoridagi <b>Admin Chat ID</b> ga kiriting.
+                🤖 <b>Rasmiy botingiz:</b> <a href="https://t.me/PlataNamBot" target="_blank" style="color:var(--info); font-weight:700;">@PlataNamBot</a><br>
+                💡 <b>1 marta ulang:</b> Telegram'da <a href="https://t.me/PlataNamBot" target="_blank" style="color:#24A1DE; font-weight:700;">@PlataNamBot</a> ga kiring va <code>/start</code> bosing. So'ng yuqoridagi <b>"🔍 Chat ID ni Avtomatik Aniqlash"</b> tugmasini bossangiz, ID o'zi avtomatik ulanadi!
               </div>
               <button class="checkout-submit-btn" style="width:auto; padding:10px 24px;" onclick="App.handleSaveTelegramSettings()">
                 Sozlamalarni Saqlash
