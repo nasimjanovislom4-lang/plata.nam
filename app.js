@@ -1511,7 +1511,7 @@ const App = {
     }
     return {
       botToken: '8824555327:AAEp5i90_8Tux8ZHQ8Aaju55lvGHKTmUyhc',
-      chatId: '',
+      chatId: '8419702906',
       enabled: true
     };
   },
